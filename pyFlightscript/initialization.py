@@ -1,4 +1,4 @@
-from .utils import write_lines_to_file
+from .utils import *
 
 def open_fsm(script_filepath, fsm_filepath):
     """
@@ -104,27 +104,23 @@ def set_vertex_merge_tolerance(script_filepath, tolerance='1E-5'):
     write_lines_to_file(script_filepath, lines)
     return
 
-def set_simulation_length_units(script_filepath, unit='METER'):
+def set_simulation_length_units(script_filepath, units='METER'):
     """
     Writes specific lines to 'script_filepath' to set the simulation length scale units.
     Checks if the provided unit is valid.
     
     :param script_filepath: Path to the script file.
-    :param unit: Desired simulation length unit.
+    :param units: Desired simulation length unit.
     :raises ValueError: If the provided unit is not valid.
     """
-    valid_units = ["INCH", "MILLIMETER", "OTHER", "FEET", "MILE", "METER", 
-                   "KILOMETER", "MILS", "MICRON", "CENTIMETER", "MICROINCH"]
-
-    if unit not in valid_units:
-        raise ValueError(f"Invalid unit: {unit}. Must be one of {', '.join(valid_units)}.")
+    check_valid_units(units)
 
     lines = [
         "#************************************************************************",
         "#****************** Set simulation length scale units *******************",
         "#************************************************************************",
         "#",
-        f"SET_SIMULATION_LENGTH_UNITS {unit}"
+        f"SET_SIMULATION_LENGTH_UNITS {units}"
     ]
 
     write_lines_to_file(script_filepath, lines)

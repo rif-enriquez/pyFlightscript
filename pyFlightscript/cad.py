@@ -1,5 +1,5 @@
 import os
-from .utils import write_lines_to_file
+from .utils import *
 
 def cad_create_new_model(script_filepath, model_name):
     """
@@ -51,13 +51,11 @@ def cad_create_import_curve_txt(script_filepath, txt_filepath, units='METER', di
     if not os.path.exists(txt_filepath):
         raise FileNotFoundError(f"The specified file '{txt_filepath}' does not exist.")
 
-    valid_units = ["INCH", "MILLIMETER", "OTHER", "FEET", "MILE", "METER", "KILOMETER", 
-                   "MILS", "MICRON", "CENTIMETER", "MICROINCH"]
+    
     valid_dimensions = ["2D", "3D"]
     valid_planes = ["YZ", "XZ", "XY"]
     
-    if units not in valid_units:
-        raise ValueError(f"Invalid units: {units}. Must be one of {', '.join(valid_units)}.")
+    check_valid_units(units)
     
     if dimension not in valid_dimensions:
         raise ValueError(f"Invalid dimension: {dimension}. Must be one of {', '.join(valid_dimensions)}.")

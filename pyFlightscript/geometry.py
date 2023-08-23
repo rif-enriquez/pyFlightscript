@@ -1,5 +1,5 @@
 import os
-from .utils import write_lines_to_file
+from .utils import *
 
 def import_geometry(script_filepath,  geometry_filepath, units='METER', file_type='STL', clear=True):
     """
@@ -17,11 +17,9 @@ def import_geometry(script_filepath,  geometry_filepath, units='METER', file_typ
         raise FileNotFoundError(f"The specified file '{geometry_filepath}' does not exist.")
     
     # Valid units and file types
-    valid_units = ["INCH", "MILLIMETER", "OTHER", "FEET", "MILE", "METER", "KILOMETER", "MILS", "MICRON", "CENTIMETER", "MICROINCH"]
     valid_file_types = ["STL", "TRI", "P3D", "CSV", "INP", "STRUCTURED_QUAD", "UNSTRUCTURED_QUAD", "LAWGS", "VTK", "AC", "FAC", "OBJ"]
     
-    if units not in valid_units:
-        raise ValueError(f"'{units}' is not a valid unit. Valid units are: {', '.join(valid_units)}")
+    check_valid_units(units)
     
     if file_type not in valid_file_types:
         raise ValueError(f"'{file_type}' is not a valid file type. Valid file types are: {', '.join(valid_file_types)}")
@@ -30,7 +28,7 @@ def import_geometry(script_filepath,  geometry_filepath, units='METER', file_typ
         "#************************************************************************",
         "#****************** Import an geometry into the simulation **************",
         "#************************************************************************",
-        "",
+        "#",
         "IMPORT",
         f"UNITS {units}",
         f"FILE_TYPE {file_type}",
@@ -71,7 +69,7 @@ def ccs_import(script_filepath, file_path, close_component_ends="ENABLE", update
         "#************************************************************************",
         "#************ Import a Component Cross-Section (CCS) geometry file ******",
         "#************************************************************************",
-        "",
+        "#",
         "CCS_IMPORT",
         f"CLOSE_COMPONENT_ENDS {close_component_ends}",
         f"UPDATE_PROPERTIES {update_properties}",
@@ -101,7 +99,7 @@ def export_surface_mesh(script_filepath, file_path, file_type, surface=-1):
         "#************************************************************************",
         "#************ Export a geometry surface to external file ****************",
         "#************************************************************************",
-        "",
+        "#",
         f"EXPORT_SURFACE_MESH {file_type} {surface}",
         file_path
     ]
@@ -139,7 +137,7 @@ def surface_rotate(script_filepath, frame=1, axis='X', angle=0, surfaces=[-1],
         "#************************************************************************",
         "#****************** Rotate an existing surface **************************",
         "#************************************************************************",
-        "",
+        "#",
         "SURFACE_ROTATE",
         f"FRAME {frame}",
         f"AXIS {axis}",
@@ -168,10 +166,7 @@ def translate_surface_in_frame(script_filepath, frame=1, x=0.0, y=0.0, z=0.0, un
     """
     
     # Validate units
-    valid_units = ['INCH', 'MILLIMETER', 'OTHER', 'FEET', 'MILE', 'METER', 'KILOMETER',
-                   'MILS', 'MICRON', 'CENTIMETER', 'MICROINCH']
-    if units not in valid_units:
-        raise ValueError(f"'units' should be one of {valid_units}. Received: {units}")
+    check_valid_units(units)
     
     # Validate ENABLE/DISABLE option
     valid_options = ['ENABLE', 'DISABLE']
@@ -182,7 +177,7 @@ def translate_surface_in_frame(script_filepath, frame=1, x=0.0, y=0.0, z=0.0, un
         "#************************************************************************",
         "#****************** Translate a surface with a vector *******************",
         "#************************************************************************",
-        "",
+        "#",
         f"TRANSLATE_SURFACE_IN_FRAME {frame} {x} {y} {z} {units} {surface} {split_vertices}"
     ]
 
@@ -203,7 +198,7 @@ def translate_surface_by_frame(script_filepath, frame1=1, frame2=1, surface=0):
         "#************************************************************************",
         "#****************** Translate a surface from one frame to another *******",
         "#************************************************************************",
-        "",
+        "#",
         f"TRANSLATE_SURFACE_BY_FRAME {frame1} {frame2} {surface}"
     ]
 
@@ -226,7 +221,7 @@ def surface_scale(script_filepath, frame=1, scale_x=1.0, scale_y=1.0, scale_z=1.
         "#************************************************************************",
         "#****************** Scale existing surface(s) ***************************",
         "#************************************************************************",
-        "",
+        "#",
         f"SURFACE_SCALE {frame} {scale_x} {scale_y} {scale_z} {surface}"
     ]
 
@@ -246,7 +241,7 @@ def surface_invert(script_filepath, index=1):
         "#************************************************************************",
         "#****************** Invert the surface normals of a surface *************",
         "#************************************************************************",
-        "",
+        "#",
         f"SURFACE_INVERT {index}"
     ]
 
@@ -272,7 +267,7 @@ def surface_rename(script_filepath, name, index=1):
         "#************************************************************************",
         "#****************** Rename the surface geometry *************************",
         "#************************************************************************",
-        "",
+        "#",
         f"SURFACE_RENAME {index} {name}"
     ]
 
@@ -299,7 +294,7 @@ def select_geometry_by_id(script_filepath, surface=1):
         "#************************************************************************",
         "#****************** Select a geometry surface by its index **************",
         "#************************************************************************",
-        "",
+        "#",
         f"SELECT_GEOMETRY_BY_ID {surface}"
     ]
 
@@ -348,7 +343,7 @@ def surface_select_by_threshold(script_filepath, frame=1, threshold='Y', min_val
         "#************************************************************************",
         "#****************** Select surface faces by threshold *******************",
         "#************************************************************************",
-        "",
+        "#",
         "SURFACE_SELECT_BY_THRESHOLD",
         f"FRAME {frame}",
         f"THRESHOLD {threshold}",
@@ -373,7 +368,7 @@ def create_new_surface_from_selection(script_filepath):
         "#************************************************************************",
         "#************** Create new geometry surface from selected faces *********",
         "#************************************************************************",
-        "",
+        "#",
         "CREATE_NEW_SURFACE_FROM_SELECTION"
     ]
 
@@ -409,7 +404,7 @@ def surface_cut_by_plane(script_filepath, frame=1, plane='XZ', offset=0.0,
         "#************************************************************************",
         "#****************** Cut all surfaces using a cutting plane **************",
         "#************************************************************************",
-        "",
+        "#",
         "SURFACE_CUT_BY_PLANE",
         f"FRAME {frame}",
         f"PLANE {plane}",
@@ -454,7 +449,7 @@ def surface_mirror(script_filepath, surface=1, coordinate_system=1, mirror_plane
         "#************************************************************************",
         "#****************** Mirror an existing surface **************************",
         "#************************************************************************",
-        "",
+        "#",
         f"SURFACE_MIRROR {surface} {coordinate_system} {mirror_plane} {combine_flag} {delete_source_flag}"
     ]
 
@@ -477,7 +472,7 @@ def surface_copy_paste(script_filepath, surface=1):
         "#************************************************************************",
         "#****************** Copy/Paste an existing surface **********************",
         "#************************************************************************",
-        "",
+        "#",
         f"SURFACE_COPY_PASTE {surface}"
     ]
 
@@ -503,7 +498,7 @@ def surface_auto_hole_fill(script_filepath, surface=1):
         "#************************************************************************",
         "#************* Automatic hole filling on an existing surface ************",
         "#************************************************************************",
-        "",
+        "#",
         "SURFACE_AUTO_HOLE_FILL",
         f"{surface}"
     ]
@@ -532,7 +527,7 @@ def surface_combine(script_filepath, surface_indices):
         "#************************************************************************",
         "#****************** Combine selected surfaces ***************************",
         "#************************************************************************",
-        "",
+        "#",
         f"SURFACE_COMBINE {surface_count}",
         ",".join(map(str, surface_indices))
     ]
@@ -551,7 +546,7 @@ def delete_selected_faces(script_filepath):
         "#************************************************************************",
         "#****************** Delete selected mesh faces **************************",
         "#************************************************************************",
-        "",
+        "#",
         "DELETE_SELECTED_FACES"
     ]
 
@@ -574,7 +569,7 @@ def surface_delete(script_filepath, surface_index):
         "#************************************************************************",
         "#****************** Delete an existing surface **************************",
         "#************************************************************************",
-        "",
+        "#",
         "SURFACE_DELETE",
         f"SURFACE {surface_index}"
     ]
@@ -593,7 +588,7 @@ def surface_clearall(script_filepath):
         "#************************************************************************",
         "#****************** Delete all surfaces in simulation *******************",
         "#************************************************************************",
-        "",
+        "#",
         "SURFACE_CLEARALL"
     ]
 

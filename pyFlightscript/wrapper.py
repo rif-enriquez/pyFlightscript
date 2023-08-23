@@ -1,5 +1,4 @@
-import os
-from .utils import write_lines_to_file
+from .utils import *
 
 def wrapper_set_input(script_filepath, num_surfaces, surface_indices):
     """
@@ -24,7 +23,7 @@ def wrapper_set_input(script_filepath, num_surfaces, surface_indices):
         "#************************************************************************",
         "#****************** Set wrapping input surfaces *************************",
         "#************************************************************************",
-        "",
+        "#",
         f"WRAPPER_SET_INPUT {num_surfaces}",
         ",".join(map(str, surface_indices))
     ]
@@ -51,7 +50,7 @@ def wrapper_set_global_size(script_filepath, target_size=0.15):
         "#************************************************************************",
         "#****************** Set wrapping global target size *********************",
         "#************************************************************************",
-        "",
+        "#",
         f"WRAPPER_SET_GLOBAL_SIZE {target_size}"
     ]
 
@@ -75,7 +74,7 @@ def wrapper_set_vertex_projection(script_filepath, state='ENABLE'):
         "#************************************************************************",
         "#****************** Enable/disable wrapping vertex projection ***********",
         "#************************************************************************",
-        "",
+        "#",
         f"WRAPPER_SET_VERTEX_PROJECTION {state}"
     ]
 
@@ -103,7 +102,7 @@ def wrapper_set_anisotropy(script_filepath, x=2, y=1, z=1):
         "#************************************************************************",
         "#****************** Set wrapping anisotropy *****************************",
         "#************************************************************************",
-        "",
+        "#",
         f"WRAPPER_SET_ANISOTROPY {x} {y} {z}"
     ]
 
@@ -121,7 +120,7 @@ def wrapper_create_local_control(script_filepath):
         "#************************************************************************",
         "#****************** Create new wrapping local control *******************",
         "#************************************************************************",
-        "",
+        "#",
         "WRAPPER_CREATE_LOCAL_CONTROL"
     ]
 
@@ -152,7 +151,7 @@ def wrapper_edit_local_control(script_filepath, control_id, surfaces, target_siz
         "#************************************************************************",
         "#****************** Edit wrapping local control *************************",
         "#************************************************************************",
-        "",
+        "#",
         f"WRAPPER_EDIT_LOCAL_CONTROL {control_id}",
         f"SURFACES {len(surfaces)}",
         ",".join(map(str, surfaces)),
@@ -173,7 +172,7 @@ def wrapper_delete_all_local_controls(script_filepath):
         "#************************************************************************",
         "#****************** Delete all wrapper surface controls *****************",
         "#************************************************************************",
-        "",
+        "#",
         "WRAPPER_DELETE_ALL_LOCAL_CONTROLS"
     ]
 
@@ -214,7 +213,7 @@ def wrapper_new_volume_control(script_filepath, frame=1, vertex_1=(0.5, 0.3, 1.0
         "#************************************************************************",
         "#****************** Create new wrapping volume control ******************",
         "#************************************************************************",
-        "",
+        "#",
         "WRAPPER_NEW_VOLUME_CONTROL",
         f"FRAME {frame}",
         f"VERTEX_1 {' '.join(map(str, vertex_1))}",
@@ -237,7 +236,7 @@ def wrapper_delete_all_volume_controls(script_filepath):
         "#************************************************************************",
         "#****************** Delete all wrapper volume controls ******************",
         "#************************************************************************",
-        "",
+        "#",
         "WRAPPER_DELETE_ALL_VOLUME_CONTROLS"
     ]
 
@@ -255,7 +254,7 @@ def wrapper_execute(script_filepath):
         "#************************************************************************",
         "#****************** Execute the geometry wrapping operation *************",
         "#************************************************************************",
-        "",
+        "#",
         "WRAPPER_EXECUTE"
     ]
 
@@ -280,7 +279,7 @@ def wrapper_transfer(script_filepath, source_treatment='REPLACE'):
         "#************************************************************************",
         "#****************** Transfer the wrapped geometry output ****************",
         "#************************************************************************",
-        "",
+        "#",
         f"WRAPPER_TRANSFER {source_treatment}"
     ]
 
