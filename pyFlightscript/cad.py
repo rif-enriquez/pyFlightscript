@@ -1,4 +1,3 @@
-import os
 from .utils import *
 
 def cad_create_new_model(script_filepath, model_name):
@@ -48,8 +47,7 @@ def cad_create_import_curve_txt(script_filepath, txt_filepath, units='METER', di
     :param plane: Plane orientation (one of "YZ", "XZ", "XY").
     :param filepath: Path to the txt file to import.
     """
-    if not os.path.exists(txt_filepath):
-        raise FileNotFoundError(f"The specified file '{txt_filepath}' does not exist.")
+    check_file_existence(txt_filepath)
 
     
     valid_dimensions = ["2D", "3D"]
@@ -82,8 +80,7 @@ def cad_create_import_ccs(script_filepath, ccs_filepath):
     :param script_filepath: Path to the script file.
     :param ccs_filepath: Path to the csv file to import.
     """
-    if not os.path.exists(ccs_filepath):
-        raise FileNotFoundError(f"The specified file '{ccs_filepath}' does not exist.")
+    check_file_existence(ccs_filepath)
     
     lines = [
         "#************************************************************************",

@@ -54,7 +54,7 @@ def create_new_inlet(script_filepath, surface_id, type_value, vx_or_velocity, vy
     write_lines_to_file(script_filepath, lines)
     return
 
-def set_inlet_custom_profile(script_filepath, inlet_id, filename):
+def set_inlet_custom_profile(script_filepath, inlet_id, motion_filpath):
     """
     Writes specific lines to 'script_filepath' to set a custom inlet profile 
     using an external file.
@@ -63,19 +63,17 @@ def set_inlet_custom_profile(script_filepath, inlet_id, filename):
     set_inlet_custom_profile('path_to_script.txt', 1, 'C:\\Users\\Desktop\\Models\\custom_inlet_profile.txt')
     
     :param inlet_id: Index of the inlet boundary.
-    :param filename: Path to the file containing the motion data.
+    :param motion_filpath: Path to the file containing the motion data.
     """
     
     # Type and value checking
     if not isinstance(inlet_id, int) or inlet_id <= 0:
         raise ValueError("`inlet_id` should be an integer value greater than 0.")
     
-    if not isinstance(filename, str):
-        raise ValueError("`filename` should be a string.")
+    if not isinstance(motion_filpath, str):
+        raise ValueError("`motion_filpath` should be a string.")
     
-    # It's recommended to add a check for file existence here
-    if not os.path.exists(filename):
-        raise ValueError(f"File '{filename}' not found.")
+    check_file_existence(motion_filpath)
     
     lines = [
         "#************************************************************************",
@@ -84,7 +82,7 @@ def set_inlet_custom_profile(script_filepath, inlet_id, filename):
         "",
         "SET_INLET_CUSTOM_PROFILE",
         f"{inlet_id}",
-        f"{filename}"
+        f"{motion_filpath}"
     ]
 
     write_lines_to_file(script_filepath, lines)

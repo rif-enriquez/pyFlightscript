@@ -1,3 +1,5 @@
+import os 
+
 def write_lines_to_file(script_filepath, lines):
     """
     Writes a list of lines to the specified file.
@@ -19,4 +21,10 @@ def check_valid_units(units):
                    "MILS", "MICRON", "CENTIMETER", "MICROINCH"]
     if units not in valid_units:
         raise ValueError(f"Invalid units: {units}. Must be one of {', '.join(valid_units)}.")
+    return
+
+def check_file_existence(file):
+    # Validate file existence
+    if not os.path.exists(file):
+        raise FileNotFoundError(f"The specified file '{file}' does not exist.")
     return

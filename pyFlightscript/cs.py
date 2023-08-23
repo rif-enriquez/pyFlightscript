@@ -152,3 +152,240 @@ def set_coordinate_system_origin(script_filepath, frame, x, y, z, units='INCH'):
     write_lines_to_file(script_filepath, lines)
     return
 
+def set_coordinate_system_axis(script_filepath, frame, axis, nx, ny, nz, 
+                               normalize_frame=True):
+    """
+    Example usage:
+    set_coordinate_system_axis('path_to_script.txt', 2, 'X', -1.0, 0.5, 0.0, True)
+    
+    Writes specific lines to 'script_filepath' to set an axis of an existing local coordinate system.
+    
+    :param script_filepath: Path to the script file.
+    :param frame: Index of the local coordinate system.
+    :param axis: Axis of the coordinate system to be set.
+    :param nx: X-coordinate of the normal direction vector.
+    :param ny: Y-coordinate of the normal direction vector.
+    :param nz: Z-coordinate of the normal direction vector.
+    :param normalize_frame: Automatically normalize all axes of the coordinate system after updating.
+    """
+    
+    # Type and value checking
+    if not isinstance(frame, int) or frame <= 1:
+        raise ValueError("`frame` should be an integer value greater than 1.")
+    
+    valid_axes = ['X', 'Y', 'Z']
+    if axis not in valid_axes:
+        raise ValueError(f"`axis` should be one of {valid_axes}")
+    
+    if not isinstance(nx, (int, float)) or not isinstance(ny, (int, float)) or not isinstance(nz, (int, float)):
+        raise ValueError("`nx`, `ny`, and `nz` should be numeric values.")
+    
+    if not isinstance(normalize_frame, bool):
+        raise ValueError("`normalize_frame` should be a boolean value.")
+    
+    lines = [
+        "#************************************************************************",
+        "#********* Edit the axis of an existing local coordinate system *********",
+        "#************************************************************************",
+        "",
+        f"SET_COORDINATE_SYSTEM_AXIS {frame} {axis} {nx} {ny} {nz} {normalize_frame}"
+    ]
+
+    write_lines_to_file(script_filepath, lines)
+    return
+
+def normalize_coordinate_system(script_filepath, coord_system_index=1):
+    """
+    Writes specific lines to 'script_filepath' to normalize a coordinate system.
+    
+    :param script_filepath: Path to the script file.
+    :param coord_system_index: Index of the local coordinate system to be rotated.
+    
+    Example usage:
+    normalize_coordinate_system('path_to_script.txt', 2)
+    """
+    
+    # Type and value checking
+    if not isinstance(coord_system_index, int) or coord_system_index < 1:
+        raise ValueError("`coord_system_index` should be a positive integer value.")
+    
+    lines = [
+        "#************************************************************************",
+        "#****************** Normalize coordinate system axes ********************",
+        "#************************************************************************",
+        "",
+        f"NORMALIZE_COORDINATE_SYSTEM {coord_system_index}"
+    ]
+
+    write_lines_to_file(script_filepath, lines)
+    return
+
+def rotate_coordinate_system(script_filepath, frame=2, rotation_frame=3, 
+                             rotation_axis='Y', angle=-45.0):
+    """
+    Example usage:
+    rotate_coordinate_system('path_to_script.txt')
+    
+    Writes specific lines to 'script_filepath' to rotate a coordinate system.
+    
+    :param script_filepath: Path to the script file.
+    :param frame: Index of the local coordinate system to be rotated.
+    :param rotation_frame: Index of the local coordinate system to be used to rotate the selected system.
+    :param rotation_axis: Axis of rotation. Can be 'X', 'Y', 'Z', '1', '2', or '3'.
+    :param angle: Rotation angle in degrees.
+    """
+    
+    # Type and value checking
+    if not isinstance(frame, int):
+        raise ValueError("`frame` should be an integer value.")
+    
+    if not isinstance(rotation_frame, int):
+        raise ValueError("`rotation_frame` should be an integer value.")
+    
+    valid_axes = ['X', 'Y', 'Z', '1', '2', '3']
+    if rotation_axis not in valid_axes:
+        raise ValueError(f"`rotation_axis` should be one of {valid_axes}")
+    
+    if not isinstance(angle, (int, float)):
+        raise ValueError("`angle` should be an integer or float value.")
+    
+    lines = [
+        "#************************************************************************",
+        "#****************** Rotate a coordinate system **************************",
+        "#************************************************************************",
+        "",
+        "ROTATE_COORDINATE_SYSTEM",
+        f"FRAME {frame}",
+        f"ROTATION_FRAME {rotation_frame}",
+        f"ROTATION_AXIS {rotation_axis}",
+        f"ANGLE {angle}"
+    ]
+
+    write_lines_to_file(script_filepath, lines)
+    return
+
+def translate_coordinate_system(script_filepath, frame, x, y, z, units='METER'):
+    """
+    Writes specific lines to 'script_filepath' to translate a coordinate system.
+    
+    Example usage:
+    translate_coordinate_system('path_to_script.txt', 2, 0.0, 1.0, 1.4, 'INCH')
+    
+    :param script_filepath: Path to the script file.
+    :param frame: Index of the local coordinate system to be rotated.
+    :param x: Translation vector value in X direction.
+    :param y: Translation vector value in Y direction.
+    :param z: Translation vector value in Z direction.
+    :param units: Unit type for translation.
+    """
+    
+    # Type and value checking
+    if not isinstance(frame, int) or frame <= 1:
+        raise ValueError("`frame` should be an integer value greater than 1.")
+    
+    check_valid_units(units)
+    
+    for value in [x, y, z]:
+        if not isinstance(value, (int, float)):
+            raise ValueError("Translation vector values (x, y, z) should be integers or float values.")
+    
+    lines = [
+        "#************************************************************************",
+        "#****************** Translate a coordinate system ***********************",
+        "#************************************************************************",
+        "",
+        f"TRANSLATE_COORDINATE_SYSTEM {frame} {x} {y} {z} {units}"
+    ]
+
+    write_lines_to_file(script_filepath, lines)
+    return
+
+
+def duplicate_coordinate_system(script_filepath, frame):
+    """
+    Writes specific lines to 'script_filepath' to duplicate a local coordinate system.
+    
+    :param script_filepath: Path to the script file.
+    :param frame: Index of the local coordinate system to be duplicated.
+    
+    Example usage:
+    duplicate_coordinate_system('path_to_script.txt', 2)
+    """
+    
+    # Type and value checking
+    if not isinstance(frame, int):
+        raise ValueError("`frame` should be an integer value.")
+    
+    if frame <= 1:
+        raise ValueError("`frame` should be greater than 1.")
+    
+    lines = [
+        "#************************************************************************",
+        "#****************** Duplicate a local coordinate system *****************",
+        "#************************************************************************",
+        "",
+        f"DUPLICATE_COORDINATE_SYSTEM {frame}"
+    ]
+
+    write_lines_to_file(script_filepath, lines)
+    return
+
+def mirror_coordinate_system(script_filepath, frame, plane='XZ'):
+    """
+    Example usage:
+    mirror_coordinate_system('path_to_script.txt', 2)
+    
+    Writes specific lines to 'script_filepath' to mirror a local coordinate system.
+    
+    :param script_filepath: Path to the script file.
+    :param frame: Index of the local coordinate system to be duplicated and then mirrored.
+    :param plane: Plane of the reference coordinate system to be used.
+    """
+    
+    # Type and value checking
+    if not isinstance(frame, int) or frame <= 1:
+        raise ValueError("`frame` should be an integer value greater than 1.")
+    
+    valid_planes = ['YZ', 'XZ', 'XY']
+    if plane not in valid_planes:
+        raise ValueError(f"`plane` should be one of {valid_planes}")
+    
+    lines = [
+        "#************************************************************************",
+        "#****************** Mirror a local coordinate system ********************",
+        "#************************************************************************",
+        "",
+        f"MIRROR_COORDINATE_SYSTEM {frame} {plane}"
+    ]
+
+    write_lines_to_file(script_filepath, lines)
+    return
+
+
+def delete_coordinate_system(script_filepath, frame):
+    """
+    Writes specific lines to 'script_filepath' to delete a coordinate system.
+    
+    Example usage:
+    delete_coordinate_system('path_to_script.txt', 2)
+    
+    :param script_filepath: Path to the script file.
+    :param frame: Index of the local coordinate system to be deleted.
+    """
+    
+    # Type and value checking
+    if not isinstance(frame, int):
+        raise ValueError("`frame` should be an integer value.")
+    if frame <= 1:
+        raise ValueError("`frame` should be greater than 1.")
+
+    lines = [
+        "#************************************************************************",
+        "#****************** Delete a coordinate system **************************",
+        "#************************************************************************",
+        "",
+        f"DELETE_COORDINATE_SYSTEM {frame}"
+    ]
+
+    write_lines_to_file(script_filepath, lines)
+    return

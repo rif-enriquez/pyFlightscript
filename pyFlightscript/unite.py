@@ -22,8 +22,7 @@ def boolean_unite_geometry(script_filepath, bodies, openvsp_path, bodies_values=
     if not isinstance(bodies, int):
         raise ValueError("`bodies` should be a positive integer value.")
     
-    if not os.path.exists(openvsp_path):
-        raise FileNotFoundError(f"The openvsp file '{openvsp_path}' does not exist.")
+    check_file_existence(openvsp_path)
     
     if bodies_values:
         if len(bodies_values) != bodies:

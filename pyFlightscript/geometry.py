@@ -1,4 +1,3 @@
-import os
 from .utils import *
 
 def import_geometry(script_filepath,  geometry_filepath, units='METER', file_type='STL', clear=True):
@@ -12,9 +11,7 @@ def import_geometry(script_filepath,  geometry_filepath, units='METER', file_typ
     :param clear: Boolean, if True, will add CLEAR to the script to delete existing geometry boundaries.
     """
     
-    # Validate file existence
-    if not os.path.exists(geometry_filepath):
-        raise FileNotFoundError(f"The specified file '{geometry_filepath}' does not exist.")
+    check_file_existence(geometry_filepath)
     
     # Valid units and file types
     valid_file_types = ["STL", "TRI", "P3D", "CSV", "INP", "STRUCTURED_QUAD", "UNSTRUCTURED_QUAD", "LAWGS", "VTK", "AC", "FAC", "OBJ"]
@@ -41,20 +38,19 @@ def import_geometry(script_filepath,  geometry_filepath, units='METER', file_typ
     write_lines_to_file(script_filepath, lines)
     return
 
-def ccs_import(script_filepath, file_path, close_component_ends="ENABLE", update_properties="DISABLE", clear_existing="ENABLE"):
+def ccs_import(script_filepath, ccs_filepath, close_component_ends="ENABLE", update_properties="DISABLE", clear_existing="ENABLE"):
     """
     Writes specific lines to 'script_filepath' to import a Component Cross-Section (CCS) geometry.
     
     :param script_filepath: Path to the script file.
-    :param file_path: Path to the CCS geometry file.
+    :param ccs_filepath: Path to the CCS geometry file.
     :param close_component_ends: "ENABLE" or "DISABLE" hole-filling at the ends of each valid component. Default is "ENABLE".
     :param update_properties: "ENABLE" or "DISABLE" to update the simulation using the user-defined simulation properties in the file. Default is "DISABLE".
     :param clear_existing: "ENABLE" or "DISABLE" to delete all existing geometry boundaries prior to importing new geometry. Default is "ENABLE".
     """
     
-    # Validate file existence
-    if not os.path.exists(file_path):
-        raise FileNotFoundError(f"The specified file '{file_path}' does not exist.")
+        check_file_existence(ccs_filepath)
+
     
     # Validate values for ENABLE or DISABLE options
     valid_values = ["ENABLE", "DISABLE"]
@@ -74,7 +70,7 @@ def ccs_import(script_filepath, file_path, close_component_ends="ENABLE", update
         f"CLOSE_COMPONENT_ENDS {close_component_ends}",
         f"UPDATE_PROPERTIES {update_properties}",
         f"CLEAR_EXISTING {clear_existing}",
-        f"FILE {file_path}"
+        f"FILE {ccs_filepath}"
     ]
 
     write_lines_to_file(script_filepath, lines)
