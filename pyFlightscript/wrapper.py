@@ -1,10 +1,11 @@
-from .utils import *
+from .utils import *    
+from .script import script
 
-def wrapper_set_input(script_filepath, num_surfaces, surface_indices):
+def wrapper_set_input(num_surfaces, surface_indices):
     """
-    Writes specific lines to 'script_filepath' to set wrapping input surfaces.
+    Appends lines to script state to set wrapping input surfaces.
     
-    :param script_filepath: Path to the script file.
+
     :param num_surfaces: Number of geometry surfaces being used for wrapping.
     :param surface_indices: List of index values of the geometry surfaces to be used for wrapping.
     """
@@ -28,14 +29,14 @@ def wrapper_set_input(script_filepath, num_surfaces, surface_indices):
         ",".join(map(str, surface_indices))
     ]
 
-    write_lines_to_file(script_filepath, lines)
+    script.append_lines(lines)
     return
 
-def wrapper_set_global_size(script_filepath, target_size=0.15):
+def wrapper_set_global_size(target_size=0.15):
     """
-    Writes specific lines to 'script_filepath' to set wrapping global target size.
+    Appends lines to script state to set wrapping global target size.
     
-    :param script_filepath: Path to the script file.
+
     :param target_size: Geometry triangle edge length to be used for wrapping.
     """
     
@@ -54,14 +55,14 @@ def wrapper_set_global_size(script_filepath, target_size=0.15):
         f"WRAPPER_SET_GLOBAL_SIZE {target_size}"
     ]
 
-    write_lines_to_file(script_filepath, lines)
+    script.append_lines(lines)
     return
 
-def wrapper_set_vertex_projection(script_filepath, state='ENABLE'):
+def wrapper_set_vertex_projection(state='ENABLE'):
     """
-    Writes specific lines to 'script_filepath' to enable or disable wrapping vertex projection.
+    Appends lines to script state to enable or disable wrapping vertex projection.
     
-    :param script_filepath: Path to the script file.
+
     :param state: State of wrapping vertex projection, can be either 'ENABLE' or 'DISABLE'.
     """
     
@@ -78,14 +79,14 @@ def wrapper_set_vertex_projection(script_filepath, state='ENABLE'):
         f"WRAPPER_SET_VERTEX_PROJECTION {state}"
     ]
 
-    write_lines_to_file(script_filepath, lines)
+    script.append_lines(lines)
     return
 
-def wrapper_set_anisotropy(script_filepath, x=2, y=1, z=1):
+def wrapper_set_anisotropy(x=2, y=1, z=1):
     """
-    Writes specific lines to 'script_filepath' to set wrapping anisotropy.
+    Appends lines to script state to set wrapping anisotropy.
     
-    :param script_filepath: Path to the script file.
+
     :param x: Wrapper anisotropy in X direction.
     :param y: Wrapper anisotropy in Y direction.
     :param z: Wrapper anisotropy in Z direction.
@@ -106,14 +107,14 @@ def wrapper_set_anisotropy(script_filepath, x=2, y=1, z=1):
         f"WRAPPER_SET_ANISOTROPY {x} {y} {z}"
     ]
 
-    write_lines_to_file(script_filepath, lines)
+    script.append_lines(lines)
     return
 
-def wrapper_create_local_control(script_filepath):
+def wrapper_create_local_control():
     """
-    Writes specific lines to 'script_filepath' to create a new wrapping local control.
+    Appends lines to script state to create a new wrapping local control.
     
-    :param script_filepath: Path to the script file.
+
     """
     
     lines = [
@@ -124,14 +125,14 @@ def wrapper_create_local_control(script_filepath):
         "WRAPPER_CREATE_LOCAL_CONTROL"
     ]
 
-    write_lines_to_file(script_filepath, lines)
+    script.append_lines(lines)
     return
 
-def wrapper_edit_local_control(script_filepath, control_id, surfaces, target_size):
+def wrapper_edit_local_control(control_id, surfaces, target_size):
     """
-    Writes specific lines to 'script_filepath' to edit wrapping local control.
+    Appends lines to script state to edit wrapping local control.
 
-    :param script_filepath: Path to the script file.
+
     :param control_id: ID of the local control being edited.
     :param surfaces: List of surfaces being added to the local control.
     :param target_size: Geometry triangle edge length to be used for wrapping.
@@ -158,14 +159,14 @@ def wrapper_edit_local_control(script_filepath, control_id, surfaces, target_siz
         f"TARGET_SIZE {target_size}"
     ]
 
-    write_lines_to_file(script_filepath, lines)
+    script.append_lines(lines)
     return
 
-def wrapper_delete_all_local_controls(script_filepath):
+def wrapper_delete_all_local_controls():
     """
-    Writes specific lines to 'script_filepath' to delete all wrapper surface controls.
+    Appends lines to script state to delete all wrapper surface controls.
     
-    :param script_filepath: Path to the script file.
+
     """
     
     lines = [
@@ -176,16 +177,16 @@ def wrapper_delete_all_local_controls(script_filepath):
         "WRAPPER_DELETE_ALL_LOCAL_CONTROLS"
     ]
 
-    write_lines_to_file(script_filepath, lines)
+    script.append_lines(lines)
     return
 
-def wrapper_new_volume_control(script_filepath, frame=1, vertex_1=(0.5, 0.3, 1.0), 
+def wrapper_new_volume_control(frame=1, vertex_1=(0.5, 0.3, 1.0), 
                                vertex_2=(1.5, 0.6, 2.3), target_size=0.25, 
                                name="Airplane_nose"):
     """
-    Writes specific lines to 'script_filepath' to create a new wrapping volume control.
+    Appends lines to script state to create a new wrapping volume control.
     
-    :param script_filepath: Path to the script file.
+
     :param frame: Coordinate system ID used for creating the volume control box.
     :param vertex_1: X,Y,Z values of the first corner of the volume box.
     :param vertex_2: X,Y,Z values of the second corner of the volume box.
@@ -222,14 +223,14 @@ def wrapper_new_volume_control(script_filepath, frame=1, vertex_1=(0.5, 0.3, 1.0
         f"NAME {name}"
     ]
 
-    write_lines_to_file(script_filepath, lines)
+    script.append_lines(lines)
     return
 
-def wrapper_delete_all_volume_controls(script_filepath):
+def wrapper_delete_all_volume_controls():
     """
-    Writes specific lines to 'script_filepath' to delete all wrapper volume controls.
+    Appends lines to script state to delete all wrapper volume controls.
     
-    :param script_filepath: Path to the script file.
+
     """
     
     lines = [
@@ -240,14 +241,14 @@ def wrapper_delete_all_volume_controls(script_filepath):
         "WRAPPER_DELETE_ALL_VOLUME_CONTROLS"
     ]
 
-    write_lines_to_file(script_filepath, lines)
+    script.append_lines(lines)
     return
 
-def wrapper_execute(script_filepath):
+def wrapper_execute():
     """
-    Writes specific lines to 'script_filepath' to execute the geometry wrapping operation.
+    Appends lines to script state to execute the geometry wrapping operation.
     
-    :param script_filepath: Path to the script file.
+
     """
     
     lines = [
@@ -258,14 +259,14 @@ def wrapper_execute(script_filepath):
         "WRAPPER_EXECUTE"
     ]
 
-    write_lines_to_file(script_filepath, lines)
+    script.append_lines(lines)
     return
 
-def wrapper_transfer(script_filepath, source_treatment='REPLACE'):
+def wrapper_transfer(source_treatment='REPLACE'):
     """
-    Writes specific lines to 'script_filepath' to transfer the wrapped geometry output.
+    Appends lines to script state to transfer the wrapped geometry output.
     
-    :param script_filepath: Path to the script file.
+
     :param source_treatment: Option to either delete/replace the original wrapper source 
                              geometries or retain them.
     """
@@ -283,7 +284,7 @@ def wrapper_transfer(script_filepath, source_treatment='REPLACE'):
         f"WRAPPER_TRANSFER {source_treatment}"
     ]
 
-    write_lines_to_file(script_filepath, lines)
+    script.append_lines(lines)
     return
 
 

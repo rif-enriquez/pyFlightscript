@@ -1,13 +1,14 @@
-from .utils import *
+from .utils import *    
+from .script import script
 
-def new_off_body_streamline(script_filepath, position_x, position_y, position_z, upstream='DISABLE'):
+def new_off_body_streamline(position_x, position_y, position_z, upstream='DISABLE'):
     """
-    Writes specific lines to 'script_filepath' to create an off-body streamline.
+    Appends lines to script state to create an off-body streamline.
     
     Example usage:
     new_off_body_streamline('path_to_script.txt', -3.0, -0.1, 0.2, 'DISABLE')
     
-    :param script_filepath: Path to the script file.
+
     :param position_x: X coordinate of the position.
     :param position_y: Y coordinate of the position.
     :param position_z: Z coordinate of the position.
@@ -31,18 +32,18 @@ def new_off_body_streamline(script_filepath, position_x, position_y, position_z,
         f"UPSTREAM {upstream}"
     ]
 
-    write_lines_to_file(script_filepath, lines)
+    script.append_lines(lines)
     return
 
-def new_streamline_distribution(script_filepath, position_1_x, position_1_y, position_1_z,
+def new_streamline_distribution(position_1_x, position_1_y, position_1_z,
                                 position_2_x, position_2_y, position_2_z, subdivisions):
     """
-    Writes specific lines to 'script_filepath' to create a new off-body streamline distribution.
+    Appends lines to script state to create a new off-body streamline distribution.
     
     Example usage:
     new_streamline_distribution('path_to_script.txt', -3.0, -1.2, -0.3, -3.0, 1.2, -0.3, 48)
     
-    :param script_filepath: Path to the script file.
+
     :param position_1_x: X coordinate of the starting vertex.
     :param position_1_y: Y coordinate of the starting vertex.
     :param position_1_z: Z coordinate of the starting vertex.
@@ -71,14 +72,14 @@ def new_streamline_distribution(script_filepath, position_1_x, position_1_y, pos
         f"SUBDIVISIONS {subdivisions}"
     ]
 
-    write_lines_to_file(script_filepath, lines)
+    script.append_lines(lines)
     return
 
-def new_off_body_streamtube(script_filepath, radius, frame, axis, radial_subdivisions, azimuth_subdivisions):
+def new_off_body_streamtube(radius, frame, axis, radial_subdivisions, azimuth_subdivisions):
     """
-    Writes specific lines to 'script_filepath' to create a new off-body streamtube.
+    Appends lines to script state to create a new off-body streamtube.
 
-    :param script_filepath: Path to the script file.
+
     :param radius: Value of the radius.
     :param frame: Index of the coordinate system to be used for this actuator (> 0).
     :param axis: Axis of the actuator disc. Value is 1, 2 or 3 for X, Y and Z axes respectively.
@@ -118,15 +119,15 @@ def new_off_body_streamtube(script_filepath, radius, frame, axis, radial_subdivi
         f"AZIMUTH_SUBDIVISIONS {azimuth_subdivisions}"
     ]
 
-    write_lines_to_file(script_filepath, lines)
+    script.append_lines(lines)
     return
 
 
-def set_off_body_streamline_length(script_filepath, set_length=None, set_unrestricted_length=None):
+def set_off_body_streamline_length(set_length=None, set_unrestricted_length=None):
     """
-    Writes specific lines to 'script_filepath' to set the length of the new off-body streamlines.
+    Appends lines to script state to set the length of the new off-body streamlines.
 
-    :param script_filepath: Path to the script file.
+
     :param set_length: Length of the streamline.
     :param set_unrestricted_length: Unrestricted length of the streamline. 
 
@@ -160,14 +161,14 @@ def set_off_body_streamline_length(script_filepath, set_length=None, set_unrestr
     else:
         lines.append("SET_UNRESTRICTED_LENGTH")
 
-    write_lines_to_file(script_filepath, lines)
+    script.append_lines(lines)
     return
 
-def set_all_off_body_streamlines_upstream(script_filepath):
+def set_all_off_body_streamlines_upstream():
     """
-    Writes specific lines to 'script_filepath' to set all off-body streamlines upstream.
+    Appends lines to script state to set all off-body streamlines upstream.
     
-    :param script_filepath: Path to the script file.
+
 
     Example usage:
     set_all_off_body_streamlines_upstream('path_to_script.txt')
@@ -179,14 +180,14 @@ def set_all_off_body_streamlines_upstream(script_filepath):
         "",
         "SET_ALL_OFF_BODY_STREAMLINES_UPSTREAM"
     ]
-    write_lines_to_file(script_filepath, lines)
+    script.append_lines(lines)
     return
 
-def set_all_off_body_streamlines_downstream(script_filepath):
+def set_all_off_body_streamlines_downstream():
     """
-    Writes specific lines to 'script_filepath' to set all off-body streamlines downstream.
+    Appends lines to script state to set all off-body streamlines downstream.
     
-    :param script_filepath: Path to the script file.
+
 
     Example usage:
     set_all_off_body_streamlines_downstream('path_to_script.txt')
@@ -198,14 +199,14 @@ def set_all_off_body_streamlines_downstream(script_filepath):
         "",
         "SET_ALL_OFF_BODY_STREAMLINES_DOWNSTREAM"
     ]
-    write_lines_to_file(script_filepath, lines)
+    script.append_lines(lines)
     return
 
-def generate_all_off_body_streamlines(script_filepath):
+def generate_all_off_body_streamlines():
     """
-    Writes specific lines to 'script_filepath' to generate all off-body streamlines.
+    Appends lines to script state to generate all off-body streamlines.
     
-    :param script_filepath: Path to the script file.
+
 
     Example usage:
     generate_all_off_body_streamlines('path_to_script.txt')
@@ -217,14 +218,14 @@ def generate_all_off_body_streamlines(script_filepath):
         "",
         "GENERATE_ALL_OFF_BODY_STREAMLINES"
     ]
-    write_lines_to_file(script_filepath, lines)
+    script.append_lines(lines)
     return
 
-def delete_all_off_body_streamlines(script_filepath):
+def delete_all_off_body_streamlines():
     """
-    Writes specific lines to 'script_filepath' to delete all off-body streamlines.
+    Appends lines to script state to delete all off-body streamlines.
     
-    :param script_filepath: Path to the script file.
+
 
     Example usage:
     delete_all_off_body_streamlines('path_to_script.txt')
@@ -236,14 +237,14 @@ def delete_all_off_body_streamlines(script_filepath):
         "",
         "DELETE_ALL_OFF_BODY_STREAMLINES"
     ]
-    write_lines_to_file(script_filepath, lines)
+    script.append_lines(lines)
     return
 
-def export_all_off_body_streamlines(script_filepath, filename):
+def export_all_off_body_streamlines(filename):
     """
-    Writes specific lines to 'script_filepath' to export all off-body streamlines.
+    Appends lines to script state to export all off-body streamlines.
 
-    :param script_filepath: Path to the script file.
+
     :param filename: Filename with path to store the streamlines.
 
     Example usage:
@@ -263,14 +264,14 @@ def export_all_off_body_streamlines(script_filepath, filename):
         f"{filename}"
     ]
 
-    write_lines_to_file(script_filepath, lines)
+    script.append_lines(lines)
     return
 
 
 #### Surface Streamlines
-def generate_all_surface_streamlines(script_filepath):
+def generate_all_surface_streamlines():
     """
-    Writes specific lines to 'script_filepath' to generate all surface streamlines.
+    Appends lines to script state to generate all surface streamlines.
     
     Example usage:
     generate_all_surface_streamlines('path_to_script.txt')
@@ -283,12 +284,12 @@ def generate_all_surface_streamlines(script_filepath):
         "GENERATE_ALL_SURFACE_STREAMLINES",
     ]
 
-    write_lines_to_file(script_filepath, lines)
+    script.append_lines(lines)
     return
 
-def delete_all_surface_streamlines(script_filepath):
+def delete_all_surface_streamlines():
     """
-    Writes specific lines to 'script_filepath' to delete all surface streamlines.
+    Appends lines to script state to delete all surface streamlines.
     
     Example usage:
     delete_all_surface_streamlines('path_to_script.txt')
@@ -301,14 +302,14 @@ def delete_all_surface_streamlines(script_filepath):
         "DELETE_ALL_SURFACE_STREAMLINES",
     ]
 
-    write_lines_to_file(script_filepath, lines)
+    script.append_lines(lines)
     return
 
-def export_all_surface_streamlines(script_filepath, output_filepath):
+def export_all_surface_streamlines(output_filepath):
     """
-    Writes specific lines to 'script_filepath' to export all on-body (surface) streamlines.
+    Appends lines to script state to export all on-body (surface) streamlines.
     
-    :param script_filepath: Path to the script file.
+
     :param output_filepath: Filename with path for the streamlines output.
     
     Example usage:
@@ -328,5 +329,5 @@ def export_all_surface_streamlines(script_filepath, output_filepath):
         f"{output_filepath}",
     ]
 
-    write_lines_to_file(script_filepath, lines)
+    script.append_lines(lines)
     return

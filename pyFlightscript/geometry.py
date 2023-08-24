@@ -1,10 +1,11 @@
-from .utils import *
+from .utils import *    
+from .script import script
 
-def import_geometry(script_filepath,  geometry_filepath, units='METER', file_type='STL', clear=True):
+def import_geometry( geometry_filepath, units='METER', file_type='STL', clear=True):
     """
-    Writes specific lines to 'script_filepath' to import a geometry into the simulation.
+    Appends lines to script state to import a geometry into the simulation.
     
-    :param script_filepath: Path to the script file.
+
     :param units: The unit type for the geometry.
     :param file_type: Type of the geometry file.
     :param geometry_filepath: Path to the geometry file.
@@ -35,21 +36,21 @@ def import_geometry(script_filepath,  geometry_filepath, units='METER', file_typ
     if clear:
         lines.append("CLEAR")
 
-    write_lines_to_file(script_filepath, lines)
+    script.append_lines(lines)
     return
 
-def ccs_import(script_filepath, ccs_filepath, close_component_ends="ENABLE", update_properties="DISABLE", clear_existing="ENABLE"):
+def ccs_import(ccs_filepath, close_component_ends="ENABLE", update_properties="DISABLE", clear_existing="ENABLE"):
     """
-    Writes specific lines to 'script_filepath' to import a Component Cross-Section (CCS) geometry.
+    Appends lines to script state to import a Component Cross-Section (CCS) geometry.
     
-    :param script_filepath: Path to the script file.
+
     :param ccs_filepath: Path to the CCS geometry file.
     :param close_component_ends: "ENABLE" or "DISABLE" hole-filling at the ends of each valid component. Default is "ENABLE".
     :param update_properties: "ENABLE" or "DISABLE" to update the simulation using the user-defined simulation properties in the file. Default is "DISABLE".
     :param clear_existing: "ENABLE" or "DISABLE" to delete all existing geometry boundaries prior to importing new geometry. Default is "ENABLE".
     """
     
-        check_file_existence(ccs_filepath)
+    check_file_existence(ccs_filepath)
 
     
     # Validate values for ENABLE or DISABLE options
@@ -73,14 +74,14 @@ def ccs_import(script_filepath, ccs_filepath, close_component_ends="ENABLE", upd
         f"FILE {ccs_filepath}"
     ]
 
-    write_lines_to_file(script_filepath, lines)
+    script.append_lines(lines)
     return
 
-def export_surface_mesh(script_filepath, file_path, file_type, surface=-1):
+def export_surface_mesh(file_path, file_type, surface=-1):
     """
-    Writes specific lines to 'script_filepath' to export a geometry surface to an external file.
+    Appends lines to script state to export a geometry surface to an external file.
     
-    :param script_filepath: Path to the script file.
+
     :param file_path: Path to save the exported file.
     :param file_type: File type for the exported geometry. One of the following: STL, TRI, OBJ.
     :param surface: Index of the surface that should be exported. Default is -1 (exports all geometry surfaces).
@@ -100,16 +101,16 @@ def export_surface_mesh(script_filepath, file_path, file_type, surface=-1):
         file_path
     ]
 
-    write_lines_to_file(script_filepath, lines)
+    script.append_lines(lines)
     return
 
-def surface_rotate(script_filepath, frame=1, axis='X', angle=0, surfaces=[-1], 
+def surface_rotate(frame=1, axis='X', angle=0, surfaces=[-1], 
                    split_vertices='DISABLE', adaptive_mesh='ENABLE', 
                    detach_normal_to_axis='ENABLE'):
     """
-    Writes specific lines to 'script_filepath' to rotate an existing surface.
+    Appends lines to script state to rotate an existing surface.
     
-    :param script_filepath: Path to the script file.
+
     :param frame: Index of the coordinate system to be used. Default is 1.
     :param axis: Coordinate axis about which to rotate the surface. Default is 'X'.
     :param angle: Angle value in degrees. Default is 0.
@@ -145,15 +146,15 @@ def surface_rotate(script_filepath, frame=1, axis='X', angle=0, surfaces=[-1],
         f"DETACH_NORMAL_TO_AXIS {detach_normal_to_axis}"
     ]
 
-    write_lines_to_file(script_filepath, lines)
+    script.append_lines(lines)
     return
 
-def translate_surface_in_frame(script_filepath, frame=1, x=0.0, y=0.0, z=0.0, units='INCH', 
+def translate_surface_in_frame(frame=1, x=0.0, y=0.0, z=0.0, units='INCH', 
                                surface=0, split_vertices='DISABLE'):
     """
-    Writes specific lines to 'script_filepath' to translate a surface with a vector.
+    Appends lines to script state to translate a surface with a vector.
     
-    :param script_filepath: Path to the script file.
+
     :param frame: Index of the coordinate system to be used. Default is 1.
     :param x, y, z: Translation vector values in the specified coordinate system. Default is (0.0, 0.0, 0.0).
     :param units: Unit type for translation. Default is 'INCH'.
@@ -177,14 +178,14 @@ def translate_surface_in_frame(script_filepath, frame=1, x=0.0, y=0.0, z=0.0, un
         f"TRANSLATE_SURFACE_IN_FRAME {frame} {x} {y} {z} {units} {surface} {split_vertices}"
     ]
 
-    write_lines_to_file(script_filepath, lines)
+    script.append_lines(lines)
     return
 
-def translate_surface_by_frame(script_filepath, frame1=1, frame2=1, surface=0):
+def translate_surface_by_frame(frame1=1, frame2=1, surface=0):
     """
-    Writes specific lines to 'script_filepath' to translate a surface from one frame to another.
+    Appends lines to script state to translate a surface from one frame to another.
     
-    :param script_filepath: Path to the script file.
+
     :param frame1: Index of initial frame. Default is 1.
     :param frame2: Index of destination frame. Default is 1.
     :param surface: Index of the surface to be translated. Default is 0 which selects all surfaces.
@@ -198,14 +199,14 @@ def translate_surface_by_frame(script_filepath, frame1=1, frame2=1, surface=0):
         f"TRANSLATE_SURFACE_BY_FRAME {frame1} {frame2} {surface}"
     ]
 
-    write_lines_to_file(script_filepath, lines)
+    script.append_lines(lines)
     return
 
-def surface_scale(script_filepath, frame=1, scale_x=1.0, scale_y=1.0, scale_z=1.0, surface=-1):
+def surface_scale(frame=1, scale_x=1.0, scale_y=1.0, scale_z=1.0, surface=-1):
     """
-    Writes specific lines to 'script_filepath' to scale existing surface(s).
+    Appends lines to script state to scale existing surface(s).
     
-    :param script_filepath: Path to the script file.
+
     :param frame: Index of the coordinate system for scaling. Default is 1.
     :param scale_x: Scaling value in X direction. Default is 1.0.
     :param scale_y: Scaling value in Y direction. Default is 1.0.
@@ -221,14 +222,14 @@ def surface_scale(script_filepath, frame=1, scale_x=1.0, scale_y=1.0, scale_z=1.
         f"SURFACE_SCALE {frame} {scale_x} {scale_y} {scale_z} {surface}"
     ]
 
-    write_lines_to_file(script_filepath, lines)
+    script.append_lines(lines)
     return
 
-def surface_invert(script_filepath, index=1):
+def surface_invert(index=1):
     """
-    Writes specific lines to 'script_filepath' to invert the surface normals of a given surface.
+    Appends lines to script state to invert the surface normals of a given surface.
     
-    :param script_filepath: Path to the script file.
+
     :param index: Index of the surface to be inverted. Default is 1. 
                   To invert all surfaces, specify -1.
     """
@@ -241,14 +242,14 @@ def surface_invert(script_filepath, index=1):
         f"SURFACE_INVERT {index}"
     ]
 
-    write_lines_to_file(script_filepath, lines)
+    script.append_lines(lines)
     return
 
-def surface_rename(script_filepath, name, index=1):
+def surface_rename(name, index=1):
     """
-    Writes specific lines to 'script_filepath' to rename the surface geometry.
+    Appends lines to script state to rename the surface geometry.
     
-    :param script_filepath: Path to the script file.
+
     :param index: Index of the surface to be renamed.
     :param name: New name to be used for the geometry surface.
     """
@@ -267,14 +268,14 @@ def surface_rename(script_filepath, name, index=1):
         f"SURFACE_RENAME {index} {name}"
     ]
 
-    write_lines_to_file(script_filepath, lines)
+    script.append_lines(lines)
     return
 
-def select_geometry_by_id(script_filepath, surface=1):
+def select_geometry_by_id(surface=1):
     """
-    Writes specific lines to 'script_filepath' to select a geometry surface by its index.
+    Appends lines to script state to select a geometry surface by its index.
     
-    :param script_filepath: Path to the script file.
+
     :param surface: Index of the surface to be selected.
     """
     
@@ -294,16 +295,16 @@ def select_geometry_by_id(script_filepath, surface=1):
         f"SELECT_GEOMETRY_BY_ID {surface}"
     ]
 
-    write_lines_to_file(script_filepath, lines)
+    script.append_lines(lines)
     return
 
-def surface_select_by_threshold(script_filepath, frame=1, threshold='Y', min_value=0.5, 
+def surface_select_by_threshold(frame=1, threshold='Y', min_value=0.5, 
                                 max_value=2.5, range_value='ABOVE_MIN_BELOW_MAX', 
                                 subset='ALL_FACES'):
     """
-    Writes specific lines to 'script_filepath' to select surface faces by threshold.
+    Appends lines to script state to select surface faces by threshold.
     
-    :param script_filepath: Path to the script file.
+
     :param frame: Index of the coordinate system used for defining the threshold parameters.
     :param threshold: Type of the threshold.
     :param min_value: Minimum value of the threshold range.
@@ -349,15 +350,15 @@ def surface_select_by_threshold(script_filepath, frame=1, threshold='Y', min_val
         f"SUBSET {subset}"
     ]
 
-    write_lines_to_file(script_filepath, lines)
+    script.append_lines(lines)
     return
 
-def create_new_surface_from_selection(script_filepath):
+def create_new_surface_from_selection():
     """
-    Writes specific lines to 'script_filepath' to create a new geometry surface 
+    Appends lines to script state to create a new geometry surface 
     from the currently selected faces.
     
-    :param script_filepath: Path to the script file.
+
     """
     
     lines = [
@@ -368,14 +369,14 @@ def create_new_surface_from_selection(script_filepath):
         "CREATE_NEW_SURFACE_FROM_SELECTION"
     ]
 
-    write_lines_to_file(script_filepath, lines)
+    script.append_lines(lines)
     return
-def surface_cut_by_plane(script_filepath, frame=1, plane='XZ', offset=0.0, 
+def surface_cut_by_plane(frame=1, plane='XZ', offset=0.0, 
                          surface=-1):
     """
-    Writes specific lines to 'script_filepath' to cut surfaces using a cutting plane.
+    Appends lines to script state to cut surfaces using a cutting plane.
     
-    :param script_filepath: Path to the script file.
+
     :param frame: Index of the coordinate system used for defining the cutting plane.
     :param plane: Plane of the specified coordinate system used as a cutting plane.
     :param offset: Offset distance of the plane along the plane normal vector.
@@ -408,15 +409,15 @@ def surface_cut_by_plane(script_filepath, frame=1, plane='XZ', offset=0.0,
         f"SURFACE {surface}"
     ]
 
-    write_lines_to_file(script_filepath, lines)
+    script.append_lines(lines)
     return
 
-def surface_mirror(script_filepath, surface=1, coordinate_system=1, mirror_plane=1, 
+def surface_mirror(surface=1, coordinate_system=1, mirror_plane=1, 
                    combine_flag=True, delete_source_flag=False):
     """
-    Writes specific lines to 'script_filepath' to mirror an existing surface.
+    Appends lines to script state to mirror an existing surface.
     
-    :param script_filepath: Path to the script file.
+
     :param surface: Index of the surface that must be mirrored.
     :param coordinate_system: Index of the coordinate system to be used.
     :param mirror_plane: Index of the mirror plane within the selected coordinate system.
@@ -449,14 +450,14 @@ def surface_mirror(script_filepath, surface=1, coordinate_system=1, mirror_plane
         f"SURFACE_MIRROR {surface} {coordinate_system} {mirror_plane} {combine_flag} {delete_source_flag}"
     ]
 
-    write_lines_to_file(script_filepath, lines)
+    script.append_lines(lines)
     return
 
-def surface_copy_paste(script_filepath, surface=1):
+def surface_copy_paste(surface=1):
     """
-    Writes specific lines to 'script_filepath' to copy and paste an existing surface.
+    Appends lines to script state to copy and paste an existing surface.
     
-    :param script_filepath: Path to the script file.
+
     :param surface: Index of the surface that must be copied and pasted.
     """
     
@@ -472,14 +473,14 @@ def surface_copy_paste(script_filepath, surface=1):
         f"SURFACE_COPY_PASTE {surface}"
     ]
 
-    write_lines_to_file(script_filepath, lines)
+    script.append_lines(lines)
     return
 
-def surface_auto_hole_fill(script_filepath, surface=1):
+def surface_auto_hole_fill(surface=1):
     """
-    Writes specific lines to 'script_filepath' to automatically fill holes on a surface.
+    Appends lines to script state to automatically fill holes on a surface.
     
-    :param script_filepath: Path to the script file.
+
     :param surface: Index of the surface on which the geometry holes must be filled.
     """
     
@@ -499,14 +500,14 @@ def surface_auto_hole_fill(script_filepath, surface=1):
         f"{surface}"
     ]
 
-    write_lines_to_file(script_filepath, lines)
+    script.append_lines(lines)
     return
 
-def surface_combine(script_filepath, surface_indices):
+def surface_combine(surface_indices):
     """
-    Writes specific lines to 'script_filepath' to combine selected surfaces.
+    Appends lines to script state to combine selected surfaces.
     
-    :param script_filepath: Path to the script file.
+
     :param surface_indices: List of surface indices to be combined.
     """
     
@@ -528,14 +529,14 @@ def surface_combine(script_filepath, surface_indices):
         ",".join(map(str, surface_indices))
     ]
 
-    write_lines_to_file(script_filepath, lines)
+    script.append_lines(lines)
     return
 
-def delete_selected_faces(script_filepath):
+def delete_selected_faces():
     """
-    Writes specific lines to 'script_filepath' to delete selected mesh faces.
+    Appends lines to script state to delete selected mesh faces.
     
-    :param script_filepath: Path to the script file.
+
     """
     
     lines = [
@@ -546,14 +547,14 @@ def delete_selected_faces(script_filepath):
         "DELETE_SELECTED_FACES"
     ]
 
-    write_lines_to_file(script_filepath, lines)
+    script.append_lines(lines)
     return
 
-def surface_delete(script_filepath, surface_index):
+def surface_delete(surface_index):
     """
-    Writes specific lines to 'script_filepath' to delete an existing surface.
+    Appends lines to script state to delete an existing surface.
     
-    :param script_filepath: Path to the script file.
+
     :param surface_index: Index of the surface to be deleted.
     """
     
@@ -570,14 +571,14 @@ def surface_delete(script_filepath, surface_index):
         f"SURFACE {surface_index}"
     ]
 
-    write_lines_to_file(script_filepath, lines)
+    script.append_lines(lines)
     return
 
-def surface_clearall(script_filepath):
+def surface_clearall():
     """
-    Writes specific lines to 'script_filepath' to delete all surfaces in the simulation.
+    Appends lines to script state to delete all surfaces in the simulation.
     
-    :param script_filepath: Path to the script file.
+
     """
     
     lines = [
@@ -588,7 +589,7 @@ def surface_clearall(script_filepath):
         "SURFACE_CLEARALL"
     ]
 
-    write_lines_to_file(script_filepath, lines)
+    script.append_lines(lines)
     return
 
 

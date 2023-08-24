@@ -1,10 +1,11 @@
 from .utils import *    
+from .script import script    
 
-def start_solver(script_filepath):
+def start_solver():
     """
-    Writes specific lines to 'script_filepath' to start the solver.
+    Appends lines to script state to start the solver.
     
-    :param script_filepath: Path to the script file.
+
 
     Example usage:
     start_solver('path_to_script.txt')
@@ -18,14 +19,14 @@ def start_solver(script_filepath):
         "START_SOLVER"
     ]
     
-    write_lines_to_file(script_filepath, lines)
+    script.append_lines(lines)
     return
 
-def solver_clear(script_filepath):
+def solver_clear():
     """
-    Writes specific lines to 'script_filepath' to clear the existing solution.
+    Appends lines to script state to clear the existing solution.
     
-    :param script_filepath: Path to the script file.
+
 
     Example usage:
     solver_clear('path_to_script.txt')
@@ -39,14 +40,14 @@ def solver_clear(script_filepath):
         "SOLVER_CLEAR"
     ]
     
-    write_lines_to_file(script_filepath, lines)
+    script.append_lines(lines)
     return
 
-def close_flightstream(script_filepath):
+def close_flightstream():
     """
-    Writes specific lines to 'script_filepath' to close FlightStream and exit.
+    Appends lines to script state to close FlightStream and exit.
 
-    :param script_filepath: Path to the script file.
+
 
     Example usage:
         close_flightstream('path_to_script.txt')
@@ -60,5 +61,5 @@ def close_flightstream(script_filepath):
         "CLOSE_FLIGHTSTREAM"
     ]
 
-    write_lines_to_file(script_filepath, lines)
+    script.append_lines(lines)
     return

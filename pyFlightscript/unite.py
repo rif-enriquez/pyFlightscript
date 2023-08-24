@@ -1,11 +1,12 @@
 import os
-from .utils import *
+from .utils import *    
+from .script import script
 
-def boolean_unite_geometry(script_filepath, bodies, openvsp_path, bodies_values=None):
+def boolean_unite_geometry(bodies, openvsp_path, bodies_values=None):
     """
-    Writes specific lines to 'script_filepath' to boolean unite a selection of geometry bodies.
+    Appends lines to script state to boolean unite a selection of geometry bodies.
     
-    :param script_filepath: Path to the script file.
+
     :param bodies: Number of geometry bodies being Boolean-united. Can be -1 to specifiy all.
     :param openvsp_path: Path to OpenVSP executable used for the CompGeom unite function call.
     :param bodies_values: List of tuples containing index values of the geometry surfaces 
@@ -56,7 +57,7 @@ def boolean_unite_geometry(script_filepath, bodies, openvsp_path, bodies_values=
 
     lines.append(f"OPENVSP_PATH {openvsp_path}")
 
-    write_lines_to_file(script_filepath, lines)
+    script.append_lines(lines)
     return
 
 

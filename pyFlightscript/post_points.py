@@ -1,13 +1,14 @@
-from .utils import *
+from .utils import *    
+from .script import script
 
-def new_probe_point(script_filepath, type_value='VOLUME', x1=1.3, y1=3.3, z1=-0.5):
+def new_probe_point(type_value='VOLUME', x1=1.3, y1=3.3, z1=-0.5):
     """
-    Writes specific lines to 'script_filepath' to create a new probe point.
+    Appends lines to script state to create a new probe point.
     
     Example usage:
     new_probe_point('path_to_script.txt', type_value='VOLUME', x1=1.3, y1=3.3, z1=-0.5)
     
-    :param script_filepath: Path to the script file.
+
     :param type_value: Type of the probe point. Either 'VOLUME' or 'SURFACE'.
     :param x1, y1, z1: Coordinates of the probe point.
     """
@@ -25,17 +26,17 @@ def new_probe_point(script_filepath, type_value='VOLUME', x1=1.3, y1=3.3, z1=-0.
         f"NEW_PROBE_POINT {type_value} {x1} {y1} {z1}"
     ]
 
-    write_lines_to_file(script_filepath, lines)
+    script.append_lines(lines)
     return
 
-def new_probe_line(script_filepath, numpts=15, x1=0, y1=0, z1=0, x2=1.5, y2=-1.0, z2=0):
+def new_probe_line(numpts=15, x1=0, y1=0, z1=0, x2=1.5, y2=-1.0, z2=0):
     """
-    Writes specific lines to 'script_filepath' to create a new probe survey line.
+    Appends lines to script state to create a new probe survey line.
     
     Example usage:
     new_probe_line('path_to_script.txt', numpts=15, x1=0, y1=0, z1=0, x2=1.5, y2=-1.0, z2=0)
     
-    :param script_filepath: Path to the script file.
+
     :param numpts: Number of probe vertices along survey line.
     :param x1, y1, z1: Coordinates of the starting point of survey line.
     :param x2, y2, z2: Coordinates of the ending point of survey line.
@@ -53,12 +54,12 @@ def new_probe_line(script_filepath, numpts=15, x1=0, y1=0, z1=0, x2=1.5, y2=-1.0
         f"NEW_PROBE_LINE {numpts} {x1} {y1} {z1} {x2} {y2} {z2}"
     ]
 
-    write_lines_to_file(script_filepath, lines)
+    script.append_lines(lines)
     return
 
-def update_probe_points(script_filepath):
+def update_probe_points():
     """
-    Writes specific lines to 'script_filepath' to update probe point flow properties.
+    Appends lines to script state to update probe point flow properties.
     
     Example usage:
         update_probe_points('path_to_script.txt')
@@ -72,15 +73,15 @@ def update_probe_points(script_filepath):
         "UPDATE_PROBE_POINTS"
     ]
     
-    write_lines_to_file(script_filepath, lines)
+    script.append_lines(lines)
     return
 
 
-def probe_points_import(script_filepath, filepath, units='INCH', frame=1):
+def probe_points_import(filepath, units='INCH', frame=1):
     """
-    Writes specific lines to 'script_filepath' to import probe points from a file.
+    Appends lines to script state to import probe points from a file.
     
-    :param script_filepath: Path to the script file.
+
     :param units: Units for the probe points.
     :param frame: Index of the coordinate system.
     :param filepath: Path to the probes file.
@@ -105,15 +106,15 @@ def probe_points_import(script_filepath, filepath, units='INCH', frame=1):
         filepath
     ]
     
-    write_lines_to_file(script_filepath, lines)
+    script.append_lines(lines)
     return
 
 
-def export_probe_points(script_filepath, filepath):
+def export_probe_points(filepath):
     """
-    Writes specific lines to 'script_filepath' to export probe points to a file.
+    Appends lines to script state to export probe points to a file.
     
-    :param script_filepath: Path to the script file.
+
     :param filepath: Path to the file where probe points will be exported.
     
     Example usage:
@@ -129,14 +130,14 @@ def export_probe_points(script_filepath, filepath):
         filepath
     ]
     
-    write_lines_to_file(script_filepath, lines)
+    script.append_lines(lines)
     return
 
-def delete_probe_points(script_filepath):
+def delete_probe_points():
     """
-    Writes specific lines to 'script_filepath' to delete all existing probe points.
+    Appends lines to script state to delete all existing probe points.
     
-    :param script_filepath: Path to the script file.
+
     
     Example usage:
         delete_probe_points('path_to_script.txt')
@@ -150,7 +151,7 @@ def delete_probe_points(script_filepath):
         "DELETE_PROBE_POINTS"
     ]
 
-    write_lines_to_file(script_filepath, lines)
+    script.append_lines(lines)
     return
 
 

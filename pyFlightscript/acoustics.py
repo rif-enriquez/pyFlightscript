@@ -1,10 +1,10 @@
 from .utils import *    
+from .script import script    
 
-def acoustic_sources(script_filepath, status='ENABLE'):
+def acoustic_sources(status='ENABLE'):
     """
-    Writes specific lines to 'script_filepath' to enable or disable acoustic sources during solver initialization.
+    Appends lines to script state to enable or disable acoustic sources during solver initialization.
 
-    :param script_filepath: Path to the script file.
     :param status: Either 'ENABLE' or 'DISABLE'.
     
     Example usage:
@@ -23,14 +23,13 @@ def acoustic_sources(script_filepath, status='ENABLE'):
         f"ACOUSTIC_SOURCES {status}"
     ]
 
-    write_lines_to_file(script_filepath, lines)
+    script.append_lines(lines)
     return
 
-def create_new_acoustic_observer(script_filepath, name, x=0.0, y=0.0, z=0.0):
+def create_new_acoustic_observer(name, x=0.0, y=0.0, z=0.0):
     """
-    Writes specific lines to 'script_filepath' to create a new acoustic observer.
+    Appends lines to script state to create a new acoustic observer.
 
-    :param script_filepath: Path to the script file.
     :param name: Name of the observer.
     :param x: X-coordinate of the observer.
     :param y: Y-coordinate of the observer.
@@ -55,14 +54,14 @@ def create_new_acoustic_observer(script_filepath, name, x=0.0, y=0.0, z=0.0):
         f"CREATE_NEW_ACOUSTIC_OBSERVER {name} {x} {y} {z}"
     ]
 
-    write_lines_to_file(script_filepath, lines)
+    script.append_lines(lines)
     return
 
-def acoustic_observers_import(script_filepath, file_path):
+def acoustic_observers_import(file_path):
     """
-    Writes specific lines to 'script_filepath' to import acoustic observers from a file.
+    Appends lines to script state to import acoustic observers from a file.
     
-    :param script_filepath: Path to the script file.
+
     :param file_path: Path to the observer file.
     
     Example usage:
@@ -82,15 +81,15 @@ def acoustic_observers_import(script_filepath, file_path):
         file_path
     ]
     
-    write_lines_to_file(script_filepath, lines)
+    script.append_lines(lines)
     return
 
 
-def delete_acoustic_observer(script_filepath, observer_index):
+def delete_acoustic_observer(observer_index):
     """
-    Writes specific lines to 'script_filepath' to delete an acoustic observer by index.
+    Appends lines to script state to delete an acoustic observer by index.
     
-    :param script_filepath: Path to the script file.
+
     :param observer_index: Index of the observer in the acoustic toolbox UI tree.
     
     Example usage:
@@ -110,14 +109,14 @@ def delete_acoustic_observer(script_filepath, observer_index):
         str(observer_index)
     ]
     
-    write_lines_to_file(script_filepath, lines)
+    script.append_lines(lines)
     return
 
-def delete_all_acoustic_observers(script_filepath):
+def delete_all_acoustic_observers():
     """
-    Writes specific lines to 'script_filepath' to delete all acoustic observers.
+    Appends lines to script state to delete all acoustic observers.
     
-    :param script_filepath: Path to the script file.
+
 
     Example usage:
     >>> delete_all_acoustic_observers('path_to_script.txt')
@@ -131,14 +130,14 @@ def delete_all_acoustic_observers(script_filepath):
         "DELETE_ALL_ACOUSTIC_OBSERVERS"
     ]
 
-    write_lines_to_file(script_filepath, lines)
+    script.append_lines(lines)
     return
 
-def set_acoustic_observer_time(script_filepath, initial_time=0.0, final_time=0.2, time_steps=300):
+def set_acoustic_observer_time(initial_time=0.0, final_time=0.2, time_steps=300):
     """
-    Writes specific lines to 'script_filepath' to set acoustic observer time parameters.
+    Appends lines to script state to set acoustic observer time parameters.
     
-    :param script_filepath: Path to the script file.
+
     :param initial_time: Initial observer signal time (seconds).
     :param final_time: Final observer signal time (seconds).
     :param time_steps: Total number of time steps between initial and final times.
@@ -165,14 +164,14 @@ def set_acoustic_observer_time(script_filepath, initial_time=0.0, final_time=0.2
         f"SET_ACOUSTIC_OBSERVER_TIME {initial_time} {final_time} {time_steps}"
     ]
 
-    write_lines_to_file(script_filepath, lines)
+    script.append_lines(lines)
     return
 
-def compute_acoustic_signals(script_filepath):
+def compute_acoustic_signals():
     """
-    Writes specific lines to 'script_filepath' to compute acoustic signals at all observers.
+    Appends lines to script state to compute acoustic signals at all observers.
 
-    :param script_filepath: Path to the script file.
+
 
     Example usage:
     compute_acoustic_signals('path_to_script.txt')
@@ -186,14 +185,14 @@ def compute_acoustic_signals(script_filepath):
         "COMPUTE_ACOUSTIC_SIGNALS"
     ]
     
-    write_lines_to_file(script_filepath, lines)
+    script.append_lines(lines)
     return
 
-def export_acoustic_signals(script_filepath, filename):
+def export_acoustic_signals(filename):
     """
-    Writes specific lines to 'script_filepath' to export acoustic signals at all observers.
+    Appends lines to script state to export acoustic signals at all observers.
 
-    :param script_filepath: Path to the script file.
+
     :param filename: Path to the output file.
 
     Example usage:
@@ -213,16 +212,16 @@ def export_acoustic_signals(script_filepath, filename):
         f"{filename}"
     ]
     
-    write_lines_to_file(script_filepath, lines)
+    script.append_lines(lines)
     return
 
-def create_acoustic_section(script_filepath, frame=1, plane='XZ', offset=-2.0,
+def create_acoustic_section(frame=1, plane='XZ', offset=-2.0,
                             radial_observers=20, azimuth_observers=40, inner_radius=0.0,
                             outer_radius=3.0, storage_path="C:\\...\\Acoustic_Output\\"):
     """
-    Writes specific lines to 'script_filepath' to create and export acoustic section signals.
+    Appends lines to script state to create and export acoustic section signals.
     
-    :param script_filepath: Path to the script file.
+
     :param frame: Index of the coordinate system to be used.
     :param plane: Section plane.
     :param offset: Offset distance of the plane.
@@ -266,5 +265,5 @@ def create_acoustic_section(script_filepath, frame=1, plane='XZ', offset=-2.0,
         f"STORAGE_PATH {storage_path}"
     ]
 
-    write_lines_to_file(script_filepath, lines)
+    script.append_lines(lines)
     return

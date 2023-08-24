@@ -1,10 +1,11 @@
-from .utils import *
+from .utils import *    
+from .script import script
 
-def set_plot_type(script_filepath, plot_type):
+def set_plot_type(plot_type):
     """
-    Writes specific lines to 'script_filepath' to change the plot type.
+    Appends lines to script state to change the plot type.
     
-    :param script_filepath: Path to the script file.
+
     :param plot_type: Type of plot.
     
     Example usage:
@@ -29,15 +30,15 @@ def set_plot_type(script_filepath, plot_type):
         "SET_PLOT_TYPE",
         plot_type
     ]
-    write_lines_to_file(script_filepath, lines)
+    script.append_lines(lines)
     return
 
 
-def save_plot_to_file(script_filepath, filename):
+def save_plot_to_file(filename):
     """
-    Writes specific lines to 'script_filepath' to save the plot to an external file.
+    Appends lines to script state to save the plot to an external file.
     
-    :param script_filepath: Path to the script file.
+
     :param filename: Full path and name of the file to save the plot.
     
     Example usage:
@@ -50,5 +51,5 @@ def save_plot_to_file(script_filepath, filename):
         "SAVE_PLOT_TO_FILE",
         filename
     ]
-    write_lines_to_file(script_filepath, lines)
+    script.append_lines(lines)
     return

@@ -1,10 +1,11 @@
-from .utils import *
+from .utils import *    
+from .script import script
 
-def export_solver_analysis_spreadsheet(script_filepath, output_file):
+def export_solver_analysis_spreadsheet(output_file):
     """
-    Writes specific lines to 'script_filepath' to export the aerodynamic results to the specified file.
+    Appends lines to script state to export the aerodynamic results to the specified file.
     
-    :param script_filepath: Path to the script file.
+
     :param output_file: Path to the output file where the aerodynamic results will be stored.
     
     Example usage:
@@ -24,14 +25,14 @@ def export_solver_analysis_spreadsheet(script_filepath, output_file):
         f"{output_file}"
     ]
 
-    write_lines_to_file(script_filepath, lines)
+    script.append_lines(lines)
     return
 
-def export_solver_analysis_tecplot(script_filepath, output_file):
+def export_solver_analysis_tecplot(output_file):
     """
-    Writes specific lines to 'script_filepath' to export the Tecplot data based on the solver results for all initialized boundaries to the specified file.
+    Appends lines to script state to export the Tecplot data based on the solver results for all initialized boundaries to the specified file.
     
-    :param script_filepath: Path to the script file.
+
     :param output_file: Path to the output file where the Tecplot data will be stored.
     
     Example usage:
@@ -51,15 +52,15 @@ def export_solver_analysis_tecplot(script_filepath, output_file):
         f"{output_file}"
     ]
 
-    write_lines_to_file(script_filepath, lines)
+    script.append_lines(lines)
     return
 
-def export_solver_analysis_vtk(script_filepath, output_filepath, surfaces, boundaries=None):
+def export_solver_analysis_vtk(output_filepath, surfaces, boundaries=None):
     """
-    Writes specific lines to 'script_filepath' to export the Visualization Toolkit (*.vtk) 
+    Appends lines to script state to export the Visualization Toolkit (*.vtk) 
     file based on the solver results for the specified boundaries.
     
-    :param script_filepath: Path to the script file.
+
     :param output_filepath: File name with path to output file.
     :param surfaces: Number of boundaries that need to be exported, or -1 if all boundaries 
     need to be exported.
@@ -81,14 +82,14 @@ def export_solver_analysis_vtk(script_filepath, output_filepath, surfaces, bound
     if boundaries:
         lines.extend(map(str, boundaries))
 
-    write_lines_to_file(script_filepath, lines)
+    script.append_lines(lines)
     return
 
-def set_vtk_export_variables(script_filepath, num_variables, export_wake, variables=None):
+def set_vtk_export_variables(num_variables, export_wake, variables=None):
     """
-    Writes specific lines to 'script_filepath' to set the variables to be exported in the VTK file.
+    Appends lines to script state to set the variables to be exported in the VTK file.
     
-    :param script_filepath: Path to the script file.
+
     :param num_variables: Number of variables to be exported. For all variable export set value to -1
     :param export_wake: Option to export wake filaments to VTK file. Either 'ENABLE' or 'DISABLE'.
     :param variables: List of variables to be exported, if applicable.
@@ -116,17 +117,17 @@ def set_vtk_export_variables(script_filepath, num_variables, export_wake, variab
     if variables:
         lines.extend(variables)
 
-    write_lines_to_file(script_filepath, lines)
+    script.append_lines(lines)
     return
 
-def export_solver_analysis_csv(script_filepath, file_path, 
+def export_solver_analysis_csv(file_path, 
                                format_value='DIFFERENCE-PRESSURE', 
                                units='PASCALS', surfaces=-1, 
                                boundary_indices=None):
     """
-    Writes specific lines to 'script_filepath' to export the FEM CSV based on the solver results.
+    Appends lines to script state to export the FEM CSV based on the solver results.
     
-    :param script_filepath: Path to the script file.
+
     :param file_path: File name with path to file.
     :param format_value: Format of the export data. 
     :param units: Units for the exported data.
@@ -176,14 +177,14 @@ def export_solver_analysis_csv(script_filepath, file_path,
         for boundary in boundary_indices:
             lines.append(str(boundary))
     
-    write_lines_to_file(script_filepath, lines)
+    script.append_lines(lines)
     return
 
-def export_solver_analysis_pload_bdf(script_filepath, file_path, surfaces=-1, boundary_indices=None):
+def export_solver_analysis_pload_bdf(file_path, surfaces=-1, boundary_indices=None):
     """
-    Writes specific lines to 'script_filepath' to export the NASTRAN PLOAD BDF based on the solver results.
+    Appends lines to script state to export the NASTRAN PLOAD BDF based on the solver results.
     
-    :param script_filepath: Path to the script file.
+
     :param file_path: File name with path to file.
     :param surfaces: Number of boundaries to be exported or -1 for all.
     :param boundary_indices: List of boundary indices.
@@ -216,14 +217,14 @@ def export_solver_analysis_pload_bdf(script_filepath, file_path, surfaces=-1, bo
         for boundary in boundary_indices:
             lines.append(str(boundary))
     
-    write_lines_to_file(script_filepath, lines)
+    script.append_lines(lines)
     return
 
-def export_solver_analysis_force_distributions(script_filepath, output_filepath, surfaces=-1, boundary_indices=None):
+def export_solver_analysis_force_distributions(output_filepath, surfaces=-1, boundary_indices=None):
     """
-    Writes specific lines to 'script_filepath' to export the force distribution vectors based on the solver results.
+    Appends lines to script state to export the force distribution vectors based on the solver results.
     
-    :param script_filepath: Path to the script file.
+
     :param output_filepath: Path to the output data file.
     :param surfaces: Number of boundaries that need to be exported, or -1 if all boundaries need to be exported.
     :param boundary_indices: List of boundary indices to be exported. If surfaces is not -1, this parameter must be provided.
@@ -255,7 +256,7 @@ def export_solver_analysis_force_distributions(script_filepath, output_filepath,
     if boundary_indices:
         lines.extend(map(str, boundary_indices))
 
-    write_lines_to_file(script_filepath, lines)
+    script.append_lines(lines)
     return
 
 

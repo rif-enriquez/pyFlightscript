@@ -1,11 +1,12 @@
 import os
-from .utils import *
+from .utils import *    
+from .script import script
 
-def set_freestream(script_filepath, freestream_type, profile_path=None, frame=None, axis=None, angular_velocity=None):
+def set_freestream(freestream_type, profile_path=None, frame=None, axis=None, angular_velocity=None):
     """
-    Writes specific lines to 'script_filepath' to set a freestream velocity type.
+    Appends lines to script state to set a freestream velocity type.
     
-    :param script_filepath: Path to the script file.
+
     :param freestream_type: Type of the freestream ('CONSTANT', 'CUSTOM', or 'ROTATION').
     :param profile_path: (Optional) Path to the custom velocity profile. Needed for 'CUSTOM' type.
     :param frame: (Optional) Index of the coordinate system used for defining the rotation. Needed for 'ROTATION' type.
@@ -60,18 +61,18 @@ def set_freestream(script_filepath, freestream_type, profile_path=None, frame=No
             f"SET_FREESTREAM ROTATION {frame} {axis} {angular_velocity}"
         ])
     
-    write_lines_to_file(script_filepath, lines)
+    script.append_lines(lines)
     return
 
-def fluid_properties(script_filepath, density=0.5, pressure=65234.35, sonic_velocity=230,
+def fluid_properties(density=0.5, pressure=65234.35, sonic_velocity=230,
                      temperature=295.0, viscosity=0.0005):
     """
-    Writes specific lines to 'script_filepath' to set the fluid properties.
+    Appends lines to script state to set the fluid properties.
     
     Example usage:
         fluid_properties('path_to_script.txt')
     
-    :param script_filepath: Path to the script file.
+
     :param density: Density value (kg/m^3).
     :param pressure: Static pressure value (Pa).
     :param sonic_velocity: Sonic velocity (m/sec).
@@ -108,17 +109,17 @@ def fluid_properties(script_filepath, density=0.5, pressure=65234.35, sonic_velo
         f"VISCOSITY {viscosity}"
     ]
 
-    write_lines_to_file(script_filepath, lines)
+    script.append_lines(lines)
     return
 
-def air_altitude(script_filepath, altitude=15000.0):
+def air_altitude(altitude=15000.0):
     """
-    Writes specific lines to 'script_filepath' to set fluid (air) properties based on altitude.
+    Appends lines to script state to set fluid (air) properties based on altitude.
 
     Example usage:
     air_altitude('path_to_script.txt')
 
-    :param script_filepath: Path to the script file.
+
     :param altitude: Altitude value in feet.
     """
     
@@ -134,6 +135,6 @@ def air_altitude(script_filepath, altitude=15000.0):
         f"AIR_ALTITUDE {altitude}"
     ]
 
-    write_lines_to_file(script_filepath, lines)
+    script.append_lines(lines)
     return
 

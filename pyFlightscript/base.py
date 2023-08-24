@@ -1,11 +1,12 @@
 import os
-from .utils import *
+from .utils import *    
+from .script import script
 
-def create_new_base_region(script_filepath, surface, base_pressure_coefficient):
+def create_new_base_region(surface, base_pressure_coefficient):
     """
-    Writes specific lines to 'script_filepath' to create a new base region.
+    Appends lines to script state to create a new base region.
 
-    :param script_filepath: Path to the script file.
+
     :param surface: Index of the boundary surface to be marked as base region boundary.
     :param base_pressure_coefficient: Pressure coefficient to be applied in base regions.
 
@@ -30,17 +31,17 @@ def create_new_base_region(script_filepath, surface, base_pressure_coefficient):
         f"BASE_PRESSURE_COEFFICIENT {base_pressure_coefficient}"
     ]
 
-    write_lines_to_file(script_filepath, lines)
+    script.append_lines(lines)
     return
 
-def auto_detect_base_regions(script_filepath):
+def auto_detect_base_regions():
     """
-    Writes specific lines to 'script_filepath' to auto-detect base regions on the geometry.
+    Appends lines to script state to auto-detect base regions on the geometry.
 
     Example usage:
     auto_detect_base_regions('path_to_script.txt')
 
-    :param script_filepath: Path to the script file.
+
     """
     
     lines = [
@@ -51,17 +52,17 @@ def auto_detect_base_regions(script_filepath):
         "AUTO_DETECT_BASE_REGIONS"
     ]
 
-    write_lines_to_file(script_filepath, lines)
+    script.append_lines(lines)
     return
 
-def detect_base_regions_by_surface(script_filepath, boundary_index=1):
+def detect_base_regions_by_surface(boundary_index=1):
     """
     Example usage:
     detect_base_regions_by_surface('path_to_script.txt')
     
-    Writes specific lines to 'script_filepath' to detect base regions by surface index.
+    Appends lines to script state to detect base regions by surface index.
     
-    :param script_filepath: Path to the script file.
+
     :param boundary_index: Index of the mesh boundary to use for marking base regions.
     """
     
@@ -77,17 +78,17 @@ def detect_base_regions_by_surface(script_filepath, boundary_index=1):
         f"DETECT_BASE_REGIONS_BY_SURFACE {boundary_index}"
     ]
 
-    write_lines_to_file(script_filepath, lines)
+    script.append_lines(lines)
     return
 
-def set_base_region_trailing_edges(script_filepath, base_region_boundary=-1):
+def set_base_region_trailing_edges(base_region_boundary=-1):
     """
     Example usage:
     set_base_region_trailing_edges('path_to_script.txt')
 
-    Writes specific lines to 'script_filepath' to set base region trailing edges.
+    Appends lines to script state to set base region trailing edges.
 
-    :param script_filepath: Path to the script file.
+
     :param base_region_boundary: Index of the base region boundary to use for marking trailing edges.
     """
     
@@ -105,17 +106,17 @@ def set_base_region_trailing_edges(script_filepath, base_region_boundary=-1):
         f"SET_BASE_REGION_TRAILING_EDGES {base_region_boundary}"
     ]
 
-    write_lines_to_file(script_filepath, lines)
+    script.append_lines(lines)
     return
 
-def delete_base_region(script_filepath, base_region_boundary):
+def delete_base_region(base_region_boundary):
     """
     Example usage:
     delete_base_region('path_to_script.txt', 2)
     
-    Writes specific lines to 'script_filepath' to delete an existing base region.
+    Appends lines to script state to delete an existing base region.
     
-    :param script_filepath: Path to the script file.
+
     :param base_region_boundary: Index of the base region boundary to be deleted.
     """
     
@@ -131,5 +132,5 @@ def delete_base_region(script_filepath, base_region_boundary):
         f"DELETE_BASE_REGION {base_region_boundary}"
     ]
 
-    write_lines_to_file(script_filepath, lines)
+    script.append_lines(lines)
     return

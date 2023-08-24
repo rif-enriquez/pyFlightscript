@@ -1,12 +1,13 @@
-from .utils import *
+from .utils import *    
+from .script import script
 
-def initialize_solver(script_filepath, surfaces, load_frame, symmetry_periodicity=0,
+def initialize_solver(surfaces, load_frame, symmetry_periodicity=0,
                       proximity_avoidance='DISABLE', stabilization='ENABLE', stabilization_strength=1.0,
                       fast_multipole='ENABLE', wake_termination_x='DEFAULT', symmetry_type='NONE'):
     """
-    Writes specific lines to 'script_filepath' to initialize the solver.
+    Appends lines to script state to initialize the solver.
 
-    :param script_filepath: Path to the script file.
+
     ... [other parameters]
     
     Example usage:
@@ -49,15 +50,15 @@ def initialize_solver(script_filepath, surfaces, load_frame, symmetry_periodicit
         f"FAST_MULTIPOLE {fast_multipole}"
     ])
 
-    write_lines_to_file(script_filepath, lines)
+    script.append_lines(lines)
     return
 
 
-def solver_proximal_boundaries(script_filepath, *boundaries):
+def solver_proximal_boundaries(*boundaries):
     """
-    Writes specific lines to 'script_filepath' to enable solver proximity checking for specified boundaries.
+    Appends lines to script state to enable solver proximity checking for specified boundaries.
     
-    :param script_filepath: Path to the script file.
+
     :param boundaries: Indices of the geometry boundaries for which solver proximity checking is being enabled.
     
     Example usage:
@@ -80,14 +81,14 @@ def solver_proximal_boundaries(script_filepath, *boundaries):
     for boundary in boundaries:
         lines.append(str(boundary))
         
-    write_lines_to_file(script_filepath, lines)
+    script.append_lines(lines)
     return
 
-def solver_uninitialize(script_filepath):
+def solver_uninitialize():
     """
-    Writes specific lines to 'script_filepath' to remove the solver initialization.
+    Appends lines to script state to remove the solver initialization.
     
-    :param script_filepath: Path to the script file.
+
     
     Example usage:
     >>> solver_uninitialize('path_to_script.txt')
@@ -101,7 +102,7 @@ def solver_uninitialize(script_filepath):
         "SOLVER_UNINITIALIZE"
     ]
     
-    write_lines_to_file(script_filepath, lines)
+    script.append_lines(lines)
     return
 
 

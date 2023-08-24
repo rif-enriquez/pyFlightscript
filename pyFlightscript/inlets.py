@@ -1,11 +1,12 @@
 import os
-from .utils import *
+from .utils import *    
+from .script import script
 
-def create_new_inlet(script_filepath, surface_id, type_value, vx_or_velocity, vy=0.0, vz=0.0):
+def create_new_inlet(surface_id, type_value, vx_or_velocity, vy=0.0, vz=0.0):
     """
-    Writes specific lines to 'script_filepath' to create a new inlet boundary.
+    Appends lines to script state to create a new inlet boundary.
     
-    :param script_filepath: Path to the script file.
+
     :param surface_id: Index of the boundary surface to be marked as inlet.
     :param type_value: Type of inlet specification.
     :param vx_or_velocity: If TYPE=1, then VX. If TYPE=2, then VELOCITY.
@@ -51,12 +52,12 @@ def create_new_inlet(script_filepath, surface_id, type_value, vx_or_velocity, vy
             f"CREATE_NEW_INLET {surface_id} {type_value} {vx_or_velocity}"
         ]
     
-    write_lines_to_file(script_filepath, lines)
+    script.append_lines(lines)
     return
 
-def set_inlet_custom_profile(script_filepath, inlet_id, motion_filpath):
+def set_inlet_custom_profile(inlet_id, motion_filpath):
     """
-    Writes specific lines to 'script_filepath' to set a custom inlet profile 
+    Appends lines to script state to set a custom inlet profile 
     using an external file.
     
     Example usage:
@@ -85,18 +86,18 @@ def set_inlet_custom_profile(script_filepath, inlet_id, motion_filpath):
         f"{motion_filpath}"
     ]
 
-    write_lines_to_file(script_filepath, lines)
+    script.append_lines(lines)
     return
 
-def remesh_inlet(script_filepath, inlet, inner_radius=0.0, elements=10, 
+def remesh_inlet(inlet, inner_radius=0.0, elements=10, 
                  growth_scheme=2, growth_rate=1.2):
     """
-    Writes specific lines to 'script_filepath' to radial mesh an existing inlet boundary.
+    Appends lines to script state to radial mesh an existing inlet boundary.
     
     Example usage:
     remesh_inlet('path_to_script.txt', 1)
     
-    :param script_filepath: Path to the script file.
+
     :param inlet: Index of inlet boundary to be meshed.
     :param inner_radius: Inner radius of the inlet boundary.
     :param elements: Number of mesh faces in the radial direction.
@@ -133,17 +134,17 @@ def remesh_inlet(script_filepath, inlet, inner_radius=0.0, elements=10,
         f"GROWTH_RATE {growth_rate}"
     ]
 
-    write_lines_to_file(script_filepath, lines)
+    script.append_lines(lines)
     return
 
-def delete_inlet(script_filepath, inlet):
+def delete_inlet(inlet):
     """
-    Writes specific lines to 'script_filepath' to delete an existing inlet boundary.
+    Appends lines to script state to delete an existing inlet boundary.
     
     Example usage:
     delete_inlet('path_to_script.txt', 1)
     
-    :param script_filepath: Path to the script file.
+
     :param inlet: Index of the inlet boundary to be deleted.
     """
     
@@ -160,7 +161,7 @@ def delete_inlet(script_filepath, inlet):
         f"INLET {inlet}"
     ]
 
-    write_lines_to_file(script_filepath, lines)
+    script.append_lines(lines)
     return
 
 

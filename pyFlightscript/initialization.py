@@ -1,9 +1,10 @@
-from .utils import *
+from .utils import *    
+from .script import script
 
-def open_fsm(script_filepath, fsm_filepath):
+def open_fsm(fsm_filepath):
     """
     FS: Opens a flightstream file. 
-    python:  Writes a script with specific lines to 'script_filepath', 
+    python:  Writes a script with specific lines to '', 
       inserting the path from 'fsm_filepath' where necessary.
     """
     lines = [
@@ -15,12 +16,12 @@ def open_fsm(script_filepath, fsm_filepath):
         fsm_filepath  # Replace the path with the provided input_filename
     ]
 
-    write_lines_to_file(script_filepath, lines)
+    script.append_lines(lines)
     return
 
-def stop_script(script_filepath):
+def stop_script():
     """
-    Writes specific lines indicating a script stop to 'script_filepath'.
+    Writes specific lines indicating a script stop to ''.
     """
     lines = [
         "#************************************************************************",
@@ -30,12 +31,12 @@ def stop_script(script_filepath):
         "STOP"
     ]
 
-    write_lines_to_file(script_filepath, lines)
+    script.append_lines(lines)
     return
 
-def save_as_fsm(script_filepath, fsm_filepath):
+def save_as_fsm(fsm_filepath):
     """
-    Writes specific lines to 'script_filepath' to save an existing simulation file,
+    Appends lines to script state to save an existing simulation file,
     using the path from 'fsm_filepath'.
     """
     lines = [
@@ -47,12 +48,12 @@ def save_as_fsm(script_filepath, fsm_filepath):
         fsm_filepath
     ]
 
-    write_lines_to_file(script_filepath, lines)
+    script.append_lines(lines)
     return
 
-def create_new_simulation(script_filepath):
+def create_new_simulation():
     """
-    Writes specific lines to 'script_filepath' to create a new simulation.
+    Appends lines to script state to create a new simulation.
     """
     lines = [
         "#************************************************************************",
@@ -62,14 +63,14 @@ def create_new_simulation(script_filepath):
         "NEW_SIMULATION"
     ]
 
-    write_lines_to_file(script_filepath, lines)
+    script.append_lines(lines)
     return
 
-def set_significant_digits(script_filepath, digits=5):
+def set_significant_digits(digits=5):
     """
-    Writes specific lines to 'script_filepath' to set the number of significant digits.
+    Appends lines to script state to set the number of significant digits.
     
-    :param script_filepath: Path to the script file.
+    :param : Path to the script file.
     :param digits: Number of significant digits.
     """
     if not isinstance(digits, int):
@@ -83,14 +84,14 @@ def set_significant_digits(script_filepath, digits=5):
         f"SET_SIGNIFICANT_DIGITS {digits}"
     ]
 
-    write_lines_to_file(script_filepath, lines)
+    script.append_lines(lines)
     return
 
-def set_vertex_merge_tolerance(script_filepath, tolerance='1E-5'):
+def set_vertex_merge_tolerance(tolerance='1E-5'):
     """
-    Writes specific lines to 'script_filepath' to set the vertex merge tolerance.
+    Appends lines to script state to set the vertex merge tolerance.
     
-    :param script_filepath: Path to the script file.
+    :param : Path to the script file.
     :param tolerance: Vertex merge tolerance value.
     """
     lines = [
@@ -101,15 +102,15 @@ def set_vertex_merge_tolerance(script_filepath, tolerance='1E-5'):
         f"SET_VERTEX_MERGE_TOLERANCE {tolerance}"
     ]
 
-    write_lines_to_file(script_filepath, lines)
+    script.append_lines(lines)
     return
 
-def set_simulation_length_units(script_filepath, units='METER'):
+def set_simulation_length_units(units='METER'):
     """
-    Writes specific lines to 'script_filepath' to set the simulation length scale units.
+    Appends lines to script state to set the simulation length scale units.
     Checks if the provided unit is valid.
     
-    :param script_filepath: Path to the script file.
+    :param : Path to the script file.
     :param units: Desired simulation length unit.
     :raises ValueError: If the provided unit is not valid.
     """
@@ -123,15 +124,15 @@ def set_simulation_length_units(script_filepath, units='METER'):
         f"SET_SIMULATION_LENGTH_UNITS {units}"
     ]
 
-    write_lines_to_file(script_filepath, lines)
+    script.append_lines(lines)
     return
 
-def set_trailing_edge_sweep_angle(script_filepath, angle=45.):
+def set_trailing_edge_sweep_angle(angle=45.):
     """
-    Writes specific lines to 'script_filepath' to set the trailing edge sweep angle.
+    Appends lines to script state to set the trailing edge sweep angle.
     Checks if the provided angle is within the valid range.
     
-    :param script_filepath: Path to the script file.
+    :param : Path to the script file.
     :param angle: Desired trailing edge sweep angle in degrees.
     :raises ValueError: If the provided angle is not within [0, 90].
     """
@@ -149,15 +150,15 @@ def set_trailing_edge_sweep_angle(script_filepath, angle=45.):
         f"SET_TRAILING_EDGE_SWEEP_ANGLE {angle}"
     ]
 
-    write_lines_to_file(script_filepath, lines)
+    script.append_lines(lines)
     return
 
-def set_trailing_edge_bluntness_angle(script_filepath, angle=85.):
+def set_trailing_edge_bluntness_angle(angle=85.):
     """
-    Writes specific lines to 'script_filepath' to set the trailing edge bluntness angle.
+    Appends lines to script state to set the trailing edge bluntness angle.
     Checks if the provided angle is within the valid range.
     
-    :param script_filepath: Path to the script file.
+    :param : Path to the script file.
     :param angle: Desired trailing edge bluntness angle in degrees.
     :raises ValueError: If the provided angle is not within [45, 179].
     """
@@ -175,15 +176,15 @@ def set_trailing_edge_bluntness_angle(script_filepath, angle=85.):
         f"SET_TRAILING_EDGE_BLUNTNESS_ANGLE {angle}"
     ]
 
-    write_lines_to_file(script_filepath, lines)
+    script.append_lines(lines)
     return
 
-def set_base_region_bending_angle(script_filepath, angle=25.):
+def set_base_region_bending_angle(angle=25.):
     """
-    Writes specific lines to 'script_filepath' to set the base region bending angle.
+    Appends lines to script state to set the base region bending angle.
     Checks if the provided angle is within the valid range.
     
-    :param script_filepath: Path to the script file.
+    :param : Path to the script file.
     :param angle: Desired base region bending angle in degrees.
     :raises ValueError: If the provided angle is not within [0, 90].
     """
@@ -201,5 +202,5 @@ def set_base_region_bending_angle(script_filepath, angle=25.):
         f"SET_BASE_REGION_BENDING_ANGLE {angle}"
     ]
 
-    write_lines_to_file(script_filepath, lines)
+    script.append_lines(lines)
     return

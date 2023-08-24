@@ -1,14 +1,15 @@
 import os
-from .utils import *
+from .utils import *    
+from .script import script
 
-def create_new_actuator(script_filepath, actuator_type='PROPELLER'):
+def create_new_actuator(actuator_type='PROPELLER'):
     """
-    Writes specific lines to 'script_filepath' to create a new actuator.
+    Appends lines to script state to create a new actuator.
     
     Example usage:
     create_new_actuator('path_to_script.txt')
     
-    :param script_filepath: Path to the script file.
+
     :param actuator_type: Type of the actuator, either 'PROPELLER' or 'JET_EXHAUST'.
     """
     
@@ -26,10 +27,10 @@ def create_new_actuator(script_filepath, actuator_type='PROPELLER'):
         f"TYPE {actuator_type}"
     ]
 
-    write_lines_to_file(script_filepath, lines)
+    script.append_lines(lines)
     return
 
-def edit_actuator(script_filepath, actuator, name, actuator_type, frame, axis, 
+def edit_actuator(actuator, name, actuator_type, frame, axis, 
                   offset, radius, ct=None, rpm=None, swirl_velocity=None, 
                   velocity=None, density=None, cm=None):
     """
@@ -37,9 +38,9 @@ def edit_actuator(script_filepath, actuator, name, actuator_type, frame, axis,
         edit_actuator('path_to_script.txt', 1, "Prop-1", "PROPELLER", 2, 1, 0.5, 
                       1.2, ct=0.013, rpm=7000, swirl_velocity="ENABLE")
     
-    Writes specific lines to 'script_filepath' to edit an actuator.
+    Appends lines to script state to edit an actuator.
     
-    :param script_filepath: Path to the script file.
+
     :param actuator: Index of the actuator to be edited.
     :param name: Name to be assigned to the selected actuator.
     :param actuator_type: Type of the actuator (PROPELLER or JET_EXHAUST).
@@ -101,17 +102,17 @@ def edit_actuator(script_filepath, actuator, name, actuator_type, frame, axis,
         if cm is not None:
             lines.append(f"CM {cm}")
     
-    write_lines_to_file(script_filepath, lines)
+    script.append_lines(lines)
     return
 
-def set_prop_actuator_rpm(script_filepath, actuator_index=1, rpm=2000):
+def set_prop_actuator_rpm(actuator_index=1, rpm=2000):
     """
-    Writes specific lines to 'script_filepath' to set the RPM of an actuator.
+    Appends lines to script state to set the RPM of an actuator.
     
     Example usage:
     set_prop_actuator_rpm('path_to_script.txt', 2, -3400)
 
-    :param script_filepath: Path to the script file.
+
     :param actuator_index: Index of the actuator whose properties are being set.
     :param rpm: RPM of the propeller actuator.
     """
@@ -131,14 +132,14 @@ def set_prop_actuator_rpm(script_filepath, actuator_index=1, rpm=2000):
         f"SET_PROP_ACTUATOR_RPM {actuator_index} {rpm}"
     ]
 
-    write_lines_to_file(script_filepath, lines)
+    script.append_lines(lines)
     return
 
-def set_prop_actuator_thrust(script_filepath, actuator_index, ct, thrust_type='COEFFICIENT'):
+def set_prop_actuator_thrust(actuator_index, ct, thrust_type='COEFFICIENT'):
     """
-    Writes specific lines to 'script_filepath' to set the thrust coefficient of an existing actuator.
+    Appends lines to script state to set the thrust coefficient of an existing actuator.
     
-    :param script_filepath: Path to the script file.
+
     :param actuator_index: Index of the actuator whose properties are being set.
     :param ct: Thrust coefficient of the propeller.
     :param thrust_type: Units for the thrust force.
@@ -166,14 +167,14 @@ def set_prop_actuator_thrust(script_filepath, actuator_index, ct, thrust_type='C
         f"SET_PROP_ACTUATOR_THRUST {actuator_index} {ct} {thrust_type}"
     ]
 
-    write_lines_to_file(script_filepath, lines)
+    script.append_lines(lines)
     return
 
-def set_prop_actuator_swirl(script_filepath, actuator_index, status='DISABLE'):
+def set_prop_actuator_swirl(actuator_index, status='DISABLE'):
     """
-    Writes specific lines to 'script_filepath' to toggle the swirl velocity selection.
+    Appends lines to script state to toggle the swirl velocity selection.
     
-    :param script_filepath: Path to the script file.
+
     :param actuator_index: Index of the actuator whose properties are being set.
     :param status: Either 'ENABLE' or 'DISABLE'.
     
@@ -197,17 +198,17 @@ def set_prop_actuator_swirl(script_filepath, actuator_index, status='DISABLE'):
         f"SET_PROP_ACTUATOR_SWIRL {actuator_index} {status}"
     ]
 
-    write_lines_to_file(script_filepath, lines)
+    script.append_lines(lines)
     return
 
-def enable_actuator(script_filepath, actuator_id):
+def enable_actuator(actuator_id):
     """
-    Writes specific lines to 'script_filepath' to enable an existing actuator.
+    Appends lines to script state to enable an existing actuator.
     
     Example usage:
     >>> enable_actuator('path_to_script.txt', 2)
     
-    :param script_filepath: Path to the script file.
+
     :param actuator_id: ID of the actuator to be enabled.
     """
     
@@ -223,17 +224,17 @@ def enable_actuator(script_filepath, actuator_id):
         f"ENABLE_ACTUATOR {actuator_id}"
     ]
 
-    write_lines_to_file(script_filepath, lines)
+    script.append_lines(lines)
     return
 
-def disable_actuator(script_filepath, actuator_id):
+def disable_actuator(actuator_id):
     """
-    Writes specific lines to 'script_filepath' to disable an existing actuator.
+    Appends lines to script state to disable an existing actuator.
     
     Example usage:
     disable_actuator('path_to_script.txt', 2)
     
-    :param script_filepath: Path to the script file.
+
     :param actuator_id: ID of the actuator to disable.
     """
     
@@ -249,17 +250,17 @@ def disable_actuator(script_filepath, actuator_id):
         f"DISABLE_ACTUATOR {actuator_id}"
     ]
 
-    write_lines_to_file(script_filepath, lines)
+    script.append_lines(lines)
     return
 
-def delete_actuator(script_filepath, actuator_index):
+def delete_actuator(actuator_index):
     """
-    Writes specific lines to 'script_filepath' to delete an actuator.
+    Appends lines to script state to delete an actuator.
     
     Example usage:
     delete_actuator('path_to_script.txt', 1)
 
-    :param script_filepath: Path to the script file.
+
     :param actuator_index: Index of the actuator to be deleted.
     """
     
@@ -276,5 +277,5 @@ def delete_actuator(script_filepath, actuator_index):
         f"ACTUATOR {actuator_index}"
     ]
 
-    write_lines_to_file(script_filepath, lines)
+    script.append_lines(lines)
     return

@@ -1,8 +1,9 @@
-from .utils import *
+from .utils import *    
+from .script import script
 
-def set_solver_steady(script_filepath):
+def set_solver_steady():
     """
-    Writes specific lines to 'script_filepath' to set the steady solver.
+    Appends lines to script state to set the steady solver.
     
     Example usage:
         set_solver_steady('path_to_script.txt')
@@ -16,15 +17,15 @@ def set_solver_steady(script_filepath):
         "SET_SOLVER_STEADY"
     ]
 
-    write_lines_to_file(script_filepath, lines)
+    script.append_lines(lines)
     return
 
 
-def set_solver_unsteady(script_filepath, time_iterations=100, delta_time=0.1):
+def set_solver_unsteady(time_iterations=100, delta_time=0.1):
     """
-    Writes specific lines to 'script_filepath' to set the unsteady solver.
+    Appends lines to script state to set the unsteady solver.
     
-    :param script_filepath: Path to the script file.
+
     :param time_iterations: Number of time-stepping iterations to be run by the unsteady solver.
     :param delta_time: Physical time step of the unsteady solver.
     
@@ -49,15 +50,15 @@ def set_solver_unsteady(script_filepath, time_iterations=100, delta_time=0.1):
         f"DELTA_TIME {delta_time}"
     ]
 
-    write_lines_to_file(script_filepath, lines)
+    script.append_lines(lines)
     return
 
-def unsteady_solver_new_force_plot(script_filepath, frame=1, units='NEWTONS', parameter='FORCE_X', 
+def unsteady_solver_new_force_plot(frame=1, units='NEWTONS', parameter='FORCE_X', 
                                    name='Plot_Name', boundaries=-1, boundary_indices=None):
     """
-    Writes specific lines to 'script_filepath' to create a new unsteady solver force & moments plot.
+    Appends lines to script state to create a new unsteady solver force & moments plot.
     
-    :param script_filepath: Path to the script file.
+
     :param frame: Index of the coordinate system to be used.
     :param units: Units for the plot.
     :param parameter: The force or moment parameter.
@@ -95,14 +96,14 @@ def unsteady_solver_new_force_plot(script_filepath, frame=1, units='NEWTONS', pa
     if boundaries != -1 and boundary_indices:
         lines.append(','.join(map(str, boundary_indices)))
 
-    write_lines_to_file(script_filepath, lines)
+    script.append_lines(lines)
     return
 
-def unsteady_solver_new_fluid_plot(script_filepath, frame=1, parameter='VELOCITY', name='Plot_Name', vertex=(-1.0, 1.0, 0.0)):
+def unsteady_solver_new_fluid_plot(frame=1, parameter='VELOCITY', name='Plot_Name', vertex=(-1.0, 1.0, 0.0)):
     """
-    Writes specific lines to 'script_filepath' to create a new unsteady solver fluid properties plot.
+    Appends lines to script state to create a new unsteady solver fluid properties plot.
     
-    :param script_filepath: Path to the script file.
+
     :param frame: Index of the coordinate system to be used.
     :param parameter: The fluid property parameter.
     :param name: Name of the plot.
@@ -132,14 +133,14 @@ def unsteady_solver_new_fluid_plot(script_filepath, frame=1, parameter='VELOCITY
         f"VERTEX {' '.join(map(str, vertex))}"
     ]
 
-    write_lines_to_file(script_filepath, lines)
+    script.append_lines(lines)
     return
 
-def unsteady_solver_export_plots(script_filepath, export_filepath):
+def unsteady_solver_export_plots(export_filepath):
     """
-    Writes specific lines to 'script_filepath' to export all unsteady solver plots.
+    Appends lines to script state to export all unsteady solver plots.
     
-    :param script_filepath: Path to the script file.
+
     :param export_filepath: Path where plots should be exported.
     
     Example usage:
@@ -156,15 +157,15 @@ def unsteady_solver_export_plots(script_filepath, export_filepath):
         export_filepath
     ]
 
-    write_lines_to_file(script_filepath, lines)
+    script.append_lines(lines)
     return
 
 
-def unsteady_solver_delete_all_plots(script_filepath):
+def unsteady_solver_delete_all_plots():
     """
-    Writes specific lines to 'script_filepath' to delete all unsteady solver plots.
+    Appends lines to script state to delete all unsteady solver plots.
     
-    :param script_filepath: Path to the script file.
+
     
     Example usage:
     unsteady_solver_delete_all_plots('path_to_script.txt')
@@ -179,14 +180,14 @@ def unsteady_solver_delete_all_plots(script_filepath):
         "UNSTEADY_SOLVER_DELETE_ALL_PLOTS"
     ]
 
-    write_lines_to_file(script_filepath, lines)
+    script.append_lines(lines)
     return
 
-def set_boundary_layer_type(script_filepath, type_value='TRANSITIONAL'):
+def set_boundary_layer_type(type_value='TRANSITIONAL'):
     """
-    Writes specific lines to 'script_filepath' to set the surface boundary layer type.
+    Appends lines to script state to set the surface boundary layer type.
     
-    :param script_filepath: Path to the script file.
+
     :param type_value: Type of the boundary layer (default: 'TRANSITIONAL').
     
     Example usage:
@@ -206,14 +207,14 @@ def set_boundary_layer_type(script_filepath, type_value='TRANSITIONAL'):
         f"SET_BOUNDARY_LAYER_TYPE {type_value}"
     ]
     
-    write_lines_to_file(script_filepath, lines)
+    script.append_lines(lines)
     return
 
-def set_surface_roughness(script_filepath, roughness_height=23.5):
+def set_surface_roughness(roughness_height=23.5):
     """
-    Writes specific lines to 'script_filepath' to set the surface roughness height.
+    Appends lines to script state to set the surface roughness height.
     
-    :param script_filepath: Path to the script file.
+
     :param roughness_height: Height of the surface roughness in nano-meters (default: 23.5 nm).
     
     Example usage:
@@ -232,14 +233,14 @@ def set_surface_roughness(script_filepath, roughness_height=23.5):
         f"SET_SURFACE_ROUGHNESS {roughness_height}"
     ]
     
-    write_lines_to_file(script_filepath, lines)
+    script.append_lines(lines)
     return
 
-def set_solver_viscous_coupling(script_filepath, mode='ENABLE'):
+def set_solver_viscous_coupling(mode='ENABLE'):
     """
-    Writes specific lines to 'script_filepath' to set the solver viscous coupling.
+    Appends lines to script state to set the solver viscous coupling.
 
-    :param script_filepath: Path to the script file.
+
     :param mode: The mode to set the solver viscous coupling, either 'ENABLE' or 'DISABLE'.
     
     Example usage:
@@ -259,14 +260,14 @@ def set_solver_viscous_coupling(script_filepath, mode='ENABLE'):
         f"SET_SOLVER_VISCOUS_COUPLING {mode}"
     ]
 
-    write_lines_to_file(script_filepath, lines)
+    script.append_lines(lines)
     return
 
-def set_viscous_excluded_boundaries(script_filepath, num_boundaries, boundaries):
+def set_viscous_excluded_boundaries(num_boundaries, boundaries):
     """
-    Writes specific lines to 'script_filepath' to set the viscous exclusion boundary list.
+    Appends lines to script state to set the viscous exclusion boundary list.
 
-    :param script_filepath: Path to the script file.
+
     :param num_boundaries: Number of boundaries being excluded.
     :param boundaries: List of indices of boundaries being excluded.
     
@@ -293,14 +294,14 @@ def set_viscous_excluded_boundaries(script_filepath, num_boundaries, boundaries)
         ",".join(map(str, boundaries))
     ]
 
-    write_lines_to_file(script_filepath, lines)
+    script.append_lines(lines)
     return
 
-def enable_flow_separation(script_filepath):
+def enable_flow_separation():
     """
-    Writes specific lines to 'script_filepath' to enable the flow separation model.
+    Appends lines to script state to enable the flow separation model.
     
-    :param script_filepath: Path to the script file.
+
 
     Example usage:
     enable_flow_separation('path_to_script.txt')
@@ -314,14 +315,14 @@ def enable_flow_separation(script_filepath):
         "ENABLE_FLOW_SEPARATION"
     ]
 
-    write_lines_to_file(script_filepath, lines)
+    script.append_lines(lines)
     return
 
-def set_stratford_separation_model(script_filepath, model, crossflow_direction=None, cp=None):
+def set_stratford_separation_model(model, crossflow_direction=None, cp=None):
     """
-    Writes specific lines to 'script_filepath' to set the Stratford separation model.
+    Appends lines to script state to set the Stratford separation model.
     
-    :param script_filepath: Path to the script file.
+
     :param model: Stratford model type (either AXIAL or CROSSFLOW).
     :param crossflow_direction: Direction of the flow for CROSSFLOW model.
     :param cp: Separation pressure coefficient for the CROSSFLOW model.
@@ -360,12 +361,12 @@ def set_stratford_separation_model(script_filepath, model, crossflow_direction=N
             f"SET_STRATFORD_SEPARATION_MODEL {model}"
         ]
 
-    write_lines_to_file(script_filepath, lines)
+    script.append_lines(lines)
     return
 
-def disable_flow_separation(script_filepath):
+def disable_flow_separation():
     """
-    Writes specific lines to 'script_filepath' to disable viscous flow separation.
+    Appends lines to script state to disable viscous flow separation.
     
     Example usage:
         disable_flow_separation('path_to_script.txt')
@@ -377,18 +378,18 @@ def disable_flow_separation(script_filepath):
         "",
         "DISABLE_FLOW_SEPARATION"
     ]
-    write_lines_to_file(script_filepath, lines)
+    script.append_lines(lines)
     return
 
 
-def solver_settings(script_filepath, angle_of_attack=0., sideslip_angle=0., 
+def solver_settings(angle_of_attack=0., sideslip_angle=0., 
                     freestream_velocity=100., iterations=500, 
                     convergence_limit=1e-5, forced_run='DISABLE', 
                     compressibility='DISABLE', reference_velocity=100., 
                     reference_area=1., reference_length=1., processors=2, 
                     wake_size=1000):
     """
-    Writes specific lines to 'script_filepath' to set the solver settings.
+    Appends lines to script state to set the solver settings.
     
     Example usage:
         solver_settings('path_to_script.txt')
@@ -445,14 +446,14 @@ def solver_settings(script_filepath, angle_of_attack=0., sideslip_angle=0.,
         f"WAKE_SIZE {wake_size}"
     ]
 
-    write_lines_to_file(script_filepath, lines)
+    script.append_lines(lines)
     return
 
-def solver_set_aoa(script_filepath, angle):
+def solver_set_aoa(angle):
     """
-    Writes specific lines to 'script_filepath' to set the solver AOA.
+    Appends lines to script state to set the solver AOA.
     
-    :param script_filepath: Path to the script file.
+
     :param angle: Angle of attack in degrees. |angle| must be < 90.
     
     Example usage:
@@ -473,15 +474,15 @@ def solver_set_aoa(script_filepath, angle):
         f"SOLVER_SET_AOA {angle}"
     ]
     
-    write_lines_to_file(script_filepath, lines)
+    script.append_lines(lines)
     return
 
 
-def solver_set_sideslip(script_filepath, angle):
+def solver_set_sideslip(angle):
     """
-    Writes specific lines to 'script_filepath' to set the solver Side-slip angle.
+    Appends lines to script state to set the solver Side-slip angle.
     
-    :param script_filepath: Path to the script file.
+
     :param angle: Side-slip angle in degrees. |angle| must be < 90.
     
     Example usage:
@@ -502,14 +503,14 @@ def solver_set_sideslip(script_filepath, angle):
         f"SOLVER_SET_SIDESLIP {angle}"
     ]
     
-    write_lines_to_file(script_filepath, lines)
+    script.append_lines(lines)
     return
 
-def solver_set_velocity(script_filepath, velocity=30.0):
+def solver_set_velocity(velocity=30.0):
     """
-    Writes specific lines to 'script_filepath' to set the solver free-stream velocity.
+    Appends lines to script state to set the solver free-stream velocity.
     
-    :param script_filepath: Path to the script file.
+
     :param velocity: The free-stream velocity value.
     
     Example usage:
@@ -528,14 +529,14 @@ def solver_set_velocity(script_filepath, velocity=30.0):
         f"SOLVER_SET_VELOCITY {velocity}"
     ]
 
-    write_lines_to_file(script_filepath, lines)
+    script.append_lines(lines)
     return
 
-def solver_set_iterations(script_filepath, num_iterations=500):
+def solver_set_iterations(num_iterations=500):
     """
-    Writes specific lines to 'script_filepath' to set the solver iterations.
+    Appends lines to script state to set the solver iterations.
     
-    :param script_filepath: Path to the script file.
+
     :param num_iterations: The number of solver iterations.
     
     Example usage:
@@ -554,14 +555,14 @@ def solver_set_iterations(script_filepath, num_iterations=500):
         f"SOLVER_SET_ITERATIONS {num_iterations}"
     ]
 
-    write_lines_to_file(script_filepath, lines)
+    script.append_lines(lines)
     return
 
-def solver_set_convergence(script_filepath, threshold=1E-5):
+def solver_set_convergence(threshold=1E-5):
     """
-    Writes specific lines to 'script_filepath' to set the solver convergence threshold.
+    Appends lines to script state to set the solver convergence threshold.
     
-    :param script_filepath: Path to the script file.
+
     :param threshold: Convergence threshold value.
     
     Example usage:
@@ -580,15 +581,15 @@ def solver_set_convergence(script_filepath, threshold=1E-5):
         f"SOLVER_SET_CONVERGENCE {threshold}"
     ]
 
-    write_lines_to_file(script_filepath, lines)
+    script.append_lines(lines)
     return
 
 
-def solver_set_forced_iterations(script_filepath, mode='ENABLE'):
+def solver_set_forced_iterations(mode='ENABLE'):
     """
-    Writes specific lines to 'script_filepath' to enable or disable solver forced iterations mode.
+    Appends lines to script state to enable or disable solver forced iterations mode.
     
-    :param script_filepath: Path to the script file.
+
     :param mode: Either 'ENABLE' or 'DISABLE'.
     
     Example usage:
@@ -608,14 +609,14 @@ def solver_set_forced_iterations(script_filepath, mode='ENABLE'):
         f"SOLVER_SET_FORCED_ITERATIONS {mode}"
     ]
 
-    write_lines_to_file(script_filepath, lines)
+    script.append_lines(lines)
     return
 
-def solver_set_ref_velocity(script_filepath, value=100.):
+def solver_set_ref_velocity(value=100.):
     """
-    Writes specific lines to 'script_filepath' to set the solver reference velocity.
+    Appends lines to script state to set the solver reference velocity.
     
-    :param script_filepath: Path to the script file.
+
     :param value: Reference velocity.
     
     Example usage:
@@ -634,14 +635,14 @@ def solver_set_ref_velocity(script_filepath, value=100.):
         f"SOLVER_SET_REF_VELOCITY {value}"
     ]
 
-    write_lines_to_file(script_filepath, lines)
+    script.append_lines(lines)
     return
 
-def solver_set_ref_area(script_filepath, value=1.):
+def solver_set_ref_area(value=1.):
     """
-    Writes specific lines to 'script_filepath' to set the solver reference area.
+    Appends lines to script state to set the solver reference area.
     
-    :param script_filepath: Path to the script file.
+
     :param value: Reference area.
     
     Example usage:
@@ -660,14 +661,14 @@ def solver_set_ref_area(script_filepath, value=1.):
         f"SOLVER_SET_REF_AREA {value}"
     ]
 
-    write_lines_to_file(script_filepath, lines)
+    script.append_lines(lines)
     return
 
-def solver_set_ref_length(script_filepath, length=1.):
+def solver_set_ref_length(length=1.):
     """
-    Writes specific lines to 'script_filepath' to set the solver reference length.
+    Appends lines to script state to set the solver reference length.
     
-    :param script_filepath: Path to the script file.
+
     :param length: Reference length.
     
     Example usage:
@@ -686,14 +687,14 @@ def solver_set_ref_length(script_filepath, length=1.):
         f"SOLVER_SET_REF_LENGTH {length}"
     ]
 
-    write_lines_to_file(script_filepath, lines)
+    script.append_lines(lines)
     return
 
-def solver_set_compressibility(script_filepath, compressibility='ENABLE'):
+def solver_set_compressibility(compressibility='ENABLE'):
     """
-    Writes specific lines to 'script_filepath' to set the solver compressibility.
+    Appends lines to script state to set the solver compressibility.
     
-    :param script_filepath: Path to the script file.
+
     :param compressibility: Either 'ENABLE' or 'DISABLE'.
     
     Example usage:
@@ -713,17 +714,17 @@ def solver_set_compressibility(script_filepath, compressibility='ENABLE'):
         f"SOLVER_SET_COMPRESSIBILITY {compressibility}"
     ]
 
-    write_lines_to_file(script_filepath, lines)
+    script.append_lines(lines)
     return
 
-def solver_parallel_cores(script_filepath, num_cores=16):
+def solver_parallel_cores(num_cores=16):
     """
-    Writes specific lines to 'script_filepath' to set the number of solver parallel cores.
+    Appends lines to script state to set the number of solver parallel cores.
     
     Example usage:
     solver_parallel_cores('path_to_script.txt')
     
-    :param script_filepath: Path to the script file.
+
     :param num_cores: Number of parallel cores.
     """
     
@@ -739,17 +740,17 @@ def solver_parallel_cores(script_filepath, num_cores=16):
         f"SOLVER_PARALLEL_CORES {num_cores}"
     ]
 
-    write_lines_to_file(script_filepath, lines)
+    script.append_lines(lines)
     return
 
-def solver_set_mesh_induced_wake_velocity(script_filepath, enable=True):
+def solver_set_mesh_induced_wake_velocity(enable=True):
     """
-    Writes specific lines to 'script_filepath' to set the solver mesh induced wake velocity.
+    Appends lines to script state to set the solver mesh induced wake velocity.
     
     Example usage:
     solver_set_mesh_induced_wake_velocity('path_to_script.txt')
     
-    :param script_filepath: Path to the script file.
+
     :param enable: Boolean to either enable or disable the feature.
     """
     
@@ -767,14 +768,14 @@ def solver_set_mesh_induced_wake_velocity(script_filepath, enable=True):
         f"SOLVER_SET_MESH_INDUCED_WAKE_VELOCITY {status}"
     ]
 
-    write_lines_to_file(script_filepath, lines)
+    script.append_lines(lines)
     return
 
-def solver_set_adverse_gradient_boundary_layer(script_filepath, mode='ENABLE'):
+def solver_set_adverse_gradient_boundary_layer(mode='ENABLE'):
     """
-    Writes specific lines to 'script_filepath' to set the adverse pressure gradient boundary layer mode.
+    Appends lines to script state to set the adverse pressure gradient boundary layer mode.
 
-    :param script_filepath: Path to the script file.
+
     :param mode: Mode to set the adverse pressure gradient boundary layer. ('ENABLE' or 'DISABLE')
     
     Example usage:
@@ -794,14 +795,14 @@ def solver_set_adverse_gradient_boundary_layer(script_filepath, mode='ENABLE'):
         f"SOLVER_SET_ADVERSE_GRADIENT_BOUNDARY_LAYER {mode}"
     ]
 
-    write_lines_to_file(script_filepath, lines)
+    script.append_lines(lines)
     return
 
-def solver_set_farfield_layers(script_filepath, value=3):
+def solver_set_farfield_layers(value=3):
     """
-    Writes specific lines to 'script_filepath' to set the solver far-field agglomeration layers.
+    Appends lines to script state to set the solver far-field agglomeration layers.
 
-    :param script_filepath: Path to the script file.
+
     :param value: Number of farfield layers. (Default is 3)
     
     Example usage:
@@ -823,14 +824,14 @@ def solver_set_farfield_layers(script_filepath, value=3):
         f"SOLVER_SET_FARFIELD_LAYERS {value}"
     ]
 
-    write_lines_to_file(script_filepath, lines)
+    script.append_lines(lines)
     return
 
-def solver_unsteady_pressure_and_kutta(script_filepath, status='ENABLE'):
+def solver_unsteady_pressure_and_kutta(status='ENABLE'):
     """
-    Writes specific lines to 'script_filepath' to enable or disable solver unsteady Bernoulli and Kutta terms.
+    Appends lines to script state to enable or disable solver unsteady Bernoulli and Kutta terms.
     
-    :param script_filepath: Path to the script file.
+
     :param status: Can be 'ENABLE' or 'DISABLE'.
     
     Example usage:
@@ -849,14 +850,14 @@ def solver_unsteady_pressure_and_kutta(script_filepath, status='ENABLE'):
         f"SOLVER_UNSTEADY_PRESSURE_AND_KUTTA {status}"
     ]
     
-    write_lines_to_file(script_filepath, lines)
+    script.append_lines(lines)
     return
 
-def solver_vortex_ring_normalization(script_filepath, status='ENABLE'):
+def solver_vortex_ring_normalization(status='ENABLE'):
     """
-    Writes specific lines to 'script_filepath' to enable or disable solver vortex ring normalization.
+    Appends lines to script state to enable or disable solver vortex ring normalization.
     
-    :param script_filepath: Path to the script file.
+
     :param status: Can be 'ENABLE' or 'DISABLE'.
     
     Example usage:
@@ -875,14 +876,14 @@ def solver_vortex_ring_normalization(script_filepath, status='ENABLE'):
         f"SOLVER_VORTEX_RING_NORMALIZATION {status}"
     ]
     
-    write_lines_to_file(script_filepath, lines)
+    script.append_lines(lines)
     return
 
-def set_solver_convergence_iterations(script_filepath, value=500):
+def set_solver_convergence_iterations(value=500):
     """
-    Writes specific lines to 'script_filepath' to set the solver convergence iterations.
+    Appends lines to script state to set the solver convergence iterations.
     
-    :param script_filepath: Path to the script file.
+
     :param value: Number of iterations the solver must run after crossing the convergence threshold.
     
     Example usage:
@@ -901,15 +902,15 @@ def set_solver_convergence_iterations(script_filepath, value=500):
         f"SET_SOLVER_CONVERGENCE_ITERATIONS {value}"
     ]
 
-    write_lines_to_file(script_filepath, lines)
+    script.append_lines(lines)
     return
 
 
-def set_wake_streamwise_agglomeration(script_filepath, enable=True):
+def set_wake_streamwise_agglomeration(enable=True):
     """
-    Writes specific lines to 'script_filepath' to enable/disable the wake-->streamwise agglomeration feature.
+    Appends lines to script state to enable/disable the wake-->streamwise agglomeration feature.
     
-    :param script_filepath: Path to the script file.
+
     :param enable: Boolean value to enable or disable the wake-->streamwise agglomeration feature.
     
     Example usage:
@@ -930,6 +931,6 @@ def set_wake_streamwise_agglomeration(script_filepath, enable=True):
         f"SET_WAKE_STREAMWISE_AGGLOMERATION {status}"
     ]
 
-    write_lines_to_file(script_filepath, lines)
+    script.append_lines(lines)
     return
 

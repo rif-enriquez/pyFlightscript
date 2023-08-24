@@ -1,11 +1,12 @@
 import os
-from .utils import *
+from .utils import *    
+from .script import script
 
-def delete_transition_trip(script_filepath, transition_trip_index):
+def delete_transition_trip(transition_trip_index):
     """
-    Writes specific lines to 'script_filepath' to delete an existing transition trip edge set.
+    Appends lines to script state to delete an existing transition trip edge set.
     
-    :param script_filepath: Path to the script file.
+
     :param transition_trip_index: Index of the BL transition trip edges to be deleted.
     
     Example usage:
@@ -24,5 +25,5 @@ def delete_transition_trip(script_filepath, transition_trip_index):
         f"DELETE_TRANSITION_TRIP {transition_trip_index}"
     ]
 
-    write_lines_to_file(script_filepath, lines)
+    script.append_lines(lines)
     return

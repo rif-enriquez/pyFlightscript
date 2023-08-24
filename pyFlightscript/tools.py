@@ -1,6 +1,7 @@
-from .utils import *
+from .utils import *    
+from .script import script
 
-def execute_solver_sweeper(script_filepath, sweep_results_path, results_filename,
+def execute_solver_sweeper(sweep_results_path, results_filename,
                            angle_of_attack='ENABLE', side_slip_angle='DISABLE', 
                            velocity='DISABLE', angle_of_attack_start=0.0, 
                            angle_of_attack_stop=0., angle_of_attack_delta=1.,
@@ -12,7 +13,7 @@ def execute_solver_sweeper(script_filepath, sweep_results_path, results_filename
                            reference_velocity_equals_freestream='ENABLE',
                            append_to_existing_sweep='DISABLE'):
     """
-    Writes specific lines to 'script_filepath' to execute the solver sweeper.
+    Appends lines to script state to execute the solver sweeper.
     
     Example usage:
     execute_solver_sweeper('path_to_script.txt', angle_of_attack='ENABLE', 
@@ -22,7 +23,7 @@ def execute_solver_sweeper(script_filepath, sweep_results_path, results_filename
                            sweep_results_path='C:\\...\\sweep_results\\', 
                            clear_solution_after_each_run='ENABLE')
     
-    :param script_filepath: Path to the script file.
+
     :... other parameters ...
     """
     
@@ -62,17 +63,17 @@ def execute_solver_sweeper(script_filepath, sweep_results_path, results_filename
         f"{results_filename}"
     ]
 
-    write_lines_to_file(script_filepath, lines)
+    script.append_lines(lines)
     return
 
 
-def set_stability_toolbox(script_filepath, longitudinal='ENABLE', lateral='ENABLE', 
+def set_stability_toolbox(longitudinal='ENABLE', lateral='ENABLE', 
                           longitudinal_ref_length=1.5, lateral_ref_length=0.5, 
                           units='PER_DEGREE', clear_solver_per_run='DISABLE'):
     """
-    Writes specific lines to 'script_filepath' to set the S&C toolbox parameters.
+    Appends lines to script state to set the S&C toolbox parameters.
 
-    :param script_filepath: Path to the script file.
+
     :param longitudinal: ENABLE or DISABLE computation of longitudinal stability coefficients.
     :param lateral: ENABLE or DISABLE computation of lateral stability coefficients.
     :param longitudinal_ref_length: Value of the reference length used in computing the longitudinal stability coefficients.
@@ -119,14 +120,14 @@ def set_stability_toolbox(script_filepath, longitudinal='ENABLE', lateral='ENABL
         f"CLEAR_SOLVER_PER_RUN {clear_solver_per_run}"
     ]
 
-    write_lines_to_file(script_filepath, lines)
+    script.append_lines(lines)
     return
 
-def compute_static_stability(script_filepath):
+def compute_static_stability():
     """
-    Writes specific lines to 'script_filepath' to compute the static stability coefficients.
+    Appends lines to script state to compute the static stability coefficients.
 
-    :param script_filepath: Path to the script file.
+
 
     Example usage:
     >>> compute_static_stability('path_to_script.txt')
@@ -140,14 +141,14 @@ def compute_static_stability(script_filepath):
         "COMPUTE_STATIC_STABILITY"
     ]
 
-    write_lines_to_file(script_filepath, lines)
+    script.append_lines(lines)
     return
 
-def compute_dynamic_stability(script_filepath):
+def compute_dynamic_stability():
     """
-    Writes specific lines to 'script_filepath' to compute the dynamic stability coefficients.
+    Appends lines to script state to compute the dynamic stability coefficients.
     
-    :param script_filepath: Path to the script file.
+
     
     Example usage:
         compute_dynamic_stability('path_to_script.txt')
@@ -161,14 +162,14 @@ def compute_dynamic_stability(script_filepath):
         "COMPUTE_DYNAMIC_STABILITY"
     ]
 
-    write_lines_to_file(script_filepath, lines)
+    script.append_lines(lines)
     return
 
-def export_stability_results(script_filepath, filename):
+def export_stability_results(filename):
     """
-    Writes specific lines to 'script_filepath' to export the S&C toolbox results to an external file.
+    Appends lines to script state to export the S&C toolbox results to an external file.
     
-    :param script_filepath: Path to the script file.
+
     :param filename: Filename with its path for the exported results.
     
     Example usage:
@@ -188,5 +189,5 @@ def export_stability_results(script_filepath, filename):
         f"{filename}"
     ]
 
-    write_lines_to_file(script_filepath, lines)
+    script.append_lines(lines)
     return

@@ -1,12 +1,13 @@
-from .utils import *
+from .utils import *    
+from .script import script
 
-def create_new_rectangle_volume_section(script_filepath, frame=1, plane='XZ', offset=0., size=-0.5, 
+def create_new_rectangle_volume_section(frame=1, plane='XZ', offset=0., size=-0.5, 
                                         x1=-2.5, y1=-1.0, x2=2.5, y2=1.0, prisms_type='PRISMS', 
                                         thickness=0.3, layers=20, growth_rate=1.2):
     """
-    Writes specific lines to 'script_filepath' to create a new rectangle volume section.
+    Appends lines to script state to create a new rectangle volume section.
     
-    :param script_filepath: Path to the script file.
+
     :param frame: Index of the coordinate system used for this volume section.
     :param plane: Section plane.
     :param offset: Offset distance of the plane in the coordinate system.
@@ -30,17 +31,17 @@ def create_new_rectangle_volume_section(script_filepath, frame=1, plane='XZ', of
         f"CREATE_NEW_RECTANGLE_VOLUME_SECTION {frame} {plane} {offset} {size} {x1} {y1} {x2} {y2} {prisms_type} {thickness} {layers} {growth_rate}"
     ]
 
-    write_lines_to_file(script_filepath, lines)
+    script.append_lines(lines)
     return
 
 
-def create_new_circle_volume_section(script_filepath, frame=1, plane='XZ', offset=0.1, ipts=20, 
+def create_new_circle_volume_section(frame=1, plane='XZ', offset=0.1, ipts=20, 
                                      jpts=40, r1=0.0, r2=2.5, prisms_type='PRISMS', thickness=0.3, 
                                      layers=20, growth_rate=1.2):
     """
-    Writes specific lines to 'script_filepath' to create a new circle volume section.
+    Appends lines to script state to create a new circle volume section.
     
-    :param script_filepath: Path to the script file.
+
     :param frame: Index of the coordinate system used for this volume section.
     :param plane: Section plane.
     :param offset: Offset distance of the plane in the coordinate system.
@@ -64,14 +65,14 @@ def create_new_circle_volume_section(script_filepath, frame=1, plane='XZ', offse
         f"CREATE_NEW_CIRCLE_VOLUME_SECTION {frame} {plane} {offset} {ipts} {jpts} {r1} {r2} {prisms_type} {thickness} {layers} {growth_rate}"
     ]
 
-    write_lines_to_file(script_filepath, lines)
+    script.append_lines(lines)
     return
 
-def volume_section_boundary_layer(script_filepath, index, setting='DISABLE'):
+def volume_section_boundary_layer(index, setting='DISABLE'):
     """
-    Writes specific lines to 'script_filepath' to toggle volume section boundary layer induction.
+    Appends lines to script state to toggle volume section boundary layer induction.
     
-    :param script_filepath: Path to the script file.
+
     :param index: Index of the volume section for which the boundary-layer setting is being changed.
     :param setting: Setting value (ENABLE/DISABLE).
     
@@ -95,14 +96,14 @@ def volume_section_boundary_layer(script_filepath, index, setting='DISABLE'):
         f"VOLUME_SECTION_BOUNDARY_LAYER {index} {setting}"
     ]
 
-    write_lines_to_file(script_filepath, lines)
+    script.append_lines(lines)
     return
 
-def volume_section_wireframe(script_filepath, index, setting='ENABLE'):
+def volume_section_wireframe(index, setting='ENABLE'):
     """
-    Writes specific lines to 'script_filepath' to toggle volume section wire-frame setting.
+    Appends lines to script state to toggle volume section wire-frame setting.
     
-    :param script_filepath: Path to the script file.
+
     :param index: Index of the volume section for which the wire-frame setting is being changed.
     :param setting: Setting value (ENABLE/DISABLE).
     
@@ -126,14 +127,14 @@ def volume_section_wireframe(script_filepath, index, setting='ENABLE'):
         f"VOLUME_SECTION_WIREFRAME {index} {setting}"
     ]
 
-    write_lines_to_file(script_filepath, lines)
+    script.append_lines(lines)
     return
 
-def update_all_volume_sections(script_filepath):
+def update_all_volume_sections():
     """
-    Writes specific lines to 'script_filepath' to update all volume sections.
+    Appends lines to script state to update all volume sections.
     
-    :param script_filepath: Path to the script file.
+
     
     Example usage:
     update_all_volume_sections('path_to_script.txt')
@@ -147,14 +148,14 @@ def update_all_volume_sections(script_filepath):
         "UPDATE_ALL_VOLUME_SECTIONS"
     ]
 
-    write_lines_to_file(script_filepath, lines)
+    script.append_lines(lines)
     return
 
-def export_volume_section_vtk(script_filepath, index, filename):
+def export_volume_section_vtk(index, filename):
     """
-    Writes specific lines to 'script_filepath' to export a volume section as a ParaView (VTK) file.
+    Appends lines to script state to export a volume section as a ParaView (VTK) file.
     
-    :param script_filepath: Path to the script file.
+
     :param index: Index of the volume section to be exported.
     :param filename: Full path to the desired output VTK file.
     
@@ -175,14 +176,14 @@ def export_volume_section_vtk(script_filepath, index, filename):
         filename
     ]
 
-    write_lines_to_file(script_filepath, lines)
+    script.append_lines(lines)
     return
 
-def export_volume_section_2d_vtk(script_filepath, index, filename):
+def export_volume_section_2d_vtk(index, filename):
     """
-    Writes specific lines to 'script_filepath' to export volume section as 2D ParaView (VTK) file.
+    Appends lines to script state to export volume section as 2D ParaView (VTK) file.
     
-    :param script_filepath: Path to the script file.
+
     :param index: Index of the volume section to be exported.
     :param filename: Filename with path for export.
     
@@ -203,15 +204,15 @@ def export_volume_section_2d_vtk(script_filepath, index, filename):
         filename
     ]
     
-    write_lines_to_file(script_filepath, lines)
+    script.append_lines(lines)
     return
 
 
-def export_volume_section_tecplot(script_filepath, index, filename):
+def export_volume_section_tecplot(index, filename):
     """
-    Writes specific lines to 'script_filepath' to export volume section as Tecplot (DAT) file.
+    Appends lines to script state to export volume section as Tecplot (DAT) file.
     
-    :param script_filepath: Path to the script file.
+
     :param index: Index of the volume section to be exported.
     :param filename: Filename with path for export.
     
@@ -232,14 +233,14 @@ def export_volume_section_tecplot(script_filepath, index, filename):
         filename
     ]
     
-    write_lines_to_file(script_filepath, lines)
+    script.append_lines(lines)
     return
 
-def delete_volume_section(script_filepath, index):
+def delete_volume_section(index):
     """
-    Writes specific lines to 'script_filepath' to delete a particular volume section.
+    Appends lines to script state to delete a particular volume section.
     
-    :param script_filepath: Path to the script file.
+
     :param index: Index of the volume section to be deleted (> 0).
     
     Example usage:
@@ -258,14 +259,14 @@ def delete_volume_section(script_filepath, index):
         f"DELETE_VOLUME_SECTION {index}"
     ]
 
-    write_lines_to_file(script_filepath, lines)
+    script.append_lines(lines)
     return
 
-def delete_all_volume_sections(script_filepath):
+def delete_all_volume_sections():
     """
-    Writes specific lines to 'script_filepath' to delete all volume sections.
+    Appends lines to script state to delete all volume sections.
     
-    :param script_filepath: Path to the script file.
+
     
     Example usage:
         delete_all_volume_sections('path_to_script.txt')
@@ -279,7 +280,7 @@ def delete_all_volume_sections(script_filepath):
         "DELETE_ALL_VOLUME_SECTIONS"
     ]
 
-    write_lines_to_file(script_filepath, lines)
+    script.append_lines(lines)
     return
 
 

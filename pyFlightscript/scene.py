@@ -1,10 +1,11 @@
-from .utils import *
+from .utils import *    
+from .script import script
 
-def view_resize(script_filepath):
+def view_resize():
     """
-    Writes specific lines to 'script_filepath' to resize the view in the scene.
+    Appends lines to script state to resize the view in the scene.
     
-    :param script_filepath: Path to the script file.
+
     
     Example usage:
     view_resize('path_to_script.txt')
@@ -18,14 +19,14 @@ def view_resize(script_filepath):
         "VIEW_RESIZE"
     ]
 
-    write_lines_to_file(script_filepath, lines)
+    script.append_lines(lines)
     return
 
-def change_scene_to(script_filepath, scene):
+def change_scene_to(scene):
     """
-    Writes specific lines to 'script_filepath' to change the scene.
+    Appends lines to script state to change the scene.
     
-    :param script_filepath: Path to the script file.
+
     :param scene: string to change the scene. Must be one of CAD, GEOMETRY, SOLVER, PLOTS
     
     Example usage:
@@ -44,14 +45,14 @@ def change_scene_to(script_filepath, scene):
         f"CHANGE_SCENE_TO_{scene}"
     ]
 
-    write_lines_to_file(script_filepath, lines)
+    script.append_lines(lines)
     return
 
-def set_scene_view(script_filepath, view_option='DEFAULTVIEW'):
+def set_scene_view(view_option='DEFAULTVIEW'):
     """
-    Writes specific lines to 'script_filepath' to set the scene view.
+    Appends lines to script state to set the scene view.
     
-    :param script_filepath: Path to the script file.
+
     :param view_option: Option for the view which can be one of the following:
                         'DEFAULTVIEW', 'XY_POSITIVE', 'XY_NEGATIVE', 
                         'XZ_POSITIVE', 'XZ_NEGATIVE', 'YZ_POSITIVE', 'YZ_NEGATIVE'
@@ -85,15 +86,15 @@ def set_scene_view(script_filepath, view_option='DEFAULTVIEW'):
         view_commands[view_option]
     ]
 
-    write_lines_to_file(script_filepath, lines)
+    script.append_lines(lines)
     return
 
-def set_scene_colormap_type(script_filepath, colormap='PRIMARY', 
+def set_scene_colormap_type(colormap='PRIMARY', 
                             type_value='BLACKBODY_STANDARD'):
     """
-    Writes specific lines to 'script_filepath' to set the solver colormap type.
+    Appends lines to script state to set the solver colormap type.
     
-    :param script_filepath: Path to the script file.
+
     :param colormap: Either PRIMARY or SECONDARY.
     :param type_value: Type of colormap.
     
@@ -122,16 +123,16 @@ def set_scene_colormap_type(script_filepath, colormap='PRIMARY',
         f"TYPE {type_value}"
     ]
     
-    write_lines_to_file(script_filepath, lines)
+    script.append_lines(lines)
     return
 
 
-def set_scene_colormap_size(script_filepath, colormap='PRIMARY', 
+def set_scene_colormap_size(colormap='PRIMARY', 
                             thickness=300, height=15):
     """
-    Writes specific lines to 'script_filepath' to set the solver colormap size.
+    Appends lines to script state to set the solver colormap size.
     
-    :param script_filepath: Path to the script file.
+
     :param colormap: Either PRIMARY or SECONDARY.
     :param thickness: Thickness value in pixels.
     :param height: Height value in pixels.
@@ -162,17 +163,17 @@ def set_scene_colormap_size(script_filepath, colormap='PRIMARY',
         f"HEIGHT {height}"
     ]
     
-    write_lines_to_file(script_filepath, lines)
+    script.append_lines(lines)
     return
 
-def set_scene_colormap_position(script_filepath, colormap='PRIMARY', x=450, y=75):
+def set_scene_colormap_position(colormap='PRIMARY', x=450, y=75):
     """
-    Writes specific lines to 'script_filepath' to set the solver colormap position.
+    Appends lines to script state to set the solver colormap position.
     
     Example usage:
         set_scene_colormap_position('path_to_script.txt', colormap='PRIMARY', x=450, y=75)
     
-    :param script_filepath: Path to the script file.
+
     :param colormap: Either 'PRIMARY' or 'SECONDARY'.
     :param x: Value in pixels for the X-coordinate.
     :param y: Value in pixels for the Y-coordinate.
@@ -200,17 +201,17 @@ def set_scene_colormap_position(script_filepath, colormap='PRIMARY', x=450, y=75
         f"Y {y}"
     ]
 
-    write_lines_to_file(script_filepath, lines)
+    script.append_lines(lines)
     return
 
-def set_scene_colormap_shading(script_filepath, colormap='PRIMARY', reverse='DISABLE', smooth='ENABLE'):
+def set_scene_colormap_shading(colormap='PRIMARY', reverse='DISABLE', smooth='ENABLE'):
     """
-    Writes specific lines to 'script_filepath' to set the solver colormap shading.
+    Appends lines to script state to set the solver colormap shading.
     
     Example usage:
         set_scene_colormap_shading('path_to_script.txt', colormap='PRIMARY', reverse='DISABLE', smooth='ENABLE')
     
-    :param script_filepath: Path to the script file.
+
     :param colormap: Either 'PRIMARY' or 'SECONDARY'.
     :param reverse: Either 'ENABLE' or 'DISABLE'.
     :param smooth: Either 'ENABLE' or 'DISABLE'.
@@ -239,14 +240,14 @@ def set_scene_colormap_shading(script_filepath, colormap='PRIMARY', reverse='DIS
         f"SMOOTH {smooth}"
     ]
 
-    write_lines_to_file(script_filepath, lines)
+    script.append_lines(lines)
     return
 
-def set_scene_colormap_custom_mode(script_filepath, colormap='PRIMARY', custom_range='ENABLE'):
+def set_scene_colormap_custom_mode(colormap='PRIMARY', custom_range='ENABLE'):
     """
-    Writes specific lines to 'script_filepath' to set the colormap custom mode.
+    Appends lines to script state to set the colormap custom mode.
     
-    :param script_filepath: Path to the script file.
+
     :param colormap: Can be either 'PRIMARY' or 'SECONDARY'.
     :param custom_range: Can be either 'ENABLE' or 'DISABLE'.
     
@@ -273,15 +274,15 @@ def set_scene_colormap_custom_mode(script_filepath, colormap='PRIMARY', custom_r
         f"CUSTOM_RANGE {custom_range}"
     ]
 
-    write_lines_to_file(script_filepath, lines)
+    script.append_lines(lines)
     return 
 
-def set_scene_colormap_custom_range(script_filepath, colormap='PRIMARY', cut_off_mode='OFF', 
+def set_scene_colormap_custom_range(colormap='PRIMARY', cut_off_mode='OFF', 
                                    maximum=1.0, minimum=-1.5):
     """
-    Writes specific lines to 'script_filepath' to set the colormap custom range.
+    Appends lines to script state to set the colormap custom range.
     
-    :param script_filepath: Path to the script file.
+
     :param colormap: Can be either 'PRIMARY' or 'SECONDARY'.
     :param cut_off_mode: Mode for the custom range cut off.
     :param maximum: Maximum value of the custom range.
@@ -318,6 +319,6 @@ def set_scene_colormap_custom_range(script_filepath, colormap='PRIMARY', cut_off
         f"MINIMUM {minimum}"
     ]
 
-    write_lines_to_file(script_filepath, lines)
+    script.append_lines(lines)
     return
 

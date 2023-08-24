@@ -1,25 +1,26 @@
-from .utils import *
+from .utils import *    
+from .script import script
 
-def clear_log(script_filepath):
+def clear_log():
     """
-    Writes specific lines to 'script_filepath' to clear the log.
+    Appends lines to script state to clear the log.
     
-    :param script_filepath: Path to the script file.
+
     
     Example usage:
     clear_log('path_to_script.txt')
     """
     
     lines = ["CLEAR_LOG"]
-    write_lines_to_file(script_filepath, lines)
+    script.append_lines(lines)
     return
 
 
-def export_log(script_filepath, log_filepath):
+def export_log(log_filepath):
     """
-    Writes specific lines to 'script_filepath' to export log window messages.
+    Appends lines to script state to export log window messages.
     
-    :param script_filepath: Path to the script file.
+
     :param log_filepath: Path to the output log file.
     
     Example usage:
@@ -35,6 +36,6 @@ def export_log(script_filepath, log_filepath):
         log_filepath
     ]
     
-    write_lines_to_file(script_filepath, lines)
+    script.append_lines(lines)
     return
 

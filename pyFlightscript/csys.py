@@ -1,13 +1,14 @@
-from .utils import *
+from .utils import *    
+from .script import script
 
-def create_new_coordinate_system(script_filepath):
+def create_new_coordinate_system():
     """
-    Writes specific lines to 'script_filepath' to create a new coordinate system.
+    Appends lines to script state to create a new coordinate system.
     
     Example usage:
     create_new_coordinate_system('path_to_script.txt')
 
-    :param script_filepath: Path to the script file.
+
     """
     
     lines = [
@@ -18,21 +19,21 @@ def create_new_coordinate_system(script_filepath):
         "CREATE_NEW_COORDINATE_SYSTEM"
     ]
 
-    write_lines_to_file(script_filepath, lines)
+    script.append_lines(lines)
     return
 
-def edit_coordinate_system(script_filepath, frame, name, origin_x, origin_y, origin_z, 
+def edit_coordinate_system(frame, name, origin_x, origin_y, origin_z, 
                            vector_x_x, vector_x_y, vector_x_z, 
                            vector_y_x, vector_y_y, vector_y_z,
                            vector_z_x, vector_z_y, vector_z_z):
     """
-    Writes specific lines to 'script_filepath' to edit a local coordinate system.
+    Appends lines to script state to edit a local coordinate system.
 
     Example usage:
     edit_coordinate_system('path_to_script.txt', 2, "Prop-1", 0, 1, 0.5,
                            1, 0, 0, 0, -1, 0, 0, 0, -1.2)
 
-    :param script_filepath: Path to the script file.
+
     :param frame: Index of the local coordinate system.
     :param name: Name of the local coordinate system.
     :param origin_x: X coordinate of the origin.
@@ -80,17 +81,17 @@ def edit_coordinate_system(script_filepath, frame, name, origin_x, origin_y, ori
         f"VECTOR_Z_Z {vector_z_z}"
     ]
 
-    write_lines_to_file(script_filepath, lines)
+    script.append_lines(lines)
     return
 
-def set_coordinate_system_name(script_filepath, frame, name):
+def set_coordinate_system_name(frame, name):
     """
-    Writes specific lines to 'script_filepath' to set the name of an existing local coordinate system.
+    Appends lines to script state to set the name of an existing local coordinate system.
     
     Example usage:
     set_coordinate_system_name('path_to_script.txt', 2, 'Propeller_Axis')
     
-    :param script_filepath: Path to the script file.
+
     :param frame: Index of the local coordinate system.
     :param name: New name of the coordinate system.
     """
@@ -113,18 +114,18 @@ def set_coordinate_system_name(script_filepath, frame, name):
         f"SET_COORDINATE_SYSTEM_NAME {frame} {name}"
     ]
 
-    write_lines_to_file(script_filepath, lines)
+    script.append_lines(lines)
     return
 
-def set_coordinate_system_origin(script_filepath, frame, x, y, z, units='INCH'):
+def set_coordinate_system_origin(frame, x, y, z, units='INCH'):
     """
-    Writes specific lines to 'script_filepath' to set the origin of an existing local 
+    Appends lines to script state to set the origin of an existing local 
     coordinate system.
     
     Example usage:
     set_coordinate_system_origin('path_to_script.txt', 2, 0.0, 1.0, 1.4, 'INCH')
     
-    :param script_filepath: Path to the script file.
+
     :param frame: Index of the local coordinate system.
     :param x: Origin position in X relative to the reference coordinate system.
     :param y: Origin position in Y relative to the reference coordinate system.
@@ -149,18 +150,18 @@ def set_coordinate_system_origin(script_filepath, frame, x, y, z, units='INCH'):
         f"SET_COORDINATE_SYSTEM_ORIGIN {frame} {x} {y} {z} {units}"
     ]
 
-    write_lines_to_file(script_filepath, lines)
+    script.append_lines(lines)
     return
 
-def set_coordinate_system_axis(script_filepath, frame, axis, nx, ny, nz, 
+def set_coordinate_system_axis(frame, axis, nx, ny, nz, 
                                normalize_frame=True):
     """
     Example usage:
     set_coordinate_system_axis('path_to_script.txt', 2, 'X', -1.0, 0.5, 0.0, True)
     
-    Writes specific lines to 'script_filepath' to set an axis of an existing local coordinate system.
+    Appends lines to script state to set an axis of an existing local coordinate system.
     
-    :param script_filepath: Path to the script file.
+
     :param frame: Index of the local coordinate system.
     :param axis: Axis of the coordinate system to be set.
     :param nx: X-coordinate of the normal direction vector.
@@ -191,14 +192,14 @@ def set_coordinate_system_axis(script_filepath, frame, axis, nx, ny, nz,
         f"SET_COORDINATE_SYSTEM_AXIS {frame} {axis} {nx} {ny} {nz} {normalize_frame}"
     ]
 
-    write_lines_to_file(script_filepath, lines)
+    script.append_lines(lines)
     return
 
-def normalize_coordinate_system(script_filepath, coord_system_index=1):
+def normalize_coordinate_system(coord_system_index=1):
     """
-    Writes specific lines to 'script_filepath' to normalize a coordinate system.
+    Appends lines to script state to normalize a coordinate system.
     
-    :param script_filepath: Path to the script file.
+
     :param coord_system_index: Index of the local coordinate system to be rotated.
     
     Example usage:
@@ -217,18 +218,18 @@ def normalize_coordinate_system(script_filepath, coord_system_index=1):
         f"NORMALIZE_COORDINATE_SYSTEM {coord_system_index}"
     ]
 
-    write_lines_to_file(script_filepath, lines)
+    script.append_lines(lines)
     return
 
-def rotate_coordinate_system(script_filepath, frame=2, rotation_frame=3, 
+def rotate_coordinate_system(frame=2, rotation_frame=3, 
                              rotation_axis='Y', angle=-45.0):
     """
     Example usage:
     rotate_coordinate_system('path_to_script.txt')
     
-    Writes specific lines to 'script_filepath' to rotate a coordinate system.
+    Appends lines to script state to rotate a coordinate system.
     
-    :param script_filepath: Path to the script file.
+
     :param frame: Index of the local coordinate system to be rotated.
     :param rotation_frame: Index of the local coordinate system to be used to rotate the selected system.
     :param rotation_axis: Axis of rotation. Can be 'X', 'Y', 'Z', '1', '2', or '3'.
@@ -261,17 +262,17 @@ def rotate_coordinate_system(script_filepath, frame=2, rotation_frame=3,
         f"ANGLE {angle}"
     ]
 
-    write_lines_to_file(script_filepath, lines)
+    script.append_lines(lines)
     return
 
-def translate_coordinate_system(script_filepath, frame, x, y, z, units='METER'):
+def translate_coordinate_system(frame, x, y, z, units='METER'):
     """
-    Writes specific lines to 'script_filepath' to translate a coordinate system.
+    Appends lines to script state to translate a coordinate system.
     
     Example usage:
     translate_coordinate_system('path_to_script.txt', 2, 0.0, 1.0, 1.4, 'INCH')
     
-    :param script_filepath: Path to the script file.
+
     :param frame: Index of the local coordinate system to be rotated.
     :param x: Translation vector value in X direction.
     :param y: Translation vector value in Y direction.
@@ -297,15 +298,15 @@ def translate_coordinate_system(script_filepath, frame, x, y, z, units='METER'):
         f"TRANSLATE_COORDINATE_SYSTEM {frame} {x} {y} {z} {units}"
     ]
 
-    write_lines_to_file(script_filepath, lines)
+    script.append_lines(lines)
     return
 
 
-def duplicate_coordinate_system(script_filepath, frame):
+def duplicate_coordinate_system(frame):
     """
-    Writes specific lines to 'script_filepath' to duplicate a local coordinate system.
+    Appends lines to script state to duplicate a local coordinate system.
     
-    :param script_filepath: Path to the script file.
+
     :param frame: Index of the local coordinate system to be duplicated.
     
     Example usage:
@@ -327,17 +328,17 @@ def duplicate_coordinate_system(script_filepath, frame):
         f"DUPLICATE_COORDINATE_SYSTEM {frame}"
     ]
 
-    write_lines_to_file(script_filepath, lines)
+    script.append_lines(lines)
     return
 
-def mirror_coordinate_system(script_filepath, frame, plane='XZ'):
+def mirror_coordinate_system(frame, plane='XZ'):
     """
     Example usage:
     mirror_coordinate_system('path_to_script.txt', 2)
     
-    Writes specific lines to 'script_filepath' to mirror a local coordinate system.
+    Appends lines to script state to mirror a local coordinate system.
     
-    :param script_filepath: Path to the script file.
+
     :param frame: Index of the local coordinate system to be duplicated and then mirrored.
     :param plane: Plane of the reference coordinate system to be used.
     """
@@ -358,18 +359,18 @@ def mirror_coordinate_system(script_filepath, frame, plane='XZ'):
         f"MIRROR_COORDINATE_SYSTEM {frame} {plane}"
     ]
 
-    write_lines_to_file(script_filepath, lines)
+    script.append_lines(lines)
     return
 
 
-def delete_coordinate_system(script_filepath, frame):
+def delete_coordinate_system(frame):
     """
-    Writes specific lines to 'script_filepath' to delete a coordinate system.
+    Appends lines to script state to delete a coordinate system.
     
     Example usage:
     delete_coordinate_system('path_to_script.txt', 2)
     
-    :param script_filepath: Path to the script file.
+
     :param frame: Index of the local coordinate system to be deleted.
     """
     
@@ -387,5 +388,5 @@ def delete_coordinate_system(script_filepath, frame):
         f"DELETE_COORDINATE_SYSTEM {frame}"
     ]
 
-    write_lines_to_file(script_filepath, lines)
+    script.append_lines(lines)
     return

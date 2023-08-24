@@ -1,11 +1,12 @@
-from .utils import *
+from .utils import *    
+from .script import script
 
-def create_new_surface_section(script_filepath, frame=1, plane='XZ', offset=1.0, 
+def create_new_surface_section(frame=1, plane='XZ', offset=1.0, 
                                plot_direction=1, surfaces=[]):
     """
-    Writes specific lines to 'script_filepath' to create a new surface section.
+    Appends lines to script state to create a new surface section.
     
-    :param script_filepath: Path to the script file.
+
     :param frame: Index of the coordinate system used for this surface section.
     :param plane: Section plane. One of the following: XY, XZ or YZ.
     :param offset: Offset distance of the plane in the coordinate system.
@@ -48,18 +49,18 @@ def create_new_surface_section(script_filepath, frame=1, plane='XZ', offset=1.0,
         " ".join(map(str, surfaces))
     ]
 
-    write_lines_to_file(script_filepath, lines)
+    script.append_lines(lines)
     return
 
-def new_surface_section_distribution(script_filepath, frame=1, plane='XZ', 
+def new_surface_section_distribution(frame=1, plane='XZ', 
                                      num_sections=20, plot_direction=1, surfaces=[1, 4, 5]):
     """
-    Writes specific lines to 'script_filepath' to create new surface section distribution.
+    Appends lines to script state to create new surface section distribution.
     
     Example usage:
     >>> new_surface_section_distribution('path_to_script.txt')
     
-    :param script_filepath: Path to the script file.
+
     :param frame: Index of the coordinate system to be used for this surface section.
     :param plane: Section plane.
     :param num_sections: Number of sections to be created.
@@ -98,17 +99,17 @@ def new_surface_section_distribution(script_filepath, frame=1, plane='XZ',
         " ".join(map(str, surfaces))
     ]
 
-    write_lines_to_file(script_filepath, lines)
+    script.append_lines(lines)
     return
 
-def compute_surface_sectional_loads(script_filepath, units='NEWTONS'):
+def compute_surface_sectional_loads(units='NEWTONS'):
     """
-    Writes specific lines to 'script_filepath' to compute sectional loads on existing surface sections.
+    Appends lines to script state to compute sectional loads on existing surface sections.
     
     Example usage:
     >>> compute_surface_sectional_loads('path_to_script.txt')
     
-    :param script_filepath: Path to the script file.
+
     :param units: Unit type.
     """
     
@@ -122,14 +123,14 @@ def compute_surface_sectional_loads(script_filepath, units='NEWTONS'):
         f"COMPUTE_SURFACE_SECTIONAL_LOADS {units}"
     ]
 
-    write_lines_to_file(script_filepath, lines)
+    script.append_lines(lines)
     return
 
-def export_surface_sectional_loads(script_filepath, filename):
+def export_surface_sectional_loads(filename):
     """
-    Writes specific lines to 'script_filepath' to export sectional loads on existing surface sections.
+    Appends lines to script state to export sectional loads on existing surface sections.
     
-    :param script_filepath: Path to the script file.
+
     :param filename: Filename with path.
     
     Example usage:
@@ -145,15 +146,15 @@ def export_surface_sectional_loads(script_filepath, filename):
         f"{filename}"
     ]
 
-    write_lines_to_file(script_filepath, lines)
+    script.append_lines(lines)
     return
 
 
-def update_all_surface_sections(script_filepath):
+def update_all_surface_sections():
     """
-    Writes specific lines to 'script_filepath' to update the surface sections.
+    Appends lines to script state to update the surface sections.
     
-    :param script_filepath: Path to the script file.
+
     
     Example usage:
     update_all_surface_sections('path_to_script_2.txt')
@@ -167,14 +168,14 @@ def update_all_surface_sections(script_filepath):
         "UPDATE_ALL_SURFACE_SECTIONS"
     ]
 
-    write_lines_to_file(script_filepath, lines)
+    script.append_lines(lines)
     return
 
-def export_all_surface_sections(script_filepath, filename):
+def export_all_surface_sections(filename):
     """
-    Writes specific lines to 'script_filepath' to export all surface sections to a file.
+    Appends lines to script state to export all surface sections to a file.
     
-    :param script_filepath: Path to the script file.
+
     :param filename: Filename with path for the surface sections.
     
     Example usage:
@@ -194,14 +195,14 @@ def export_all_surface_sections(script_filepath, filename):
         f"{filename}"
     ]
     
-    write_lines_to_file(script_filepath, lines)
+    script.append_lines(lines)
     return
 
-def delete_surface_section(script_filepath, index):
+def delete_surface_section(index):
     """
-    Writes specific lines to 'script_filepath' to delete a surface section.
+    Appends lines to script state to delete a surface section.
     
-    :param script_filepath: Path to the script file.
+
     :param index: Index of the surface section to be deleted.
     
     Example usage:
@@ -220,14 +221,14 @@ def delete_surface_section(script_filepath, index):
         f"DELETE_SURFACE_SECTION {index}"
     ]
     
-    write_lines_to_file(script_filepath, lines)
+    script.append_lines(lines)
     return
 
-def delete_all_surface_sections(script_filepath):
+def delete_all_surface_sections():
     """
-    Writes specific lines to 'script_filepath' to delete all existing probe points.
+    Appends lines to script state to delete all existing probe points.
     
-    :param script_filepath: Path to the script file.
+
     
     Example usage:
         delete_probe_points('path_to_script.txt')
@@ -241,5 +242,5 @@ def delete_all_surface_sections(script_filepath):
         "DELETE_ALL_SURFACE_SECTIONS"
     ]
 
-    write_lines_to_file(script_filepath, lines)
+    script.append_lines(lines)
     return
