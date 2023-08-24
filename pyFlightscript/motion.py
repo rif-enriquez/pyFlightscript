@@ -757,7 +757,7 @@ def delete_6dof_external_force(script_filepath, motion_id, force_id):
     ]
 
     write_lines_to_file(script_filepath, lines)
-
+    return
 
 def export_6dof_trajectory(script_filepath, motion_id, filename):
     """
@@ -787,3 +787,103 @@ def export_6dof_trajectory(script_filepath, motion_id, filename):
     ]
 
     write_lines_to_file(script_filepath, lines)
+    return
+
+def set_motion_fsi_executable(script_filepath, motion_id, executable_path, show_console='DISABLE', 
+                              export_load_distributions='ENABLE'):
+    """
+    Writes specific lines to 'script_filepath' to set the FSI motion executable.
+    
+    Example usage:
+    set_motion_fsi_executable('path_to_script.txt', 1)
+    
+    :param script_filepath: Path to the script file.
+    :param motion_id: Index of the motion definition.
+    :param show_console: Enable or disable the console window output.
+    :param export_load_distributions: Enable or disable the export of the aerodynamic load distributions.
+    :param executable_path: Path to the FSI Beam executable.
+    """
+    
+    # Type and value checking
+    if not isinstance(motion_id, int) or motion_id <= 0:
+        raise ValueError("`motion_id` should be an integer greater than 0.")
+    
+    valid_options = ['ENABLE', 'DISABLE']
+    if show_console not in valid_options:
+        raise ValueError(f"`show_console` should be one of {valid_options}")
+    
+    if export_load_distributions not in valid_options:
+        raise ValueError(f"`export_load_distributions` should be one of {valid_options}")
+    
+    check_file_existence(executable_path)
+
+    lines = [
+        "#************************************************************************",
+        "#*********** Set the FSI motion executable ******************************",
+        "#************************************************************************",
+        "",
+        "SET_MOTION_FSI_EXECUTABLE",
+        f"{motion_id} {show_console} {export_load_distributions}",
+        executable_path
+    ]
+
+    write_lines_to_file(script_filepath, lines)
+    return
+
+
+def set_motion_fsi_structural_nodes(script_filepath, motion_id, nodes_file_path):
+    """
+    Writes specific lines to 'script_filepath' to set the FSI motion structural nodes.
+    
+    Example usage:
+    set_motion_fsi_structural_nodes('path_to_script.txt', 1)
+    
+    :param script_filepath: Path to the script file.
+    :param motion_id: Index of the motion definition.
+    :param nodes_file_path: Path to the FSI Displacement points file.
+    """
+    
+    # Type and value checking
+    if not isinstance(motion_id, int) or motion_id <= 0:
+        raise ValueError("`motion_id` should be an integer greater than 0.")
+    
+    check_file_existence(nodes_file_path)
+
+    lines = [
+        "#************************************************************************",
+        "#*********** Set the FSI motion structural nodes ************************",
+        "#************************************************************************",
+        "",
+        "SET_MOTION_FSI_STRUCTURAL_NODES",
+        str(motion_id),
+        nodes_file_path
+    ]
+
+    write_lines_to_file(script_filepath, lines)
+    return
+
+def delete_motion(script_filepath, motion_id):
+    """
+    Writes specific lines to 'script_filepath' to delete an existing motion definition.
+
+    :param script_filepath: Path to the script file.
+    :param motion_id: Index of the motion definition.
+    
+    Example usage:
+    delete_motion('path_to_script.txt', 1)
+    """
+    
+    # Type and value checking
+    if not isinstance(motion_id, int) or motion_id <= 0:
+        raise ValueError("`motion_id` should be an integer value greater than 0.")
+    
+    lines = [
+        "#************************************************************************",
+        "#*********** Delete an existing motion definition ***********************",
+        "#************************************************************************",
+        "",
+        f"DELETE_MOTION {motion_id}"
+    ]
+
+    write_lines_to_file(script_filepath, lines)
+    return

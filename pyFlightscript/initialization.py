@@ -113,7 +113,7 @@ def set_simulation_length_units(script_filepath, units='METER'):
     :param units: Desired simulation length unit.
     :raises ValueError: If the provided unit is not valid.
     """
-    check_valid_units(units)
+    check_valid_length_units(units)
 
     lines = [
         "#************************************************************************",

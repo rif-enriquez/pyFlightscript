@@ -16,7 +16,7 @@ def import_geometry(script_filepath,  geometry_filepath, units='METER', file_typ
     # Valid units and file types
     valid_file_types = ["STL", "TRI", "P3D", "CSV", "INP", "STRUCTURED_QUAD", "UNSTRUCTURED_QUAD", "LAWGS", "VTK", "AC", "FAC", "OBJ"]
     
-    check_valid_units(units)
+    check_valid_length_units(units)
     
     if file_type not in valid_file_types:
         raise ValueError(f"'{file_type}' is not a valid file type. Valid file types are: {', '.join(valid_file_types)}")
@@ -162,7 +162,7 @@ def translate_surface_in_frame(script_filepath, frame=1, x=0.0, y=0.0, z=0.0, un
     """
     
     # Validate units
-    check_valid_units(units)
+    check_valid_length_units(units)
     
     # Validate ENABLE/DISABLE option
     valid_options = ['ENABLE', 'DISABLE']

@@ -13,12 +13,22 @@ def write_lines_to_file(script_filepath, lines):
         outfile.write('\n')
     return
 
-def check_valid_units(units):
+def check_valid_length_units(units):
     """
     Check if the provided input units are valid. 
     """
     valid_units = ["INCH", "MILLIMETER", "OTHER", "FEET", "MILE", "METER", "KILOMETER", 
                    "MILS", "MICRON", "CENTIMETER", "MICROINCH"]
+    if units not in valid_units:
+        raise ValueError(f"Invalid units: {units}. Must be one of {', '.join(valid_units)}.")
+    return
+
+def check_valid_force_units(units):
+    """
+    Check if the provided input units are valid. 
+    """
+    valid_units = ['COEFFICIENTS', 'NEWTONS', 'KILO-NEWTONS', 
+                   'POUND-FORCE', 'KILOGRAM-FORCE']
     if units not in valid_units:
         raise ValueError(f"Invalid units: {units}. Must be one of {', '.join(valid_units)}.")
     return

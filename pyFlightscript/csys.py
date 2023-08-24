@@ -139,7 +139,7 @@ def set_coordinate_system_origin(script_filepath, frame, x, y, z, units='INCH'):
     if not isinstance(x, (int, float)) or not isinstance(y, (int, float)) or not isinstance(z, (int, float)):
         raise ValueError("`x`, `y`, and `z` should be integer or float values.")
     
-    check_valid_units(units)
+    check_valid_length_units(units)
     
     lines = [
         "#************************************************************************",
@@ -283,7 +283,7 @@ def translate_coordinate_system(script_filepath, frame, x, y, z, units='METER'):
     if not isinstance(frame, int) or frame <= 1:
         raise ValueError("`frame` should be an integer value greater than 1.")
     
-    check_valid_units(units)
+    check_valid_length_units(units)
     
     for value in [x, y, z]:
         if not isinstance(value, (int, float)):

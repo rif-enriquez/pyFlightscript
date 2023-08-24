@@ -53,7 +53,7 @@ def cad_create_import_curve_txt(script_filepath, txt_filepath, units='METER', di
     valid_dimensions = ["2D", "3D"]
     valid_planes = ["YZ", "XZ", "XY"]
     
-    check_valid_units(units)
+    check_valid_length_units(units)
     
     if dimension not in valid_dimensions:
         raise ValueError(f"Invalid dimension: {dimension}. Must be one of {', '.join(valid_dimensions)}.")
@@ -222,4 +222,233 @@ def cad_create_curve_arc(script_filepath, x0=0.0, y0=0.0, z0=0.0, x1=-1.0, y1=0.
     write_lines_to_file(script_filepath, lines)
     return
 
-# CAD_CREATE_CURVE_SELECT
+def cad_create_curve_select(script_filepath, curve_index=1):
+    """
+    Writes specific lines to 'script_filepath' to select one of the CAD-->Create drawing curves.
+    
+    :param script_filepath: Path to the script file.
+    :param curve_index: Index of the drawing curve to be selected.
+    
+    Example usage:
+    cad_create_curve_select('path_to_script.txt', 2)
+    cad_create_curve_select('path_to_script.txt', -1)  # To select ALL curves
+    """
+    
+    # Type and value checking
+    if not isinstance(curve_index, int) or curve_index == 0:
+        raise ValueError("`curve_index` should be a non-zero integer value.")
+    
+    lines = [
+        "#************************************************************************",
+        "#********** Select one of the CAD-->Create drawing curves ***************",
+        "#************************************************************************",
+        "",
+        f"CAD_CREATE_CURVE_SELECT {curve_index}"
+    ]
+
+    write_lines_to_file(script_filepath, lines)
+    return
+
+def cad_create_curve_unselect(script_filepath, curve_index=1):
+    """
+    Writes specific lines to 'script_filepath' to unselect one of the CAD-->Create drawing curves.
+    
+    :param script_filepath: Path to the script file.
+    :param curve_index: Index of the drawing curve to be unselected.
+    
+    Example usage:
+    cad_create_curve_unselect('path_to_script.txt', 1)
+    cad_create_curve_unselect('path_to_script.txt', -1)  # To unselect ALL curves
+    """
+    
+    # Type and value checking
+    if not isinstance(curve_index, int) or curve_index == 0:
+        raise ValueError("`curve_index` should be a non-zero integer value.")
+    
+    lines = [
+        "#************************************************************************",
+        "#********** Unselect specific CAD-->Create drawing curves by index ******",
+        "#************************************************************************",
+        "",
+        f"CAD_CREATE_CURVE_UNSELECT {curve_index}"
+    ]
+
+    write_lines_to_file(script_filepath, lines)
+    return
+
+def cad_create_curve_reverse(script_filepath, curve_index=1):
+    """
+    Writes specific lines to 'script_filepath' to reverse CAD->Create drawing curves by index.
+
+    :param script_filepath: Path to the script file.
+    :param curve_index: Index of the drawing curve to be reversed.
+
+    Example usage:
+    cad_create_curve_reverse('path_to_script.txt', 2)
+    """
+
+    # Type and value checking
+    if not isinstance(curve_index, int):
+        raise ValueError("`curve_index` should be an integer value.")
+
+    if curve_index == -1:
+        lines = [
+            "#************************************************************************",
+            "#********** Reverse ALL of the CAD-->Create drawing curves **************",
+            "#************************************************************************",
+            "",
+            "CAD_CREATE_CURVE_REVERSE -1"
+        ]
+    else:
+        lines = [
+            "#************************************************************************",
+            "#********** Reverse specific CAD-->Create drawing curves by index *******",
+            "#************************************************************************",
+            "",
+            f"CAD_CREATE_CURVE_REVERSE {curve_index}"
+        ]
+
+    write_lines_to_file(script_filepath, lines)
+    return
+
+
+def cad_create_curve_delete_all(script_filepath):
+    """
+    Writes specific lines to 'script_filepath' to delete all CAD->Create drawing curves.
+
+    :param script_filepath: Path to the script file.
+
+    Example usage:
+    cad_create_curve_delete_all('path_to_script.txt')
+    """
+
+    lines = [
+        "#************************************************************************",
+        "#********** Delete ALL of the CAD-->Create drawing curves ***************",
+        "#************************************************************************",
+        "",
+        "CAD_CREATE_CURVE_DELETE_ALL"
+    ]
+
+    write_lines_to_file(script_filepath, lines)
+    return
+
+def cad_create_curve_delete_selected(script_filepath):
+    """
+    Writes specific lines to 'script_filepath' to delete only selected CAD-->Create drawing curves.
+
+    :param script_filepath: Path to the script file.
+    
+    Example usage:
+    cad_create_curve_delete_selected('path_to_script.txt')
+    """
+    
+    lines = [
+        "#************************************************************************",
+        "#********** Delete only selected CAD-->Create drawing curves ************",
+        "#************************************************************************",
+        "",
+        "CAD_CREATE_CURVE_DELETE_SELECTED"
+    ]
+
+    write_lines_to_file(script_filepath, lines)
+    return
+
+def cad_create_curve_delete_unselected(script_filepath):
+    """
+    Writes specific lines to 'script_filepath' to delete only unselected CAD-->Create drawing curves.
+
+    :param script_filepath: Path to the script file.
+    
+    Example usage:
+    cad_create_curve_delete_unselected('path_to_script.txt')
+    """
+    
+    lines = [
+        "#************************************************************************",
+        "#********** Delete only unselected CAD-->Create drawing curves **********",
+        "#************************************************************************",
+        "",
+        "CAD_CREATE_CURVE_DELETE_UNSELECTED"
+    ]
+
+    write_lines_to_file(script_filepath, lines)
+    return
+
+def cad_create_curve_export_ccs(script_filepath, file_path):
+    """
+    Writes specific lines to 'script_filepath' to export selected CAD-->Create drawing curves to CSV file.
+
+    :param script_filepath: Path to the script file.
+    :param file_path: File name with the path to the file.
+    
+    Example usage:
+    cad_create_curve_export_ccs('path_to_script.txt', 'C:\\Users\\Desktop\\Geometries\\sample_CCS_export.csv')
+    """
+    
+    # Type and value checking
+    if not isinstance(file_path, str):
+        raise ValueError("`file_path` should be a string value.")
+    
+    lines = [
+        "#************************************************************************",
+        "#********* Export selected CAD-->Create drawing curves to CSV file ******",
+        "#************************************************************************",
+        "",
+        "CAD_CREATE_CURVE_EXPORT_CCS",
+        f"{file_path}"
+    ]
+
+    write_lines_to_file(script_filepath, lines)
+    return
+
+def import_cad(script_filepath, cad_filepath):
+    """
+    Writes specific lines to 'script_filepath' to import a CAD geometry into the simulation.
+    
+    :param script_filepath: Path to the script file.
+    :param cad_filepath: Path to the CAD file.
+    
+    Example usage:
+    import_cad('path_to_script.txt', 'C:\\Users\\Desktop\\Geometries\\sample.igs')
+    """
+
+    lines = [
+        "#************************************************************************",
+        "#******************* Import a geometry into the simulation **************",
+        "#************************************************************************",
+        "",
+        "IMPORT_CAD",
+        cad_filepath
+    ]
+    
+    write_lines_to_file(script_filepath, lines)
+    return
+
+def convert_cad_to_mesh(script_filepath, model_index):
+    """
+    Writes specific lines to 'script_filepath' to transfer CAD model mesh to the 
+    Mesh node of the simulation.
+    
+    :param script_filepath: Path to the script file.
+    :param model_index: Index of the CAD model to be transferred to the mesh node.
+    
+    Example usage:
+    convert_cad_to_mesh('path_to_script.txt', 1)
+    """
+    
+    # Type and value checking
+    if not isinstance(model_index, int):
+        raise ValueError("`model_index` should be an integer value.")
+    
+    lines = [
+        "#************************************************************************",
+        "#****** Transfer CAD model mesh to the Mesh node of the simulation ******",
+        "#************************************************************************",
+        "",
+        f"CONVERT_CAD_TO_MESH {model_index}"
+    ]
+    
+    write_lines_to_file(script_filepath, lines)
+    return
+
