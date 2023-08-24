@@ -8,7 +8,7 @@ from . import exec_solver
 from . import export_data
 from . import freestream
 from . import geometry
-from . import initialization
+from . import fsinit
 from . import inlets
 from . import motion
 from . import post_points

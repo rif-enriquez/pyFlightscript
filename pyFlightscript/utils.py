@@ -1,18 +1,5 @@
 import os 
 
-def script.append_lines(lines):
-    """
-    Writes a list of lines to the specified file.
-    
-
-    :param lines: List of lines to write.
-    """
-    with open('a') as outfile:
-        outfile.write('\n'.join(lines))
-        outfile.write('\n')
-        outfile.write('\n')
-    return
-
 def check_valid_length_units(units):
     """
     Check if the provided input units are valid. 
