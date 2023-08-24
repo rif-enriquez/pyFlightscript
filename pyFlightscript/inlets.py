@@ -1,6 +1,6 @@
 import os
 from .utils import *    
-from .script import script
+from .script_state import script
 
 def create_new_inlet(surface_id, type_value, vx_or_velocity, vy=0.0, vz=0.0):
     """

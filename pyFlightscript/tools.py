@@ -1,5 +1,5 @@
 from .utils import *    
-from .script import script
+from .script_state import script
 
 def execute_solver_sweeper(sweep_results_path, results_filename,
                            angle_of_attack='ENABLE', side_slip_angle='DISABLE', 

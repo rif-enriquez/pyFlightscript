@@ -1,5 +1,5 @@
 from .utils import *    
-from .script import script
+from .script_state import script
 
 def export_solver_analysis_spreadsheet(output_file):
     """

@@ -1,6 +1,6 @@
 import os
 from .utils import *    
-from .script import script
+from .script_state import script
 
 def delete_transition_trip(transition_trip_index):
     """

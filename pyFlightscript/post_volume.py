@@ -1,5 +1,5 @@
 from .utils import *    
-from .script import script
+from .script_state import script
 
 def create_new_rectangle_volume_section(frame=1, plane='XZ', offset=0., size=-0.5, 
                                         x1=-2.5, y1=-1.0, x2=2.5, y2=1.0, prisms_type='PRISMS', 

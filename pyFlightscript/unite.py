@@ -1,6 +1,6 @@
 import os
 from .utils import *    
-from .script import script
+from .script_state import script
 
 def boolean_unite_geometry(bodies, openvsp_path, bodies_values=None):
     """
