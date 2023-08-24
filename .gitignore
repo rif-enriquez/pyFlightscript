@@ -1,0 +1,34 @@
+# Compiled files
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+*.rej
+*.orig
+*.swp
+
+# Sphinx generated files
+_build/
+.sphinx-build/
+
+# Miscellaneous
+*.log
+*.bak
+*.cache
+.DS_Store  # For macOS
+
+# IDEs and editors
+# PyCharm
+.idea/
+*.iml
+
+# VS Code
+.vscode/
+
+# Jupyter notebooks
+.ipynb_checkpoints/
+
+# Environment directory
+venv/
+env/
+*.venv/
