@@ -15,6 +15,8 @@ No dependencies required at this time.
 
 ```
 import pyFlightscript as pyfs
-pyfs.open_fsm('test.txt', 'other.fsm')
-pyfs.stop_script('test.txt')
+
+pyfs.fsinit.open_fsm('test.fsm')
+pyfs.script_state.display_lines()
+pyfs.script_state.write_to_file()
 ```
