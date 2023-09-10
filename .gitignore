@@ -10,6 +10,7 @@ pyFlightscript/__pycache__/
 
 # Sphinx generated files
 .sphinx-build/
+sphinx/_build/
 build/
 # Miscellaneous
 *.log
