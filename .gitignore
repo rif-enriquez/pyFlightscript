@@ -9,7 +9,6 @@ pyFlightscript/__pycache__/
 *.swp
 
 # Sphinx generated files
-docs/_build/
 .sphinx-build/
 build/
 # Miscellaneous
