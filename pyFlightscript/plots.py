@@ -9,7 +9,7 @@ def set_plot_type(plot_type):
     :param plot_type: Type of plot.
     
     Example usage:
-    set_plot_type('path_to_script.txt', 'FORCE_Z_AXIS_Y')
+    set_plot_type(, 'FORCE_Z_AXIS_Y')
     """
     valid_plot_types = [
         'CL_AXIS_X', 'CL_AXIS_Y', 'CL_AXIS_Z', 'CDI_AXIS_X', 'CDI_AXIS_Y',
@@ -26,7 +26,7 @@ def set_plot_type(plot_type):
         "#************************************************************************",
         "#****************** Change the plot type ********************************",
         "#************************************************************************",
-        "",
+        "#",
         "SET_PLOT_TYPE",
         plot_type
     ]
@@ -42,7 +42,7 @@ def save_plot_to_file(filename):
     :param filename: Full path and name of the file to save the plot.
     
     Example usage:
-    save_plot_to_file('path_to_script.txt', 'C:/.../Test_Plot.txt')
+    save_plot_to_file(, 'C:/.../Test_Plot.txt')
     """
     lines = [
         "#************************************************************************",

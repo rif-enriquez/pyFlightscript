@@ -6,7 +6,7 @@ def new_off_body_streamline(position_x, position_y, position_z, upstream='DISABL
     Appends lines to script state to create an off-body streamline.
     
     Example usage:
-    new_off_body_streamline('path_to_script.txt', -3.0, -0.1, 0.2, 'DISABLE')
+    new_off_body_streamline(, -3.0, -0.1, 0.2, 'DISABLE')
     
 
     :param position_x: X coordinate of the position.
@@ -24,7 +24,7 @@ def new_off_body_streamline(position_x, position_y, position_z, upstream='DISABL
         "#************************************************************************",
         "#****************** Create a off-body streamline ************************",
         "#************************************************************************",
-        "",
+        "#",
         "NEW_OFF_BODY_STREAMLINE",
         f"POSITION_X {position_x}",
         f"POSITION_Y {position_y}",
@@ -41,7 +41,7 @@ def new_streamline_distribution(position_1_x, position_1_y, position_1_z,
     Appends lines to script state to create a new off-body streamline distribution.
     
     Example usage:
-    new_streamline_distribution('path_to_script.txt', -3.0, -1.2, -0.3, -3.0, 1.2, -0.3, 48)
+    new_streamline_distribution(, -3.0, -1.2, -0.3, -3.0, 1.2, -0.3, 48)
     
 
     :param position_1_x: X coordinate of the starting vertex.
@@ -61,7 +61,7 @@ def new_streamline_distribution(position_1_x, position_1_y, position_1_z,
         "#************************************************************************",
         "#****************** Create a new off-body streamline distribution *******",
         "#************************************************************************",
-        "",
+        "#",
         "NEW_STREAMLINE_DISTRIBUTION",
         f"POSITION_1_X {position_1_x}",
         f"POSITION_1_Y {position_1_y}",
@@ -87,7 +87,7 @@ def new_off_body_streamtube(radius, frame, axis, radial_subdivisions, azimuth_su
     :param azimuth_subdivisions: Number of azimuth subdivisions.
     
     Example usage:
-    new_off_body_streamtube('path_to_script.txt', 0.5, 2, 1, 3, 10)
+    new_off_body_streamtube(, 0.5, 2, 1, 3, 10)
     """
 
     # Type and value checking
@@ -110,7 +110,7 @@ def new_off_body_streamtube(radius, frame, axis, radial_subdivisions, azimuth_su
         "#************************************************************************",
         "#****************** Create a new off-body streamtube ********************",
         "#************************************************************************",
-        "",
+        "#",
         "NEW_OFF_BODY_STREAMTUBE",
         f"RADIUS {radius}",
         f"FRAME {frame}",
@@ -134,7 +134,7 @@ def set_off_body_streamline_length(set_length=None, set_unrestricted_length=None
     Note: Either `set_length` or `set_unrestricted_length` should be provided, not both.
     
     Example usage:
-    set_off_body_streamline_length('path_to_script.txt', set_length=5)
+    set_off_body_streamline_length(, set_length=5)
     """
 
     # Type and value checking
@@ -152,7 +152,7 @@ def set_off_body_streamline_length(set_length=None, set_unrestricted_length=None
         "#************************************************************************",
         "#****************** Set the length of the new off-body streamlines ******",
         "#************************************************************************",
-        "",
+        "#",
         "SET_OFF_BODY_STREAMLINE_LENGTH"
     ]
 
@@ -171,13 +171,13 @@ def set_all_off_body_streamlines_upstream():
 
 
     Example usage:
-    set_all_off_body_streamlines_upstream('path_to_script.txt')
+    set_all_off_body_streamlines_upstream()
     """
     lines = [
         "#************************************************************************",
         "#********** Set all off-body streamlines upstream **********************",
         "#************************************************************************",
-        "",
+        "#",
         "SET_ALL_OFF_BODY_STREAMLINES_UPSTREAM"
     ]
     script.append_lines(lines)
@@ -190,13 +190,13 @@ def set_all_off_body_streamlines_downstream():
 
 
     Example usage:
-    set_all_off_body_streamlines_downstream('path_to_script.txt')
+    set_all_off_body_streamlines_downstream()
     """
     lines = [
         "#************************************************************************",
         "#********** Set all off-body streamlines downstream ********************",
         "#************************************************************************",
-        "",
+        "#",
         "SET_ALL_OFF_BODY_STREAMLINES_DOWNSTREAM"
     ]
     script.append_lines(lines)
@@ -209,13 +209,13 @@ def generate_all_off_body_streamlines():
 
 
     Example usage:
-    generate_all_off_body_streamlines('path_to_script.txt')
+    generate_all_off_body_streamlines()
     """
     lines = [
         "#************************************************************************",
         "#********** Generate all off-body streamlines *************************",
         "#************************************************************************",
-        "",
+        "#",
         "GENERATE_ALL_OFF_BODY_STREAMLINES"
     ]
     script.append_lines(lines)
@@ -228,13 +228,13 @@ def delete_all_off_body_streamlines():
 
 
     Example usage:
-    delete_all_off_body_streamlines('path_to_script.txt')
+    delete_all_off_body_streamlines()
     """
     lines = [
         "#************************************************************************",
         "#********** Delete all off-body streamlines ****************************",
         "#************************************************************************",
-        "",
+        "#",
         "DELETE_ALL_OFF_BODY_STREAMLINES"
     ]
     script.append_lines(lines)
@@ -248,7 +248,7 @@ def export_all_off_body_streamlines(filename):
     :param filename: Filename with path to store the streamlines.
 
     Example usage:
-    export_all_off_body_streamlines('path_to_script.txt', 'C:/.../Test_streamlines.txt')
+    export_all_off_body_streamlines(, 'C:/.../Test_streamlines.txt')
     """
     
     # Check for filename's type
@@ -259,7 +259,7 @@ def export_all_off_body_streamlines(filename):
         "#************************************************************************",
         "#****************** Export all off-body streamlines ********************",
         "#************************************************************************",
-        "",
+        "#",
         "EXPORT_ALL_OFF_BODY_STREAMLINES",
         f"{filename}"
     ]
@@ -274,13 +274,13 @@ def generate_all_surface_streamlines():
     Appends lines to script state to generate all surface streamlines.
     
     Example usage:
-    generate_all_surface_streamlines('path_to_script.txt')
+    generate_all_surface_streamlines()
     """
     lines = [
         "#************************************************************************",
         "#****************** Generate all surface streamlines *******************",
         "#************************************************************************",
-        "",
+        "#",
         "GENERATE_ALL_SURFACE_STREAMLINES",
     ]
 
@@ -292,13 +292,13 @@ def delete_all_surface_streamlines():
     Appends lines to script state to delete all surface streamlines.
     
     Example usage:
-    delete_all_surface_streamlines('path_to_script.txt')
+    delete_all_surface_streamlines()
     """
     lines = [
         "#************************************************************************",
         "#****************** Delete all surface streamlines *********************",
         "#************************************************************************",
-        "",
+        "#",
         "DELETE_ALL_SURFACE_STREAMLINES",
     ]
 
@@ -313,7 +313,7 @@ def export_all_surface_streamlines(output_filepath):
     :param output_filepath: Filename with path for the streamlines output.
     
     Example usage:
-    export_all_surface_streamlines('path_to_script.txt', 'C:/.../Test_streamlines.txt')
+    export_all_surface_streamlines(, 'C:/.../Test_streamlines.txt')
     """
     
     # Type checking for output_filepath
@@ -324,7 +324,7 @@ def export_all_surface_streamlines(output_filepath):
         "#************************************************************************",
         "#****************** Export all on-body (surface) streamlines ************",
         "#************************************************************************",
-        "",
+        "#",
         "EXPORT_ALL_SURFACE_STREAMLINES",
         f"{output_filepath}",
     ]

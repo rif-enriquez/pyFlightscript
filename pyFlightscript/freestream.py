@@ -14,9 +14,9 @@ def set_freestream(freestream_type, profile_path=None, frame=None, axis=None, an
     :param angular_velocity: (Optional) Rotational velocity in rad/sec. Needed for 'ROTATION' type.
     
     Example usage:
-    set_freestream('path_to_script.txt', 'CONSTANT')
-    set_freestream('path_to_script.txt', 'CUSTOM', profile_path='C:/.../Custom_freestream_profile.txt')
-    set_freestream('path_to_script.txt', 'ROTATION', frame=1, axis='X', angular_velocity=-0.2)
+    set_freestream(, 'CONSTANT')
+    set_freestream(, 'CUSTOM', profile_path='C:/.../Custom_freestream_profile.txt')
+    set_freestream(, 'ROTATION', frame=1, axis='X', angular_velocity=-0.2)
     """
     
     # Type and value checking
@@ -30,7 +30,7 @@ def set_freestream(freestream_type, profile_path=None, frame=None, axis=None, an
             "#************************************************************************",
             "#**************** Set a constant free-stream velocity *******************",
             "#************************************************************************",
-            "",
+            "#",
             "SET_FREESTREAM CONSTANT"
         ])
 
@@ -41,7 +41,7 @@ def set_freestream(freestream_type, profile_path=None, frame=None, axis=None, an
             "#************************************************************************",
             "#*************** Set a custom free-stream velocity ********************",
             "#************************************************************************",
-            "",
+            "#",
             "SET_FREESTREAM CUSTOM",
             profile_path
         ])
@@ -57,7 +57,7 @@ def set_freestream(freestream_type, profile_path=None, frame=None, axis=None, an
             "#************************************************************************",
             "#*************** Set a rotational free-stream velocity ******************",
             "#************************************************************************",
-            "",
+            "#",
             f"SET_FREESTREAM ROTATION {frame} {axis} {angular_velocity}"
         ])
     
@@ -70,7 +70,7 @@ def fluid_properties(density=0.5, pressure=65234.35, sonic_velocity=230,
     Appends lines to script state to set the fluid properties.
     
     Example usage:
-        fluid_properties('path_to_script.txt')
+        fluid_properties()
     
 
     :param density: Density value (kg/m^3).
@@ -100,7 +100,7 @@ def fluid_properties(density=0.5, pressure=65234.35, sonic_velocity=230,
         "#************************************************************************",
         "#********* Set the fluid properties *************************************",
         "#************************************************************************",
-        "",
+        "#",
         "FLUID_PROPERTIES",
         f"DENSITY {density}",
         f"PRESSURE {pressure}",
@@ -117,7 +117,7 @@ def air_altitude(altitude=15000.0):
     Appends lines to script state to set fluid (air) properties based on altitude.
 
     Example usage:
-    air_altitude('path_to_script.txt')
+    air_altitude()
 
 
     :param altitude: Altitude value in feet.
@@ -131,7 +131,7 @@ def air_altitude(altitude=15000.0):
         "#************************************************************************",
         "#********* Set the fluid (air) properties based on altitude *************",
         "#************************************************************************",
-        "",
+        "#",
         f"AIR_ALTITUDE {altitude}"
     ]
 

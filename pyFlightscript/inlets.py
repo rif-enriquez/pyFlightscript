@@ -14,8 +14,8 @@ def create_new_inlet(surface_id, type_value, vx_or_velocity, vy=0.0, vz=0.0):
     :param vz: VZ value (only used if TYPE=1).
     
     Example usage:
-    create_new_inlet('path_to_script.txt', 3, 1, 100.0, 0.0, -10.0)
-    create_new_inlet('path_to_script.txt', 3, 2, 100.498)
+    create_new_inlet(, 3, 1, 100.0, 0.0, -10.0)
+    create_new_inlet(, 3, 2, 100.498)
     """
     
     # Type and value checking
@@ -40,7 +40,7 @@ def create_new_inlet(surface_id, type_value, vx_or_velocity, vy=0.0, vz=0.0):
             "#************************************************************************",
             "#****************** Create a new inlet boundary (TYPE=1) ****************",
             "#************************************************************************",
-            "",
+            "#",
             f"CREATE_NEW_INLET {surface_id} {type_value} {vx_or_velocity} {vy} {vz}"
         ]
     else:  # type_value == 2
@@ -48,7 +48,7 @@ def create_new_inlet(surface_id, type_value, vx_or_velocity, vy=0.0, vz=0.0):
             "#************************************************************************",
             "#****************** Create a new inlet boundary (TYPE=2) ****************",
             "#************************************************************************",
-            "",
+            "#",
             f"CREATE_NEW_INLET {surface_id} {type_value} {vx_or_velocity}"
         ]
     
@@ -61,7 +61,7 @@ def set_inlet_custom_profile(inlet_id, motion_filpath):
     using an external file.
     
     Example usage:
-    set_inlet_custom_profile('path_to_script.txt', 1, 'C:\\Users\\Desktop\\Models\\custom_inlet_profile.txt')
+    set_inlet_custom_profile(, 1, 'C:\\Users\\Desktop\\Models\\custom_inlet_profile.txt')
     
     :param inlet_id: Index of the inlet boundary.
     :param motion_filpath: Path to the file containing the motion data.
@@ -80,7 +80,7 @@ def set_inlet_custom_profile(inlet_id, motion_filpath):
         "#************************************************************************",
         "#******* Upload custom velocity inlet profile from external file ********",
         "#************************************************************************",
-        "",
+        "#",
         "SET_INLET_CUSTOM_PROFILE",
         f"{inlet_id}",
         f"{motion_filpath}"
@@ -95,7 +95,7 @@ def remesh_inlet(inlet, inner_radius=0.0, elements=10,
     Appends lines to script state to radial mesh an existing inlet boundary.
     
     Example usage:
-    remesh_inlet('path_to_script.txt', 1)
+    remesh_inlet(, 1)
     
 
     :param inlet: Index of inlet boundary to be meshed.
@@ -125,7 +125,7 @@ def remesh_inlet(inlet, inner_radius=0.0, elements=10,
         "#************************************************************************",
         "#****************** Radial mesh an existing inlet boundary **************",
         "#************************************************************************",
-        "",
+        "#",
         "REMESH_INLET",
         f"INLET {inlet}",
         f"INNER_RADIUS {inner_radius}",
@@ -142,7 +142,7 @@ def delete_inlet(inlet):
     Appends lines to script state to delete an existing inlet boundary.
     
     Example usage:
-    delete_inlet('path_to_script.txt', 1)
+    delete_inlet(, 1)
     
 
     :param inlet: Index of the inlet boundary to be deleted.
@@ -156,7 +156,7 @@ def delete_inlet(inlet):
         "#************************************************************************",
         "#****************** Delete an existing inlet boundary *******************",
         "#************************************************************************",
-        "",
+        "#",
         "DELETE_INLET",
         f"INLET {inlet}"
     ]

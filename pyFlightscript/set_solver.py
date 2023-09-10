@@ -1,19 +1,19 @@
 from .utils import *    
 from .script_state import script
 
-def set_solver_steady():
+def steady():
     """
     Appends lines to script state to set the steady solver.
     
     Example usage:
-        set_solver_steady('path_to_script.txt')
+        steady()
     """
     
     lines = [
         "#************************************************************************",
         "#********* Set the steady solver ****************************************",
         "#************************************************************************",
-        "",
+        "#",
         "SET_SOLVER_STEADY"
     ]
 
@@ -21,7 +21,7 @@ def set_solver_steady():
     return
 
 
-def set_solver_unsteady(time_iterations=100, delta_time=0.1):
+def unsteady(time_iterations=100, delta_time=0.1):
     """
     Appends lines to script state to set the unsteady solver.
     
@@ -30,7 +30,7 @@ def set_solver_unsteady(time_iterations=100, delta_time=0.1):
     :param delta_time: Physical time step of the unsteady solver.
     
     Example usage:
-        set_solver_unsteady('path_to_script.txt')
+        unsteady()
     """
     
     # Type and value checking
@@ -44,7 +44,7 @@ def set_solver_unsteady(time_iterations=100, delta_time=0.1):
         "#************************************************************************",
         "#********* Set the unsteady solver **************************************",
         "#************************************************************************",
-        "",
+        "#",
         "SET_SOLVER_UNSTEADY",
         f"TIME_ITERATIONS {time_iterations}",
         f"DELTA_TIME {delta_time}"
@@ -67,7 +67,7 @@ def unsteady_solver_new_force_plot(frame=1, units='NEWTONS', parameter='FORCE_X'
     :param boundary_indices: List of boundary indices.
     
     Example usage:
-    unsteady_solver_new_force_plot('path_to_script.txt', name='Propeller_thrust', boundaries=3, boundary_indices=[1, 2, 4])
+    unsteady_solver_new_force_plot(, name='Propeller_thrust', boundaries=3, boundary_indices=[1, 2, 4])
     """
     
     # Type and value checking
@@ -84,7 +84,7 @@ def unsteady_solver_new_force_plot(frame=1, units='NEWTONS', parameter='FORCE_X'
         "#************************************************************************",
         "#********* Create a new unsteady solver force & moments plot ************",
         "#************************************************************************",
-        "",
+        "#",
         "UNSTEADY_SOLVER_NEW_FORCE_PLOT",
         f"FRAME {frame}",
         f"UNITS {units}",
@@ -110,7 +110,7 @@ def unsteady_solver_new_fluid_plot(frame=1, parameter='VELOCITY', name='Plot_Nam
     :param vertex: Vertex coordinates for the fluid property measurement location.
     
     Example usage:
-    unsteady_solver_new_fluid_plot('path_to_script.txt', name='Propeller_slipstream', vertex=(-2.0, 1.4, 0.0))
+    unsteady_solver_new_fluid_plot(, name='Propeller_slipstream', vertex=(-2.0, 1.4, 0.0))
     """
     
     # Type and value checking
@@ -125,7 +125,7 @@ def unsteady_solver_new_fluid_plot(frame=1, parameter='VELOCITY', name='Plot_Nam
         "#************************************************************************",
         "#********* Create a new unsteady solver fluid properties plot ***********",
         "#************************************************************************",
-        "",
+        "#",
         "UNSTEADY_SOLVER_NEW_FLUID_PLOT",
         f"FRAME {frame}",
         f"PARAMETER {parameter}",
@@ -144,7 +144,7 @@ def unsteady_solver_export_plots(export_filepath):
     :param export_filepath: Path where plots should be exported.
     
     Example usage:
-    unsteady_solver_export_plots('path_to_script.txt', 'C:\\Users\\Desktop\\Models\\my_exported_data.txt')
+    unsteady_solver_export_plots(, 'C:\\Users\\Desktop\\Models\\my_exported_data.txt')
     """
     
     # Prepare the lines to be written to file
@@ -152,7 +152,7 @@ def unsteady_solver_export_plots(export_filepath):
         "#************************************************************************",
         "#****************** Export all unsteady solver plots ********************",
         "#************************************************************************",
-        "",
+        "#",
         "UNSTEADY_SOLVER_EXPORT_PLOTS",
         export_filepath
     ]
@@ -168,7 +168,7 @@ def unsteady_solver_delete_all_plots():
 
     
     Example usage:
-    unsteady_solver_delete_all_plots('path_to_script.txt')
+    unsteady_solver_delete_all_plots()
     """
     
     # Prepare the lines to be written to file
@@ -176,7 +176,7 @@ def unsteady_solver_delete_all_plots():
         "#************************************************************************",
         "#****************** Delete all unsteady solver plots ********************",
         "#************************************************************************",
-        "",
+        "#",
         "UNSTEADY_SOLVER_DELETE_ALL_PLOTS"
     ]
 
@@ -191,7 +191,7 @@ def set_boundary_layer_type(type_value='TRANSITIONAL'):
     :param type_value: Type of the boundary layer (default: 'TRANSITIONAL').
     
     Example usage:
-    set_boundary_layer_type('path_to_script.txt')
+    set_boundary_layer_type()
     """
     
     # Type and value checking
@@ -203,7 +203,7 @@ def set_boundary_layer_type(type_value='TRANSITIONAL'):
         "#************************************************************************",
         "#****************** Set the surface boundary layer type *****************",
         "#************************************************************************",
-        "",
+        "#",
         f"SET_BOUNDARY_LAYER_TYPE {type_value}"
     ]
     
@@ -218,7 +218,7 @@ def set_surface_roughness(roughness_height=23.5):
     :param roughness_height: Height of the surface roughness in nano-meters (default: 23.5 nm).
     
     Example usage:
-    set_surface_roughness('path_to_script.txt')
+    set_surface_roughness()
     """
     
     # Type and value checking
@@ -229,14 +229,14 @@ def set_surface_roughness(roughness_height=23.5):
         "#************************************************************************",
         "#****************** Set the surface roughness height ********************",
         "#************************************************************************",
-        "",
+        "#",
         f"SET_SURFACE_ROUGHNESS {roughness_height}"
     ]
     
     script.append_lines(lines)
     return
 
-def set_solver_viscous_coupling(mode='ENABLE'):
+def viscous_coupling(mode='ENABLE'):
     """
     Appends lines to script state to set the solver viscous coupling.
 
@@ -244,7 +244,7 @@ def set_solver_viscous_coupling(mode='ENABLE'):
     :param mode: The mode to set the solver viscous coupling, either 'ENABLE' or 'DISABLE'.
     
     Example usage:
-    set_solver_viscous_coupling('path_to_script.txt')
+    viscous_coupling()
     """
 
     # Type and value checking
@@ -256,7 +256,7 @@ def set_solver_viscous_coupling(mode='ENABLE'):
         "#************************************************************************",
         "#****************** Set the solver viscous coupling ********************",
         "#************************************************************************",
-        "",
+        "#",
         f"SET_SOLVER_VISCOUS_COUPLING {mode}"
     ]
 
@@ -272,7 +272,7 @@ def set_viscous_excluded_boundaries(num_boundaries, boundaries):
     :param boundaries: List of indices of boundaries being excluded.
     
     Example usage:
-    set_viscous_excluded_boundaries('path_to_script.txt', 3, [1, 2, 4])
+    set_viscous_excluded_boundaries(, 3, [1, 2, 4])
     """
     
     # Type and value checking
@@ -289,7 +289,7 @@ def set_viscous_excluded_boundaries(num_boundaries, boundaries):
         "#************************************************************************",
         "#************** Set the viscous exclusion boundary list ****************",
         "#************************************************************************",
-        "",
+        "#",
         f"SET_VISCOUS_EXCLUDED_BOUNDARIES {num_boundaries}",
         ",".join(map(str, boundaries))
     ]
@@ -304,14 +304,14 @@ def enable_flow_separation():
 
 
     Example usage:
-    enable_flow_separation('path_to_script.txt')
+    enable_flow_separation()
     """
     
     lines = [
         "#************************************************************************",
         "#************ Enable the flow separation model **************************",
         "#************************************************************************",
-        "",
+        "#",
         "ENABLE_FLOW_SEPARATION"
     ]
 
@@ -328,8 +328,8 @@ def set_stratford_separation_model(model, crossflow_direction=None, cp=None):
     :param cp: Separation pressure coefficient for the CROSSFLOW model.
 
     Example usage:
-    set_stratford_separation_model('path_to_script.txt', 'AXIAL')
-    set_stratford_separation_model('path_to_script.txt', 'CROSSFLOW', 'LATERAL', -0.52)
+    set_stratford_separation_model(, 'AXIAL')
+    set_stratford_separation_model(, 'CROSSFLOW', 'LATERAL', -0.52)
     """
     
     # Type and value checking
@@ -349,7 +349,7 @@ def set_stratford_separation_model(model, crossflow_direction=None, cp=None):
             "#************************************************************************",
             "#****************** Set the Stratford separation model ******************",
             "#************************************************************************",
-            "",
+            "#",
             f"SET_STRATFORD_SEPARATION_MODEL {model} {crossflow_direction} {cp}"
         ]
     else:
@@ -357,7 +357,7 @@ def set_stratford_separation_model(model, crossflow_direction=None, cp=None):
             "#************************************************************************",
             "#****************** Set the Stratford (axial) separation model **********",
             "#************************************************************************",
-            "",
+            "#",
             f"SET_STRATFORD_SEPARATION_MODEL {model}"
         ]
 
@@ -369,13 +369,13 @@ def disable_flow_separation():
     Appends lines to script state to disable viscous flow separation.
     
     Example usage:
-        disable_flow_separation('path_to_script.txt')
+        disable_flow_separation()
     """
     lines = [
         "#************************************************************************",
         "#****************** Disable the viscous flow separation *****************",
         "#************************************************************************",
-        "",
+        "#",
         "DISABLE_FLOW_SEPARATION"
     ]
     script.append_lines(lines)
@@ -392,7 +392,7 @@ def solver_settings(angle_of_attack=0., sideslip_angle=0.,
     Appends lines to script state to set the solver settings.
     
     Example usage:
-        solver_settings('path_to_script.txt')
+        solver_settings()
     """
     # Type and value checking
     if not isinstance(angle_of_attack, (int, float)) or abs(angle_of_attack) >= 90:
@@ -430,7 +430,7 @@ def solver_settings(angle_of_attack=0., sideslip_angle=0.,
         "#************************************************************************",
         "#********* Set the solver settings **************************************",
         "#************************************************************************",
-        "",
+        "#",
         "SOLVER_SETTINGS",
         f"ANGLE_OF_ATTACK {angle_of_attack}",
         f"SIDESLIP_ANGLE {sideslip_angle}",
@@ -457,7 +457,7 @@ def solver_set_aoa(angle):
     :param angle: Angle of attack in degrees. |angle| must be < 90.
     
     Example usage:
-    solver_set_aoa('path_to_script.txt', -5.0)
+    solver_set_aoa(, -5.0)
     """
     
     # Type and value checking
@@ -470,7 +470,7 @@ def solver_set_aoa(angle):
         "#************************************************************************",
         "#********* Set the solver AOA *******************************************",
         "#************************************************************************",
-        "",
+        "#",
         f"SOLVER_SET_AOA {angle}"
     ]
     
@@ -486,7 +486,7 @@ def solver_set_sideslip(angle):
     :param angle: Side-slip angle in degrees. |angle| must be < 90.
     
     Example usage:
-    solver_set_sideslip('path_to_script.txt', 5.0)
+    solver_set_sideslip(, 5.0)
     """
     
     # Type and value checking
@@ -499,7 +499,7 @@ def solver_set_sideslip(angle):
         "#************************************************************************",
         "#********* Set the solver Side-slip angle *******************************",
         "#************************************************************************",
-        "",
+        "#",
         f"SOLVER_SET_SIDESLIP {angle}"
     ]
     
@@ -514,7 +514,7 @@ def solver_set_velocity(velocity=30.0):
     :param velocity: The free-stream velocity value.
     
     Example usage:
-    solver_set_velocity('path_to_script.txt')
+    solver_set_velocity()
     """
     
     # Type and value checking
@@ -525,7 +525,7 @@ def solver_set_velocity(velocity=30.0):
         "#************************************************************************",
         "#********* Set the solver free-stream velocity **************************",
         "#************************************************************************",
-        "",
+        "#",
         f"SOLVER_SET_VELOCITY {velocity}"
     ]
 
@@ -540,7 +540,7 @@ def solver_set_iterations(num_iterations=500):
     :param num_iterations: The number of solver iterations.
     
     Example usage:
-    solver_set_iterations('path_to_script.txt')
+    solver_set_iterations()
     """
     
     # Type and value checking
@@ -551,7 +551,7 @@ def solver_set_iterations(num_iterations=500):
         "#************************************************************************",
         "#****************** Set the solver iterations ***************************",
         "#************************************************************************",
-        "",
+        "#",
         f"SOLVER_SET_ITERATIONS {num_iterations}"
     ]
 
@@ -566,7 +566,7 @@ def solver_set_convergence(threshold=1E-5):
     :param threshold: Convergence threshold value.
     
     Example usage:
-    solver_set_convergence('path_to_script.txt')
+    solver_set_convergence()
     """
     
     # Type and value checking
@@ -577,7 +577,7 @@ def solver_set_convergence(threshold=1E-5):
         "#************************************************************************",
         "#****************** Set the solver convergence threshold ****************",
         "#************************************************************************",
-        "",
+        "#",
         f"SOLVER_SET_CONVERGENCE {threshold}"
     ]
 
@@ -593,7 +593,7 @@ def solver_set_forced_iterations(mode='ENABLE'):
     :param mode: Either 'ENABLE' or 'DISABLE'.
     
     Example usage:
-    solver_set_forced_iterations('path_to_script.txt')
+    solver_set_forced_iterations()
     """
     
     # Value checking
@@ -605,7 +605,7 @@ def solver_set_forced_iterations(mode='ENABLE'):
         "#************************************************************************",
         "#****************** Enable solver forced iterations mode ****************",
         "#************************************************************************",
-        "",
+        "#",
         f"SOLVER_SET_FORCED_ITERATIONS {mode}"
     ]
 
@@ -620,7 +620,7 @@ def solver_set_ref_velocity(value=100.):
     :param value: Reference velocity.
     
     Example usage:
-    solver_set_ref_velocity('path_to_script.txt')
+    solver_set_ref_velocity()
     """
     
     # Type and value checking
@@ -631,7 +631,7 @@ def solver_set_ref_velocity(value=100.):
         "#************************************************************************",
         "#********* Set the solver reference velocity ****************************",
         "#************************************************************************",
-        "",
+        "#",
         f"SOLVER_SET_REF_VELOCITY {value}"
     ]
 
@@ -646,7 +646,7 @@ def solver_set_ref_area(value=1.):
     :param value: Reference area.
     
     Example usage:
-    solver_set_ref_area('path_to_script.txt')
+    solver_set_ref_area()
     """
     
     # Type and value checking
@@ -657,7 +657,7 @@ def solver_set_ref_area(value=1.):
         "#************************************************************************",
         "#********* Set the solver reference area ********************************",
         "#************************************************************************",
-        "",
+        "#",
         f"SOLVER_SET_REF_AREA {value}"
     ]
 
@@ -672,7 +672,7 @@ def solver_set_ref_length(length=1.):
     :param length: Reference length.
     
     Example usage:
-    solver_set_ref_length('path_to_script.txt', length=2.5)
+    solver_set_ref_length(, length=2.5)
     """
 
     # Type and value checking
@@ -683,7 +683,7 @@ def solver_set_ref_length(length=1.):
         "#************************************************************************",
         "#********* Set the solver reference length ******************************",
         "#************************************************************************",
-        "",
+        "#",
         f"SOLVER_SET_REF_LENGTH {length}"
     ]
 
@@ -698,7 +698,7 @@ def solver_set_compressibility(compressibility='ENABLE'):
     :param compressibility: Either 'ENABLE' or 'DISABLE'.
     
     Example usage:
-    solver_set_compressibility('path_to_script.txt', compressibility='DISABLE')
+    solver_set_compressibility(, compressibility='DISABLE')
     """
 
     # Type and value checking
@@ -710,7 +710,7 @@ def solver_set_compressibility(compressibility='ENABLE'):
         "#************************************************************************",
         "#********* Set the solver compressibility *******************************",
         "#************************************************************************",
-        "",
+        "#",
         f"SOLVER_SET_COMPRESSIBILITY {compressibility}"
     ]
 
@@ -722,7 +722,7 @@ def solver_parallel_cores(num_cores=16):
     Appends lines to script state to set the number of solver parallel cores.
     
     Example usage:
-    solver_parallel_cores('path_to_script.txt')
+    solver_parallel_cores()
     
 
     :param num_cores: Number of parallel cores.
@@ -736,7 +736,7 @@ def solver_parallel_cores(num_cores=16):
         "#************************************************************************",
         "#********* Set the solver parallel cores ********************************",
         "#************************************************************************",
-        "",
+        "#",
         f"SOLVER_PARALLEL_CORES {num_cores}"
     ]
 
@@ -748,7 +748,7 @@ def solver_set_mesh_induced_wake_velocity(enable=True):
     Appends lines to script state to set the solver mesh induced wake velocity.
     
     Example usage:
-    solver_set_mesh_induced_wake_velocity('path_to_script.txt')
+    solver_set_mesh_induced_wake_velocity()
     
 
     :param enable: Boolean to either enable or disable the feature.
@@ -764,7 +764,7 @@ def solver_set_mesh_induced_wake_velocity(enable=True):
         "#************************************************************************",
         "#********* Set the solver mesh induced wake velocity ********************",
         "#************************************************************************",
-        "",
+        "#",
         f"SOLVER_SET_MESH_INDUCED_WAKE_VELOCITY {status}"
     ]
 
@@ -779,7 +779,7 @@ def solver_set_adverse_gradient_boundary_layer(mode='ENABLE'):
     :param mode: Mode to set the adverse pressure gradient boundary layer. ('ENABLE' or 'DISABLE')
     
     Example usage:
-    solver_set_adverse_gradient_boundary_layer('path_to_script.txt', 'DISABLE')
+    solver_set_adverse_gradient_boundary_layer(, 'DISABLE')
     """
     
     # Type and value checking
@@ -791,7 +791,7 @@ def solver_set_adverse_gradient_boundary_layer(mode='ENABLE'):
         "#************************************************************************",
         "#********* Set the adverse pressure gradient boundary layer mode ********",
         "#************************************************************************",
-        "",
+        "#",
         f"SOLVER_SET_ADVERSE_GRADIENT_BOUNDARY_LAYER {mode}"
     ]
 
@@ -806,7 +806,7 @@ def solver_set_farfield_layers(value=3):
     :param value: Number of farfield layers. (Default is 3)
     
     Example usage:
-    solver_set_farfield_layers('path_to_script.txt', 4)
+    solver_set_farfield_layers(, 4)
     """
     
     # Type and value checking
@@ -820,7 +820,7 @@ def solver_set_farfield_layers(value=3):
         "#************************************************************************",
         "#********* Set the solver far-field agglomeration layers ****************",
         "#************************************************************************",
-        "",
+        "#",
         f"SOLVER_SET_FARFIELD_LAYERS {value}"
     ]
 
@@ -835,7 +835,7 @@ def solver_unsteady_pressure_and_kutta(status='ENABLE'):
     :param status: Can be 'ENABLE' or 'DISABLE'.
     
     Example usage:
-    solver_unsteady_pressure_and_kutta('path_to_script.txt', status='ENABLE')
+    solver_unsteady_pressure_and_kutta(, status='ENABLE')
     """
     
     # Type and value checking
@@ -846,7 +846,7 @@ def solver_unsteady_pressure_and_kutta(status='ENABLE'):
         "#************************************************************************",
         "#********* Enable solver unsteady Bernoulli and Kutta terms *************",
         "#************************************************************************",
-        "",
+        "#",
         f"SOLVER_UNSTEADY_PRESSURE_AND_KUTTA {status}"
     ]
     
@@ -861,7 +861,7 @@ def solver_vortex_ring_normalization(status='ENABLE'):
     :param status: Can be 'ENABLE' or 'DISABLE'.
     
     Example usage:
-    solver_vortex_ring_normalization('path_to_script.txt', status='ENABLE')
+    solver_vortex_ring_normalization(, status='ENABLE')
     """
     
     # Type and value checking
@@ -872,14 +872,14 @@ def solver_vortex_ring_normalization(status='ENABLE'):
         "#************************************************************************",
         "#********* Enable solver vortex ring normalization **********************",
         "#************************************************************************",
-        "",
+        "#",
         f"SOLVER_VORTEX_RING_NORMALIZATION {status}"
     ]
     
     script.append_lines(lines)
     return
 
-def set_solver_convergence_iterations(value=500):
+def convergence_iterations(value=500):
     """
     Appends lines to script state to set the solver convergence iterations.
     
@@ -887,7 +887,7 @@ def set_solver_convergence_iterations(value=500):
     :param value: Number of iterations the solver must run after crossing the convergence threshold.
     
     Example usage:
-    set_solver_convergence_iterations('path_to_script.txt')
+    convergence_iterations()
     """
     
     # Type and value checking
@@ -898,7 +898,7 @@ def set_solver_convergence_iterations(value=500):
         "#************************************************************************************",
         "#************** Set the solver convergence iterations *********************************",
         "#************************************************************************************",
-        "",
+        "#",
         f"SET_SOLVER_CONVERGENCE_ITERATIONS {value}"
     ]
 
@@ -914,7 +914,7 @@ def set_wake_streamwise_agglomeration(enable=True):
     :param enable: Boolean value to enable or disable the wake-->streamwise agglomeration feature.
     
     Example usage:
-    set_wake_streamwise_agglomeration('path_to_script.txt')
+    set_wake_streamwise_agglomeration()
     """
     
     # Type and value checking
@@ -927,7 +927,7 @@ def set_wake_streamwise_agglomeration(enable=True):
         "#************************************************************************",
         "#********* Enable the wake-->streamwise agglomeration feature ************",
         "#************************************************************************",
-        "",
+        "#",
         f"SET_WAKE_STREAMWISE_AGGLOMERATION {status}"
     ]
 

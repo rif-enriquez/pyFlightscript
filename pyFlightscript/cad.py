@@ -231,8 +231,8 @@ def cad_create_curve_select(curve_index=1):
     :param curve_index: Index of the drawing curve to be selected.
     
     Example usage:
-    cad_create_curve_select('path_to_script.txt', 2)
-    cad_create_curve_select('path_to_script.txt', -1)  # To select ALL curves
+    cad_create_curve_select(, 2)
+    cad_create_curve_select(, -1)  # To select ALL curves
     """
     
     # Type and value checking
@@ -243,7 +243,7 @@ def cad_create_curve_select(curve_index=1):
         "#************************************************************************",
         "#********** Select one of the CAD-->Create drawing curves ***************",
         "#************************************************************************",
-        "",
+        "#",
         f"CAD_CREATE_CURVE_SELECT {curve_index}"
     ]
 
@@ -258,8 +258,8 @@ def cad_create_curve_unselect(curve_index=1):
     :param curve_index: Index of the drawing curve to be unselected.
     
     Example usage:
-    cad_create_curve_unselect('path_to_script.txt', 1)
-    cad_create_curve_unselect('path_to_script.txt', -1)  # To unselect ALL curves
+    cad_create_curve_unselect(, 1)
+    cad_create_curve_unselect(, -1)  # To unselect ALL curves
     """
     
     # Type and value checking
@@ -270,7 +270,7 @@ def cad_create_curve_unselect(curve_index=1):
         "#************************************************************************",
         "#********** Unselect specific CAD-->Create drawing curves by index ******",
         "#************************************************************************",
-        "",
+        "#",
         f"CAD_CREATE_CURVE_UNSELECT {curve_index}"
     ]
 
@@ -285,7 +285,7 @@ def cad_create_curve_reverse(curve_index=1):
     :param curve_index: Index of the drawing curve to be reversed.
 
     Example usage:
-    cad_create_curve_reverse('path_to_script.txt', 2)
+    cad_create_curve_reverse(, 2)
     """
 
     # Type and value checking
@@ -297,7 +297,7 @@ def cad_create_curve_reverse(curve_index=1):
             "#************************************************************************",
             "#********** Reverse ALL of the CAD-->Create drawing curves **************",
             "#************************************************************************",
-            "",
+            "#",
             "CAD_CREATE_CURVE_REVERSE -1"
         ]
     else:
@@ -305,7 +305,7 @@ def cad_create_curve_reverse(curve_index=1):
             "#************************************************************************",
             "#********** Reverse specific CAD-->Create drawing curves by index *******",
             "#************************************************************************",
-            "",
+            "#",
             f"CAD_CREATE_CURVE_REVERSE {curve_index}"
         ]
 
@@ -320,14 +320,14 @@ def cad_create_curve_delete_all():
 
 
     Example usage:
-    cad_create_curve_delete_all('path_to_script.txt')
+    cad_create_curve_delete_all()
     """
 
     lines = [
         "#************************************************************************",
         "#********** Delete ALL of the CAD-->Create drawing curves ***************",
         "#************************************************************************",
-        "",
+        "#",
         "CAD_CREATE_CURVE_DELETE_ALL"
     ]
 
@@ -341,14 +341,14 @@ def cad_create_curve_delete_selected():
 
     
     Example usage:
-    cad_create_curve_delete_selected('path_to_script.txt')
+    cad_create_curve_delete_selected()
     """
     
     lines = [
         "#************************************************************************",
         "#********** Delete only selected CAD-->Create drawing curves ************",
         "#************************************************************************",
-        "",
+        "#",
         "CAD_CREATE_CURVE_DELETE_SELECTED"
     ]
 
@@ -362,14 +362,14 @@ def cad_create_curve_delete_unselected():
 
     
     Example usage:
-    cad_create_curve_delete_unselected('path_to_script.txt')
+    cad_create_curve_delete_unselected()
     """
     
     lines = [
         "#************************************************************************",
         "#********** Delete only unselected CAD-->Create drawing curves **********",
         "#************************************************************************",
-        "",
+        "#",
         "CAD_CREATE_CURVE_DELETE_UNSELECTED"
     ]
 
@@ -384,7 +384,7 @@ def cad_create_curve_export_ccs(file_path):
     :param file_path: File name with the path to the file.
     
     Example usage:
-    cad_create_curve_export_ccs('path_to_script.txt', 'C:\\Users\\Desktop\\Geometries\\sample_CCS_export.csv')
+    cad_create_curve_export_ccs(, 'C:\\Users\\Desktop\\Geometries\\sample_CCS_export.csv')
     """
     
     # Type and value checking
@@ -395,7 +395,7 @@ def cad_create_curve_export_ccs(file_path):
         "#************************************************************************",
         "#********* Export selected CAD-->Create drawing curves to CSV file ******",
         "#************************************************************************",
-        "",
+        "#",
         "CAD_CREATE_CURVE_EXPORT_CCS",
         f"{file_path}"
     ]
@@ -411,14 +411,14 @@ def import_cad(cad_filepath):
     :param cad_filepath: Path to the CAD file.
     
     Example usage:
-    import_cad('path_to_script.txt', 'C:\\Users\\Desktop\\Geometries\\sample.igs')
+    import_cad(, 'C:\\Users\\Desktop\\Geometries\\sample.igs')
     """
 
     lines = [
         "#************************************************************************",
         "#******************* Import a geometry into the simulation **************",
         "#************************************************************************",
-        "",
+        "#",
         "IMPORT_CAD",
         cad_filepath
     ]
@@ -435,7 +435,7 @@ def convert_cad_to_mesh(model_index):
     :param model_index: Index of the CAD model to be transferred to the mesh node.
     
     Example usage:
-    convert_cad_to_mesh('path_to_script.txt', 1)
+    convert_cad_to_mesh(, 1)
     """
     
     # Type and value checking
@@ -446,7 +446,7 @@ def convert_cad_to_mesh(model_index):
         "#************************************************************************",
         "#****** Transfer CAD model mesh to the Mesh node of the simulation ******",
         "#************************************************************************",
-        "",
+        "#",
         f"CONVERT_CAD_TO_MESH {model_index}"
     ]
     

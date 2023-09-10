@@ -10,7 +10,7 @@ def delete_transition_trip(transition_trip_index):
     :param transition_trip_index: Index of the BL transition trip edges to be deleted.
     
     Example usage:
-    delete_transition_trip('path_to_script.txt', 2)
+    delete_transition_trip(, 2)
     """
 
     # Type and value checking
@@ -21,7 +21,7 @@ def delete_transition_trip(transition_trip_index):
         "#************************************************************************",
         "#************ Delete an existing transition trip edge set ***************",
         "#************************************************************************",
-        "",
+        "#",
         f"DELETE_TRANSITION_TRIP {transition_trip_index}"
     ]
 

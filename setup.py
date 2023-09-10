@@ -16,14 +16,9 @@ setup(
         "Operating System :: OS Independent",
     ],
     python_requires=">=3.6",
-    install_requires=[
-    ],
-    extras_require={
-        # additional dependencies for development
-    },
-    package_data={
-        # include data files with the package
-    },
+    install_requires=[    ],
+    extras_require={       },
+    package_data={   },
 )
 
 # Add the copyright statement

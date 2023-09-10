@@ -9,7 +9,7 @@ def export_solver_analysis_spreadsheet(output_file):
     :param output_file: Path to the output file where the aerodynamic results will be stored.
     
     Example usage:
-    export_solver_analysis_spreadsheet('path_to_script.txt', 'C:\\Users\\Desktop\\Models\\scripting_test_output_data.txt')
+    export_solver_analysis_spreadsheet(, 'C:\\Users\\Desktop\\Models\\scripting_test_output_data.txt')
     """
     
     # Checking for valid file path
@@ -20,7 +20,7 @@ def export_solver_analysis_spreadsheet(output_file):
         "#************************************************************************",
         "#****************** Export the aerodynamic results **********************",
         "#************************************************************************",
-        "",
+        "#",
         "EXPORT_SOLVER_ANALYSIS_SPREADSHEET",
         f"{output_file}"
     ]
@@ -36,7 +36,7 @@ def export_solver_analysis_tecplot(output_file):
     :param output_file: Path to the output file where the Tecplot data will be stored.
     
     Example usage:
-    export_solver_analysis_tecplot('path_to_script.txt', 'C:\\Users\\Desktop\\Models\\scripting_test_output_data.dat')
+    export_solver_analysis_tecplot(, 'C:\\Users\\Desktop\\Models\\scripting_test_output_data.dat')
     """
     
     # Checking for valid file path
@@ -47,7 +47,7 @@ def export_solver_analysis_tecplot(output_file):
         "#************************************************************************",
         "#****************** Export the Tecplot data file *************************",
         "#************************************************************************",
-        "",
+        "#",
         "EXPORT_SOLVER_ANALYSIS_TECPLOT",
         f"{output_file}"
     ]
@@ -68,9 +68,9 @@ def export_solver_analysis_vtk(output_filepath, surfaces, boundaries=None):
     
     Example usage:
     # Export the first two solver boundaries in VTK file
-    export_solver_analysis_vtk('path_to_script.txt', 'C:\\Users\\Desktop\\Models\\scripting_test_output_data.vtk', 2, [1, 2])
+    export_solver_analysis_vtk(, 'C:\\Users\\Desktop\\Models\\scripting_test_output_data.vtk', 2, [1, 2])
     # Export ALL solver boundaries in VTK file
-    export_solver_analysis_vtk('path_to_script.txt', 'C:\\Users\\Desktop\\Models\\scripting_test_output_data.vtk', -1)
+    export_solver_analysis_vtk(, 'C:\\Users\\Desktop\\Models\\scripting_test_output_data.vtk', -1)
     """
 
     lines = [
@@ -96,9 +96,9 @@ def set_vtk_export_variables(num_variables, export_wake, variables=None):
     
     Example usage:
     # Set a custom list of export variables in VTK file
-    set_vtk_export_variables('path_to_script.txt', 5, 'DISABLE', ['X', 'Y', 'Z', 'CP', 'PSTATIC'])
+    set_vtk_export_variables(, 5, 'DISABLE', ['X', 'Y', 'Z', 'CP', 'PSTATIC'])
     # Set all variables for export in VTK file
-    set_vtk_export_variables('path_to_script.txt', -1, 'ENABLE')
+    set_vtk_export_variables(, -1, 'ENABLE')
     """
     
     # Type and value checking
@@ -136,13 +136,13 @@ def export_solver_analysis_csv(file_path,
     
     Example usage:
     # Export the FEM CSV file for the first three boundaries
-    export_solver_analysis_csv('path_to_script.txt', 
+    export_solver_analysis_csv(, 
                                'C:\\Users\\Desktop\\Models\\scripting_test_output_data.txt',
                                surfaces=3,
                                boundary_indices=[1,2,3])
                                
     # Export the FEM CSV file for ALL boundaries
-    export_solver_analysis_csv('path_to_script.txt', 
+    export_solver_analysis_csv(, 
                                'C:\\Users\\Desktop\\Models\\scripting_test_output_data.txt')
     """
     
@@ -165,7 +165,7 @@ def export_solver_analysis_csv(file_path,
         "#************************************************************************",
         "#****************** Export the FEM CSV based on solver results **********",
         "#************************************************************************",
-        "",
+        "#",
         "EXPORT_SOLVER_ANALYSIS_CSV",
         file_path,
         f"FORMAT {format_value}",
@@ -191,7 +191,7 @@ def export_solver_analysis_pload_bdf(file_path, surfaces=-1, boundary_indices=No
     
     Example usage:
     # Export the NASTRAN PLOAD BDF file for the first three boundaries
-    export_solver_analysis_pload_bdf('path_to_script.txt', 
+    export_solver_analysis_pload_bdf(, 
                                      'C:\\Users\\Desktop\\Models\\scripting_test_output_data.bdf',
                                      surfaces=3,
                                      boundary_indices=[1,2,3])
@@ -207,7 +207,7 @@ def export_solver_analysis_pload_bdf(file_path, surfaces=-1, boundary_indices=No
         "#************************************************************************",
         "#*********** Export the NASTRAN PLOAD BDF based on solver results *******",
         "#************************************************************************",
-        "",
+        "#",
         "EXPORT_SOLVER_ANALYSIS_PLOAD_BDF",
         file_path,
         f"SURFACES {surfaces}"
@@ -230,7 +230,7 @@ def export_solver_analysis_force_distributions(output_filepath, surfaces=-1, bou
     :param boundary_indices: List of boundary indices to be exported. If surfaces is not -1, this parameter must be provided.
     
     Example usage:
-    export_solver_analysis_force_distributions('path_to_script.txt', 'C:\\Users\\Desktop\\Models\\scripting_test_output_data.txt', 3, [1, 2, 3])
+    export_solver_analysis_force_distributions(, 'C:\\Users\\Desktop\\Models\\scripting_test_output_data.txt', 3, [1, 2, 3])
     """
     
     # Type and value checking
@@ -248,7 +248,7 @@ def export_solver_analysis_force_distributions(output_filepath, surfaces=-1, bou
         "#************************************************************************",
         "#******* Export force distributions file for the selected boundaries ****",
         "#************************************************************************",
-        "",
+        "#",
         "EXPORT_SOLVER_ANALYSIS_FORCE_DISTRIBUTIONS",
         output_filepath,
         f"SURFACES {surfaces}"

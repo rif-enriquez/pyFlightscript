@@ -14,7 +14,7 @@ def create_new_surface_section(frame=1, plane='XZ', offset=1.0,
     :param surfaces: List of geometry surfaces assigned to the surface section.
     
     Example usage:
-        create_new_surface_section('path_to_script.txt', frame=1, plane='XZ', offset=1.0, 
+        create_new_surface_section(, frame=1, plane='XZ', offset=1.0, 
                                    plot_direction=1, surfaces=[1,4,5])
     """
     
@@ -39,7 +39,7 @@ def create_new_surface_section(frame=1, plane='XZ', offset=1.0,
         "#************************************************************************",
         "#****************** Create new surface section **************************",
         "#************************************************************************",
-        "",
+        "#",
         "CREATE_NEW_SURFACE_SECTION",
         f"FRAME {frame}",
         f"PLANE {plane}",
@@ -58,7 +58,7 @@ def new_surface_section_distribution(frame=1, plane='XZ',
     Appends lines to script state to create new surface section distribution.
     
     Example usage:
-    >>> new_surface_section_distribution('path_to_script.txt')
+    >>> new_surface_section_distribution()
     
 
     :param frame: Index of the coordinate system to be used for this surface section.
@@ -89,7 +89,7 @@ def new_surface_section_distribution(frame=1, plane='XZ',
         "#************************************************************************",
         "#****************** Create new surface section distribution *************",
         "#************************************************************************",
-        "",
+        "#",
         "NEW_SURFACE_SECTION_DISTRIBUTION",
         f"FRAME {frame}",
         f"PLANE {plane}",
@@ -107,7 +107,7 @@ def compute_surface_sectional_loads(units='NEWTONS'):
     Appends lines to script state to compute sectional loads on existing surface sections.
     
     Example usage:
-    >>> compute_surface_sectional_loads('path_to_script.txt')
+    >>> compute_surface_sectional_loads()
     
 
     :param units: Unit type.
@@ -119,7 +119,7 @@ def compute_surface_sectional_loads(units='NEWTONS'):
         "#************************************************************************",
         "#********** Compute sectional loads on existing surface sections ********",
         "#************************************************************************",
-        "",
+        "#",
         f"COMPUTE_SURFACE_SECTIONAL_LOADS {units}"
     ]
 
@@ -141,7 +141,7 @@ def export_surface_sectional_loads(filename):
         "#************************************************************************",
         "#********** Export sectional loads on existing surface sections *********",
         "#************************************************************************",
-        "",
+        "#",
         "EXPORT_SURFACE_SECTIONAL_LOADS",
         f"{filename}"
     ]
@@ -164,7 +164,7 @@ def update_all_surface_sections():
         "#************************************************************************",
         "#****************** Update the surface sections *************************",
         "#************************************************************************",
-        "",
+        "#",
         "UPDATE_ALL_SURFACE_SECTIONS"
     ]
 
@@ -179,7 +179,7 @@ def export_all_surface_sections(filename):
     :param filename: Filename with path for the surface sections.
     
     Example usage:
-    export_all_surface_sections('path_to_script.txt', 'C:/.../Test_surface_sections.txt')
+    export_all_surface_sections(, 'C:/.../Test_surface_sections.txt')
     """
     
     # Type and value checking
@@ -190,7 +190,7 @@ def export_all_surface_sections(filename):
         "#************************************************************************",
         "#****************** Export all surface sections to file *****************",
         "#************************************************************************",
-        "",
+        "#",
         "EXPORT_ALL_SURFACE_SECTIONS",
         f"{filename}"
     ]
@@ -206,7 +206,7 @@ def delete_surface_section(index):
     :param index: Index of the surface section to be deleted.
     
     Example usage:
-    delete_surface_section('path_to_script.txt', 2)
+    delete_surface_section(, 2)
     """
     
     # Type and value checking
@@ -217,7 +217,7 @@ def delete_surface_section(index):
         "#************************************************************************",
         "#****************** Delete a surface section ****************************",
         "#************************************************************************",
-        "",
+        "#",
         f"DELETE_SURFACE_SECTION {index}"
     ]
     
@@ -231,14 +231,14 @@ def delete_all_surface_sections():
 
     
     Example usage:
-        delete_probe_points('path_to_script.txt')
+        delete_probe_points()
     """
     
     lines = [
         "#************************************************************************",
         "#******************** Delete all surface sections ***********************",
         "#************************************************************************",
-        "",
+        "#",
         "DELETE_ALL_SURFACE_SECTIONS"
     ]
 

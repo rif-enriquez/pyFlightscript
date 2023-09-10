@@ -8,7 +8,7 @@ def clear_log():
 
     
     Example usage:
-    clear_log('path_to_script.txt')
+    clear_log()
     """
     
     lines = ["CLEAR_LOG"]
@@ -24,14 +24,14 @@ def export_log(log_filepath):
     :param log_filepath: Path to the output log file.
     
     Example usage:
-    export_log('path_to_script.txt', 'C:/.../Output_log.txt')
+    export_log(, 'C:/.../Output_log.txt')
     """
 
     lines = [
         "#************************************************************************",
         "#****************** Export log window messages to file ******************",
         "#************************************************************************",
-        "",
+        "#",
         "EXPORT_LOG",
         log_filepath
     ]

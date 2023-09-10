@@ -6,7 +6,7 @@ def new_probe_point(type_value='VOLUME', x1=1.3, y1=3.3, z1=-0.5):
     Appends lines to script state to create a new probe point.
     
     Example usage:
-    new_probe_point('path_to_script.txt', type_value='VOLUME', x1=1.3, y1=3.3, z1=-0.5)
+    new_probe_point(, type_value='VOLUME', x1=1.3, y1=3.3, z1=-0.5)
     
 
     :param type_value: Type of the probe point. Either 'VOLUME' or 'SURFACE'.
@@ -22,7 +22,7 @@ def new_probe_point(type_value='VOLUME', x1=1.3, y1=3.3, z1=-0.5):
         "#************************************************************************",
         "#****************** Create a new probe point ****************************",
         "#************************************************************************",
-        "",
+        "#",
         f"NEW_PROBE_POINT {type_value} {x1} {y1} {z1}"
     ]
 
@@ -34,7 +34,7 @@ def new_probe_line(numpts=15, x1=0, y1=0, z1=0, x2=1.5, y2=-1.0, z2=0):
     Appends lines to script state to create a new probe survey line.
     
     Example usage:
-    new_probe_line('path_to_script.txt', numpts=15, x1=0, y1=0, z1=0, x2=1.5, y2=-1.0, z2=0)
+    new_probe_line(, numpts=15, x1=0, y1=0, z1=0, x2=1.5, y2=-1.0, z2=0)
     
 
     :param numpts: Number of probe vertices along survey line.
@@ -50,7 +50,7 @@ def new_probe_line(numpts=15, x1=0, y1=0, z1=0, x2=1.5, y2=-1.0, z2=0):
         "#************************************************************************",
         "#****************** Create a new probe survey line **********************",
         "#************************************************************************",
-        "",
+        "#",
         f"NEW_PROBE_LINE {numpts} {x1} {y1} {z1} {x2} {y2} {z2}"
     ]
 
@@ -62,14 +62,14 @@ def update_probe_points():
     Appends lines to script state to update probe point flow properties.
     
     Example usage:
-        update_probe_points('path_to_script.txt')
+        update_probe_points()
     """
     
     lines = [
         "#************************************************************************",
         "#****************** Update probe point flow properties *****************",
         "#************************************************************************",
-        "",
+        "#",
         "UPDATE_PROBE_POINTS"
     ]
     
@@ -87,7 +87,7 @@ def probe_points_import(filepath, units='INCH', frame=1):
     :param filepath: Path to the probes file.
     
     Example usage:
-        probe_points_import('path_to_script.txt', units='METER', frame=2, filepath="C:/.../My_Probes.txt")
+        probe_points_import(, units='METER', frame=2, filepath="C:/.../My_Probes.txt")
     """
     
     check_valid_length_units(units)
@@ -99,7 +99,7 @@ def probe_points_import(filepath, units='INCH', frame=1):
         "#************************************************************************",
         "#****************** Import probe points from file ***********************",
         "#************************************************************************",
-        "",
+        "#",
         "PROBE_POINTS_IMPORT",
         f"UNITS {units}",
         f"FRAME {frame}",
@@ -118,14 +118,14 @@ def export_probe_points(filepath):
     :param filepath: Path to the file where probe points will be exported.
     
     Example usage:
-        export_probe_points('path_to_script.txt', filepath="C:/.../My_Probes_Export.txt")
+        export_probe_points(, filepath="C:/.../My_Probes_Export.txt")
     """
     
     lines = [
         "#************************************************************************",
         "#****************** Export probe points to file *************************",
         "#************************************************************************",
-        "",
+        "#",
         "EXPORT_PROBE_POINTS",
         filepath
     ]
@@ -140,14 +140,14 @@ def delete_probe_points():
 
     
     Example usage:
-        delete_probe_points('path_to_script.txt')
+        delete_probe_points()
     """
     
     lines = [
         "#************************************************************************",
         "#****************** Delete all existing probe points ********************",
         "#************************************************************************",
-        "",
+        "#",
         "DELETE_PROBE_POINTS"
     ]
 

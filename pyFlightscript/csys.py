@@ -6,7 +6,7 @@ def create_new_coordinate_system():
     Appends lines to script state to create a new coordinate system.
     
     Example usage:
-    create_new_coordinate_system('path_to_script.txt')
+    create_new_coordinate_system()
 
 
     """
@@ -15,7 +15,7 @@ def create_new_coordinate_system():
         "#************************************************************************",
         "#****************** Create a new coordinate system **********************",
         "#************************************************************************",
-        "",
+        "#",
         "CREATE_NEW_COORDINATE_SYSTEM"
     ]
 
@@ -30,7 +30,7 @@ def edit_coordinate_system(frame, name, origin_x, origin_y, origin_z,
     Appends lines to script state to edit a local coordinate system.
 
     Example usage:
-    edit_coordinate_system('path_to_script.txt', 2, "Prop-1", 0, 1, 0.5,
+    edit_coordinate_system(, 2, "Prop-1", 0, 1, 0.5,
                            1, 0, 0, 0, -1, 0, 0, 0, -1.2)
 
 
@@ -63,7 +63,7 @@ def edit_coordinate_system(frame, name, origin_x, origin_y, origin_z,
         "#************************************************************************",
         "#****************** Edit a local coordinate system **********************",
         "#************************************************************************",
-        "",
+        "#",
         "EDIT_COORDINATE_SYSTEM",
         f"FRAME {frame}",
         f"NAME {name}",
@@ -89,7 +89,7 @@ def set_coordinate_system_name(frame, name):
     Appends lines to script state to set the name of an existing local coordinate system.
     
     Example usage:
-    set_coordinate_system_name('path_to_script.txt', 2, 'Propeller_Axis')
+    set_coordinate_system_name(, 2, 'Propeller_Axis')
     
 
     :param frame: Index of the local coordinate system.
@@ -110,7 +110,7 @@ def set_coordinate_system_name(frame, name):
         "#************************************************************************",
         "#********* Set the name of an existing local coordinate system **********",
         "#************************************************************************",
-        "",
+        "#",
         f"SET_COORDINATE_SYSTEM_NAME {frame} {name}"
     ]
 
@@ -123,7 +123,7 @@ def set_coordinate_system_origin(frame, x, y, z, units='INCH'):
     coordinate system.
     
     Example usage:
-    set_coordinate_system_origin('path_to_script.txt', 2, 0.0, 1.0, 1.4, 'INCH')
+    set_coordinate_system_origin(, 2, 0.0, 1.0, 1.4, 'INCH')
     
 
     :param frame: Index of the local coordinate system.
@@ -146,7 +146,7 @@ def set_coordinate_system_origin(frame, x, y, z, units='INCH'):
         "#************************************************************************",
         "#********* Set the origin of an existing local coordinate system ********",
         "#************************************************************************",
-        "",
+        "#",
         f"SET_COORDINATE_SYSTEM_ORIGIN {frame} {x} {y} {z} {units}"
     ]
 
@@ -157,7 +157,7 @@ def set_coordinate_system_axis(frame, axis, nx, ny, nz,
                                normalize_frame=True):
     """
     Example usage:
-    set_coordinate_system_axis('path_to_script.txt', 2, 'X', -1.0, 0.5, 0.0, True)
+    set_coordinate_system_axis(, 2, 'X', -1.0, 0.5, 0.0, True)
     
     Appends lines to script state to set an axis of an existing local coordinate system.
     
@@ -188,7 +188,7 @@ def set_coordinate_system_axis(frame, axis, nx, ny, nz,
         "#************************************************************************",
         "#********* Edit the axis of an existing local coordinate system *********",
         "#************************************************************************",
-        "",
+        "#",
         f"SET_COORDINATE_SYSTEM_AXIS {frame} {axis} {nx} {ny} {nz} {normalize_frame}"
     ]
 
@@ -203,7 +203,7 @@ def normalize_coordinate_system(coord_system_index=1):
     :param coord_system_index: Index of the local coordinate system to be rotated.
     
     Example usage:
-    normalize_coordinate_system('path_to_script.txt', 2)
+    normalize_coordinate_system(, 2)
     """
     
     # Type and value checking
@@ -214,7 +214,7 @@ def normalize_coordinate_system(coord_system_index=1):
         "#************************************************************************",
         "#****************** Normalize coordinate system axes ********************",
         "#************************************************************************",
-        "",
+        "#",
         f"NORMALIZE_COORDINATE_SYSTEM {coord_system_index}"
     ]
 
@@ -225,7 +225,7 @@ def rotate_coordinate_system(frame=2, rotation_frame=3,
                              rotation_axis='Y', angle=-45.0):
     """
     Example usage:
-    rotate_coordinate_system('path_to_script.txt')
+    rotate_coordinate_system()
     
     Appends lines to script state to rotate a coordinate system.
     
@@ -254,7 +254,7 @@ def rotate_coordinate_system(frame=2, rotation_frame=3,
         "#************************************************************************",
         "#****************** Rotate a coordinate system **************************",
         "#************************************************************************",
-        "",
+        "#",
         "ROTATE_COORDINATE_SYSTEM",
         f"FRAME {frame}",
         f"ROTATION_FRAME {rotation_frame}",
@@ -270,7 +270,7 @@ def translate_coordinate_system(frame, x, y, z, units='METER'):
     Appends lines to script state to translate a coordinate system.
     
     Example usage:
-    translate_coordinate_system('path_to_script.txt', 2, 0.0, 1.0, 1.4, 'INCH')
+    translate_coordinate_system(, 2, 0.0, 1.0, 1.4, 'INCH')
     
 
     :param frame: Index of the local coordinate system to be rotated.
@@ -294,7 +294,7 @@ def translate_coordinate_system(frame, x, y, z, units='METER'):
         "#************************************************************************",
         "#****************** Translate a coordinate system ***********************",
         "#************************************************************************",
-        "",
+        "#",
         f"TRANSLATE_COORDINATE_SYSTEM {frame} {x} {y} {z} {units}"
     ]
 
@@ -310,7 +310,7 @@ def duplicate_coordinate_system(frame):
     :param frame: Index of the local coordinate system to be duplicated.
     
     Example usage:
-    duplicate_coordinate_system('path_to_script.txt', 2)
+    duplicate_coordinate_system(, 2)
     """
     
     # Type and value checking
@@ -324,7 +324,7 @@ def duplicate_coordinate_system(frame):
         "#************************************************************************",
         "#****************** Duplicate a local coordinate system *****************",
         "#************************************************************************",
-        "",
+        "#",
         f"DUPLICATE_COORDINATE_SYSTEM {frame}"
     ]
 
@@ -334,7 +334,7 @@ def duplicate_coordinate_system(frame):
 def mirror_coordinate_system(frame, plane='XZ'):
     """
     Example usage:
-    mirror_coordinate_system('path_to_script.txt', 2)
+    mirror_coordinate_system(, 2)
     
     Appends lines to script state to mirror a local coordinate system.
     
@@ -355,7 +355,7 @@ def mirror_coordinate_system(frame, plane='XZ'):
         "#************************************************************************",
         "#****************** Mirror a local coordinate system ********************",
         "#************************************************************************",
-        "",
+        "#",
         f"MIRROR_COORDINATE_SYSTEM {frame} {plane}"
     ]
 
@@ -368,7 +368,7 @@ def delete_coordinate_system(frame):
     Appends lines to script state to delete a coordinate system.
     
     Example usage:
-    delete_coordinate_system('path_to_script.txt', 2)
+    delete_coordinate_system(, 2)
     
 
     :param frame: Index of the local coordinate system to be deleted.
@@ -384,7 +384,7 @@ def delete_coordinate_system(frame):
         "#************************************************************************",
         "#****************** Delete a coordinate system **************************",
         "#************************************************************************",
-        "",
+        "#",
         f"DELETE_COORDINATE_SYSTEM {frame}"
     ]
 

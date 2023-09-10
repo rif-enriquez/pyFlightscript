@@ -8,14 +8,14 @@ def view_resize():
 
     
     Example usage:
-    view_resize('path_to_script.txt')
+    view_resize()
     """
     
     lines = [
         "#************************************************************************",
         "#****************** Resizing the view in the scene **********************",
         "#************************************************************************",
-        "",
+        "#",
         "VIEW_RESIZE"
     ]
 
@@ -30,7 +30,7 @@ def change_scene_to(scene):
     :param scene: string to change the scene. Must be one of CAD, GEOMETRY, SOLVER, PLOTS
     
     Example usage:
-    change_scene_to('path_to_script.txt', 'CAD')
+    change_scene_to(, 'CAD')
     """
 
     valid_options = ["CAD", "GEOMETRY", "SOLVER", "PLOTS"]
@@ -41,7 +41,7 @@ def change_scene_to(scene):
         "#************************************************************************",
         "#************************ Change the Scene To ***************************",
         "#************************************************************************",
-        "",
+        "#",
         f"CHANGE_SCENE_TO_{scene}"
     ]
 
@@ -58,8 +58,8 @@ def set_scene_view(view_option='DEFAULTVIEW'):
                         'XZ_POSITIVE', 'XZ_NEGATIVE', 'YZ_POSITIVE', 'YZ_NEGATIVE'
                         
     Example Usage:
-    set_scene_view('path_to_script.txt', 'DEFAULTVIEW')
-    set_scene_view('path_to_script.txt', 'XY_NEGATIVE')
+    set_scene_view(, 'DEFAULTVIEW')
+    set_scene_view(, 'XY_NEGATIVE')
     """
     
     # Define a dictionary to match the view_option to the appropriate function name
@@ -82,7 +82,7 @@ def set_scene_view(view_option='DEFAULTVIEW'):
         "#************************************************************************",
         f"#****************** Setting Scene to {view_option} ************************",
         "#************************************************************************",
-        "",
+        "#",
         view_commands[view_option]
     ]
 
@@ -99,7 +99,7 @@ def set_scene_colormap_type(colormap='PRIMARY',
     :param type_value: Type of colormap.
     
     Example usage:
-    set_scene_colormap_type('path_to_script.txt', 'PRIMARY', 'BLACKBODY_STANDARD')
+    set_scene_colormap_type(, 'PRIMARY', 'BLACKBODY_STANDARD')
     """
     
     # Type and value checking
@@ -117,7 +117,7 @@ def set_scene_colormap_type(colormap='PRIMARY',
         "#************************************************************************",
         "#****************** Set solver colormap type ****************************",
         "#************************************************************************",
-        "",
+        "#",
         "SET_SCENE_COLORMAP_TYPE",
         f"COLORMAP {colormap}",
         f"TYPE {type_value}"
@@ -138,7 +138,7 @@ def set_scene_colormap_size(colormap='PRIMARY',
     :param height: Height value in pixels.
     
     Example usage:
-    set_scene_colormap_size('path_to_script.txt', 'PRIMARY', 300, 15)
+    set_scene_colormap_size(, 'PRIMARY', 300, 15)
     """
     
     # Type and value checking
@@ -156,7 +156,7 @@ def set_scene_colormap_size(colormap='PRIMARY',
         "#************************************************************************",
         "#****************** Set solver colormap size ****************************",
         "#************************************************************************",
-        "",
+        "#",
         "SET_SCENE_COLORMAP_SIZE",
         f"COLORMAP {colormap}",
         f"THICKNESS {thickness}",
@@ -171,7 +171,7 @@ def set_scene_colormap_position(colormap='PRIMARY', x=450, y=75):
     Appends lines to script state to set the solver colormap position.
     
     Example usage:
-        set_scene_colormap_position('path_to_script.txt', colormap='PRIMARY', x=450, y=75)
+        set_scene_colormap_position(, colormap='PRIMARY', x=450, y=75)
     
 
     :param colormap: Either 'PRIMARY' or 'SECONDARY'.
@@ -194,7 +194,7 @@ def set_scene_colormap_position(colormap='PRIMARY', x=450, y=75):
         "#************************************************************************",
         "#****************** Set solver colormap position ************************",
         "#************************************************************************",
-        "",
+        "#",
         "SET_SCENE_COLORMAP_POSITION",
         f"COLORMAP {colormap}",
         f"X {x}",
@@ -209,7 +209,7 @@ def set_scene_colormap_shading(colormap='PRIMARY', reverse='DISABLE', smooth='EN
     Appends lines to script state to set the solver colormap shading.
     
     Example usage:
-        set_scene_colormap_shading('path_to_script.txt', colormap='PRIMARY', reverse='DISABLE', smooth='ENABLE')
+        set_scene_colormap_shading(, colormap='PRIMARY', reverse='DISABLE', smooth='ENABLE')
     
 
     :param colormap: Either 'PRIMARY' or 'SECONDARY'.
@@ -233,7 +233,7 @@ def set_scene_colormap_shading(colormap='PRIMARY', reverse='DISABLE', smooth='EN
         "#************************************************************************",
         "#****************** Set solver colormap shading *************************",
         "#************************************************************************",
-        "",
+        "#",
         "SET_SCENE_COLORMAP_SHADING",
         f"COLORMAP {colormap}",
         f"REVERSE {reverse}",
@@ -252,7 +252,7 @@ def set_scene_colormap_custom_mode(colormap='PRIMARY', custom_range='ENABLE'):
     :param custom_range: Can be either 'ENABLE' or 'DISABLE'.
     
     Example usage:
-        set_scene_colormap_custom_mode('path_to_script.txt')
+        set_scene_colormap_custom_mode()
     """
     
     # Type and value checking
@@ -268,7 +268,7 @@ def set_scene_colormap_custom_mode(colormap='PRIMARY', custom_range='ENABLE'):
         "#************************************************************************",
         "#****************** Set solver colormap custom range mode ***************",
         "#************************************************************************",
-        "",
+        "#",
         "SET_SCENE_COLORMAP_CUSTOM_MODE",
         f"COLORMAP {colormap}",
         f"CUSTOM_RANGE {custom_range}"
@@ -289,7 +289,7 @@ def set_scene_colormap_custom_range(colormap='PRIMARY', cut_off_mode='OFF',
     :param minimum: Minimum value of the custom range.
     
     Example usage:
-        set_scene_colormap_custom_range('path_to_script.txt')
+        set_scene_colormap_custom_range()
     """
     
     # Type and value checking
@@ -311,7 +311,7 @@ def set_scene_colormap_custom_range(colormap='PRIMARY', cut_off_mode='OFF',
         "#************************************************************************",
         "#****************** Set solver colormap custom range ********************",
         "#************************************************************************",
-        "",
+        "#",
         "SET_SCENE_COLORMAP_CUSTOM_MODE",
         f"COLORMAP {colormap}",
         f"CUT_OFF_MODE {cut_off_mode}",

@@ -6,7 +6,7 @@ def create_new_motion_euclidean():
     Appends lines to script state to create a new Euclidean motion definition.
     
     Example usage:
-    create_new_motion_euclidean('path_to_script.txt')
+    create_new_motion_euclidean()
 
 
     """
@@ -15,7 +15,7 @@ def create_new_motion_euclidean():
         "#************************************************************************",
         "#************** Create a new Euclidean motion definition ****************",
         "#************************************************************************",
-        "",
+        "#",
         "CREATE_NEW_MOTION_EUCLIDEAN"
     ]
 
@@ -27,14 +27,14 @@ def create_new_motion_custom():
     Appends lines to script state to create a new Custom motion definition.
 
     Example usage:
-    create_new_motion_custom('path_to_script.txt')
+    create_new_motion_custom()
     """
     
     lines = [
         "#************************************************************************",
         "#************** Create a new Custom motion definition *******************",
         "#************************************************************************",
-        "",
+        "#",
         "CREATE_NEW_MOTION_CUSTOM"
     ]
 
@@ -47,7 +47,7 @@ def create_new_motion_6dof():
     Appends lines to script state to create a new 6DOF motion definition.
     
     Example usage:
-        create_new_motion_6dof('path_to_script.txt')
+        create_new_motion_6dof()
     
 
     """
@@ -56,7 +56,7 @@ def create_new_motion_6dof():
         "#************************************************************************",
         "#************** Create a new 6DOF motion definition ********************",
         "#************************************************************************",
-        "",
+        "#",
         "CREATE_NEW_MOTION_6DOF"
     ]
 
@@ -68,14 +68,14 @@ def create_new_motion_fsi():
     Appends lines to script state to create a new FSI motion definition.
     
     Example usage:
-    create_new_motion_fsi('path_to_script.txt')
+    create_new_motion_fsi()
     """
     
     lines = [
         "#************************************************************************",
         "#************** Create a new FSI motion definition **********************",
         "#************************************************************************",
-        "",
+        "#",
         "CREATE_NEW_MOTION_FSI"
     ]
 
@@ -92,8 +92,8 @@ def set_motion_boundaries(motion_id, num_boundaries=-1, boundaries=None):
     :param boundaries: List of geometry boundaries if num_boundaries is not set to -1.
     
     Example usage:
-    >>> set_motion_boundaries('path_to_script.txt', 1, 4, [1, 2, 3, 5])
-    >>> set_motion_boundaries('path_to_script.txt', 1)
+    >>> set_motion_boundaries(, 1, 4, [1, 2, 3, 5])
+    >>> set_motion_boundaries(, 1)
     """
 
     # Type and value checking
@@ -110,7 +110,7 @@ def set_motion_boundaries(motion_id, num_boundaries=-1, boundaries=None):
         "#************************************************************************",
         "#*********** Specify motion definition boundaries *************",
         "#************************************************************************",
-        "",
+        "#",
         f"SET_MOTION_BOUNDARIES {motion_id} {num_boundaries}",
     ]
     if num_boundaries != -1:
@@ -148,7 +148,7 @@ def set_motion_moving_frames(motion_id, num_frames, frames_list=None):
         "#************************************************************************",
         "#*********** Specify specified local frames to motion definition ********",
         "#************************************************************************",
-        "",
+        "#",
         f"SET_MOTION_MOVING_FRAMES {motion_id} {num_frames}"
     ]
     
@@ -183,7 +183,7 @@ def set_motion_coordinate_system(motion_id, coordinate_system_id):
         "#************************************************************************",
         "#********** Set the coordinate system for a motion definition ***********",
         "#************************************************************************",
-        "",
+        "#",
         f"SET_MOTION_COORDINATE_SYSTEM {motion_id} {coordinate_system_id}"
     ]
 
@@ -199,7 +199,7 @@ def set_motion_start_time(motion_id, start_time=0.0):
     :param start_time: Start time for the motion within the solver physical time.
     
     Example usage:
-    set_motion_start_time('path_to_script.txt', 1, 2.5)
+    set_motion_start_time(, 1, 2.5)
     """
     
     # Type and value checking
@@ -213,7 +213,7 @@ def set_motion_start_time(motion_id, start_time=0.0):
         "#************************************************************************",
         "#************** Set the start time for a motion definition **************",
         "#************************************************************************",
-        "",
+        "#",
         f"SET_MOTION_START_TIME {motion_id} {start_time}"
     ]
 
@@ -229,7 +229,7 @@ def set_motion_velocity(motion_id, vx=0.0, vy=0.0, vz=0.0):
     :param vx, vy, vz: Velocity vector components in the motion definition coordinate system.
     
     Example usage:
-    set_motion_velocity('path_to_script.txt', 1, 30.0, -10.0, 0.0)
+    set_motion_velocity(, 1, 30.0, -10.0, 0.0)
     """
     
     # Type and value checking
@@ -243,7 +243,7 @@ def set_motion_velocity(motion_id, vx=0.0, vy=0.0, vz=0.0):
         "#************************************************************************",
         "#************** Set the velocity vector for a motion definition *********",
         "#************************************************************************",
-        "",
+        "#",
         f"SET_MOTION_VELOCITY {motion_id} {vx} {vy} {vz}"
     ]
 
@@ -261,7 +261,7 @@ def set_motion_acceleration(motion_id, ax, ay, az):
     :param az: Z component of the velocity vector.
     
     Example usage:
-    set_motion_acceleration('path_to_script.txt', 1, 0.5, -1.0, 2.5)
+    set_motion_acceleration(, 1, 0.5, -1.0, 2.5)
     """
 
     # Type and value checking
@@ -275,7 +275,7 @@ def set_motion_acceleration(motion_id, ax, ay, az):
         "#************************************************************************",
         "#*********** Set the acceleration vector for a motion definition ********",
         "#************************************************************************",
-        "",
+        "#",
         f"SET_MOTION_ACCELERATION {motion_id} {ax} {ay} {az}"
     ]
 
@@ -294,7 +294,7 @@ def set_motion_angular_velocity(motion_id, wx, wy, wz):
     :param wz: Z component of the angular velocity vector.
     
     Example usage:
-    set_motion_angular_velocity('path_to_script.txt', 1, -450.5, 0.0, 0.0)
+    set_motion_angular_velocity(, 1, -450.5, 0.0, 0.0)
     """
     
     # Type and value checking
@@ -308,7 +308,7 @@ def set_motion_angular_velocity(motion_id, wx, wy, wz):
         "#************************************************************************",
         "#*********** Set the angular velocity vector for a motion definition ****",
         "#************************************************************************",
-        "",
+        "#",
         f"SET_MOTION_ANGULAR_VELOCITY {motion_id} {wx} {wy} {wz}"
     ]
 
@@ -327,7 +327,7 @@ def set_motion_angular_acceleration(motion_id, wax, way, waz):
     :param waz: Angular acceleration in Z.
     
     Example usage:
-        set_motion_angular_acceleration('path_to_script.txt', 1, 0.5, -1.0, 2.5)
+        set_motion_angular_acceleration(, 1, 0.5, -1.0, 2.5)
     """
     
     # Type and value checking
@@ -341,7 +341,7 @@ def set_motion_angular_acceleration(motion_id, wax, way, waz):
         "#************************************************************************",
         "#*********** Set the acceleration vector for a motion definition ********",
         "#************************************************************************",
-        "",
+        "#",
         f"SET_MOTION_ANGULAR_ACCELERATION {motion_id} {wax} {way} {waz}"
     ]
     
@@ -359,7 +359,7 @@ def set_motion_is_rotor(motion_id, flag='ENABLE', axis='X'):
     :param axis: Axis specification (X, Y or Z).
     
     Example usage:
-        set_motion_is_rotor('path_to_script.txt', 1, 'ENABLE', 'X')
+        set_motion_is_rotor(, 1, 'ENABLE', 'X')
     """
     
     # Type and value checking
@@ -376,7 +376,7 @@ def set_motion_is_rotor(motion_id, flag='ENABLE', axis='X'):
         "#************************************************************************",
         "#*********** Specify if motion definition is a rotor/propeller **********",
         "#************************************************************************",
-        "",
+        "#",
         f"SET_MOTION_IS_ROTOR {motion_id} {flag} {axis}"
     ]
     
@@ -393,7 +393,7 @@ def set_motion_custom_table(motion_type='VELOCITY-TIME', motion_id=1, filename=N
     :param filename: Path to the text file containing the motion data.
 
     Example usage:
-    set_motion_custom_table('path_to_script.txt', motion_type='VELOCITY-TIME', motion_id=1, 
+    set_motion_custom_table(, motion_type='VELOCITY-TIME', motion_id=1, 
                             filename='C:\\Users\\Desktop\\Models\\custom_motion.txt')
     """
     
@@ -412,7 +412,7 @@ def set_motion_custom_table(motion_type='VELOCITY-TIME', motion_id=1, filename=N
         "#************************************************************************",
         "#*********** Specify custom motion definition table ********************",
         "#************************************************************************",
-        "",
+        "#",
         f"SET_MOTION_CUSTOM_TABLE {motion_type} {motion_id}",
         filename
     ]
@@ -431,7 +431,7 @@ def set_motion_mass_properties(motion_id, mass, ixx, iyy, izz, ixy, iyz, izx):
     :param ixy, iyz, izx: Product of inertia components.
 
     Example usage:
-    set_motion_mass_properties('path_to_script.txt', motion_id=1, mass=1200.5, ixx=12.5, 
+    set_motion_mass_properties(, motion_id=1, mass=1200.5, ixx=12.5, 
                                iyy=45.3, izz=0.3, ixy=0.0, iyz=12.4, izx=13.5)
     """
     
@@ -446,7 +446,7 @@ def set_motion_mass_properties(motion_id, mass, ixx, iyy, izz, ixy, iyz, izx):
         "#************************************************************************",
         "#*********** Specify motion mass properties ****************************",
         "#************************************************************************",
-        "",
+        "#",
         f"SET_MOTION_MASS_PROPERTIES {motion_id} {mass} {ixx} {iyy} {izz} {ixy} {iyz} {izx}"
     ]
 
@@ -464,7 +464,7 @@ def set_motion_gravity(motion_id, gx=0, gy=0, gz=-9.81):
     :param gz: Gravity vector component in the reference coordinate system (Z-direction).
 
     Example usage:
-    set_motion_gravity('path_to_script.txt', 1)
+    set_motion_gravity(, 1)
     """
     
     # Type and value checking
@@ -478,7 +478,7 @@ def set_motion_gravity(motion_id, gx=0, gy=0, gz=-9.81):
         "#************************************************************************",
         "#*********** Set the gravity force for a 6DOF motion definition *********",
         "#************************************************************************",
-        "",
+        "#",
         f"SET_MOTION_GRAVITY {motion_id} {gx} {gy} {gz}"
     ]
 
@@ -497,7 +497,7 @@ def set_motion_6dof_initial_velocity(motion_id, vx=10.0, vy=0, vz=-25.0):
     :param vz: Initial velocity vector component in the body coordinate system (Z-direction).
 
     Example usage:
-    set_motion_6dof_initial_velocity('path_to_script.txt', 1)
+    set_motion_6dof_initial_velocity(, 1)
     """
     
     # Type and value checking
@@ -511,7 +511,7 @@ def set_motion_6dof_initial_velocity(motion_id, vx=10.0, vy=0, vz=-25.0):
         "#************************************************************************",
         "#*********** Set the initial velocity conditions for a 6DOF motion ******",
         "#************************************************************************",
-        "",
+        "#",
         f"SET_MOTION_6DOF_INITIAL_VELOCITY {motion_id} {vx} {vy} {vz}"
     ]
 
@@ -523,7 +523,7 @@ def set_motion_6dof_initial_angular_velocity(motion_id, wx=0.0, wy=0.0, wz=0.0):
     Appends lines to script state to set initial angular velocity conditions for a 6DOF motion.
 
     Example usage:
-    set_motion_6dof_initial_angular_velocity('path_to_script.txt', 1, 0.0, 0, -0.25)
+    set_motion_6dof_initial_angular_velocity(, 1, 0.0, 0, -0.25)
     
 
     :param motion_id: Index of the motion definition.
@@ -543,7 +543,7 @@ def set_motion_6dof_initial_angular_velocity(motion_id, wx=0.0, wy=0.0, wz=0.0):
         "#************************************************************************",
         "#******* Set initial angular velocity conditions for a 6DOF motion ******",
         "#************************************************************************",
-        "",
+        "#",
         f"SET_MOTION_6DOF_INITIAL_ANGULAR_VELOCITY {motion_id} {wx} {wy} {wz}"
     ]
 
@@ -557,7 +557,7 @@ def set_motion_6dof_active_variables(motion_id, u='DISABLE', v='DISABLE',
     Appends lines to script state to set the 6DOF motion active variables.
 
     Example usage:
-    set_motion_6dof_active_variables('path_to_script.txt', 1, u='DISABLE', v='DISABLE', 
+    set_motion_6dof_active_variables(, 1, u='DISABLE', v='DISABLE', 
                                      w='DISABLE', p='DISABLE', q='ENABLE', r='ENABLE')
     
 
@@ -582,7 +582,7 @@ def set_motion_6dof_active_variables(motion_id, u='DISABLE', v='DISABLE',
         "#************************************************************************",
         "#*********** Set the 6DOF motion active variables ***********************",
         "#************************************************************************",
-        "",
+        "#",
         f"SET_MOTION_6DOF_ACTIVE_VARIABLES {motion_id}",
         f"U {u}",
         f"V {v}",
@@ -604,7 +604,7 @@ def set_6dof_motion_symmetry_loads(motion_id, symmetry_loads='ENABLE'):
     :param symmetry_loads: ENABLE or DISABLE the symmetry boundary loads option.
     
     Example usage:
-    >>> set_6dof_motion_symmetry_loads('path_to_script.txt', 1)
+    >>> set_6dof_motion_symmetry_loads(, 1)
     """
     
     # Type and value checking
@@ -619,7 +619,7 @@ def set_6dof_motion_symmetry_loads(motion_id, symmetry_loads='ENABLE'):
         "#************************************************************************",
         "#*********** Convert the 6DOF motion into a longitudinal 3DOF ***********",
         "#************************************************************************",
-        "",
+        "#",
         f"SET_3DOF_MOTION {motion_id} {symmetry_loads}"
     ]
     script.append_lines(lines)
@@ -637,7 +637,7 @@ def create_new_6dof_external_force(motion_id, x, y, z, t_start, delta_t, fx, fy,
     :param fx, fy, fz: Force vector components.
     
     Example usage:
-    >>> create_new_6dof_external_force('path_to_script.txt', 1, 0.0, -0.2, 1.2, 0, 0.25, -3000, 0, 0)
+    >>> create_new_6dof_external_force(, 1, 0.0, -0.2, 1.2, 0, 0.25, -3000, 0, 0)
     """
     
     # Type and value checking
@@ -654,7 +654,7 @@ def create_new_6dof_external_force(motion_id, x, y, z, t_start, delta_t, fx, fy,
         "#************************************************************************",
         "#*********** Create a new 6DOF motion external force ********************",
         "#************************************************************************",
-        "",
+        "#",
         f"CREATE_NEW_6DOF_EXTERNAL_FORCE {motion_id} {x} {y} {z} {t_start} {delta_t} {fx} {fy} {fz}"
     ]
     script.append_lines(lines)
@@ -670,7 +670,7 @@ def create_new_6dof_custom_force(motion_id, force_type, filename):
     :param filename: Path to the text file containing the custom force profile.
     
     Example usage:
-    create_new_6dof_custom_force('path_to_script.txt', 1, 'FORCE_VS_TIME', 'C:\\Users\\Desktop\\Models\\custom_force_profile.txt')
+    create_new_6dof_custom_force(, 1, 'FORCE_VS_TIME', 'C:\\Users\\Desktop\\Models\\custom_force_profile.txt')
     """
     
     # Type and value checking
@@ -685,7 +685,7 @@ def create_new_6dof_custom_force(motion_id, force_type, filename):
         "#************************************************************************",
         "#******** Create a new 6DOF motion custom external force profile ********",
         "#************************************************************************",
-        "",
+        "#",
         f"CREATE_NEW_6DOF_CUSTOM_FORCE {motion_id} {force_type}",
         filename
     ]
@@ -708,7 +708,7 @@ def create_new_6dof_spring_force(motion_id, x, y, z, nx, ny, nz, free_length,
     :param spring_rate: Force per unit length of the spring (in N/m).
     
     Example usage:
-    create_new_6dof_spring_force('path_to_script.txt', 1, 0.0, -0.2, 1.2, 0, 0, -1, 0.1, 0.05, 0.06, 100000.0)
+    create_new_6dof_spring_force(, 1, 0.0, -0.2, 1.2, 0, 0, -1, 0.1, 0.05, 0.06, 100000.0)
     """
     
     # Type and value checking
@@ -723,7 +723,7 @@ def create_new_6dof_spring_force(motion_id, x, y, z, nx, ny, nz, free_length,
         "#************************************************************************",
         "#*********** Create a new 6DOF motion external spring force *************",
         "#************************************************************************",
-        "",
+        "#",
         f"CREATE_NEW_6DOF_SPRING_FORCE {motion_id} {x} {y} {z} {nx} {ny} {nz} {free_length} {solid_length} {initial_length} {spring_rate}"
     ]
 
@@ -739,7 +739,7 @@ def delete_6dof_external_force(motion_id, force_id):
     :param force_id: Index of the external force to be deleted.
     
     Example usage:
-    delete_6dof_external_force('path_to_script.txt', 1, 4)
+    delete_6dof_external_force(, 1, 4)
     """
     
     # Type and value checking
@@ -753,7 +753,7 @@ def delete_6dof_external_force(motion_id, force_id):
         "#************************************************************************",
         "#*********** Delete an existing 6DOF Motion external force **************",
         "#************************************************************************",
-        "",
+        "#",
         f"DELETE_6DOF_EXTERNAL_FORCE {motion_id} {force_id}"
     ]
 
@@ -769,7 +769,7 @@ def export_6dof_trajectory(motion_id, filename):
     :param filename: Path to the text file where the trajectory tables should be written.
     
     Example usage:
-    export_6dof_trajectory('path_to_script.txt', 1, 'C:\\Users\\Desktop\\Models\\6DOF_Trajectory.txt')
+    export_6dof_trajectory(, 1, 'C:\\Users\\Desktop\\Models\\6DOF_Trajectory.txt')
     """
     
     # Type and value checking
@@ -782,7 +782,7 @@ def export_6dof_trajectory(motion_id, filename):
         "#************************************************************************",
         "#*********** Export 6DOF Motion trajectory tables to external file ******",
         "#************************************************************************",
-        "",
+        "#",
         f"EXPORT_6DOF_TRAJECTORY {motion_id}",
         filename
     ]
@@ -796,7 +796,7 @@ def set_motion_fsi_executable(motion_id, executable_path, show_console='DISABLE'
     Appends lines to script state to set the FSI motion executable.
     
     Example usage:
-    set_motion_fsi_executable('path_to_script.txt', 1)
+    set_motion_fsi_executable(, 1)
     
 
     :param motion_id: Index of the motion definition.
@@ -822,7 +822,7 @@ def set_motion_fsi_executable(motion_id, executable_path, show_console='DISABLE'
         "#************************************************************************",
         "#*********** Set the FSI motion executable ******************************",
         "#************************************************************************",
-        "",
+        "#",
         "SET_MOTION_FSI_EXECUTABLE",
         f"{motion_id} {show_console} {export_load_distributions}",
         executable_path
@@ -837,7 +837,7 @@ def set_motion_fsi_structural_nodes(motion_id, nodes_file_path):
     Appends lines to script state to set the FSI motion structural nodes.
     
     Example usage:
-    set_motion_fsi_structural_nodes('path_to_script.txt', 1)
+    set_motion_fsi_structural_nodes(, 1)
     
 
     :param motion_id: Index of the motion definition.
@@ -854,7 +854,7 @@ def set_motion_fsi_structural_nodes(motion_id, nodes_file_path):
         "#************************************************************************",
         "#*********** Set the FSI motion structural nodes ************************",
         "#************************************************************************",
-        "",
+        "#",
         "SET_MOTION_FSI_STRUCTURAL_NODES",
         str(motion_id),
         nodes_file_path
@@ -871,7 +871,7 @@ def delete_motion(motion_id):
     :param motion_id: Index of the motion definition.
     
     Example usage:
-    delete_motion('path_to_script.txt', 1)
+    delete_motion(, 1)
     """
     
     # Type and value checking
@@ -882,7 +882,7 @@ def delete_motion(motion_id):
         "#************************************************************************",
         "#*********** Delete an existing motion definition ***********************",
         "#************************************************************************",
-        "",
+        "#",
         f"DELETE_MOTION {motion_id}"
     ]
 

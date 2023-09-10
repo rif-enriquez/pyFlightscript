@@ -13,7 +13,7 @@ def boolean_unite_geometry(bodies, openvsp_path, bodies_values=None):
                           and their volume types.
 
     Example usage:
-    boolean_unite_geometry('path_to_script.txt', 5, r"\C\Test_folder\...\VSP\", 
+    boolean_unite_geometry(, 5, r"\C\Test_folder\...\VSP\", 
                           bodies_values=[(1, 'POSITIVE'), (2, 'POSITIVE'), 
                                          (3, 'NEGATIVE'), (4, 'NEGATIVE'), (5, 'POSITIVE')])
                           

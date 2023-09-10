@@ -8,7 +8,7 @@ def acoustic_sources(status='ENABLE'):
     :param status: Either 'ENABLE' or 'DISABLE'.
     
     Example usage:
-    acoustic_sources('path_to_script.txt', status='ENABLE')
+    acoustic_sources(, status='ENABLE')
     """
     
     # Type and value checking
@@ -19,7 +19,7 @@ def acoustic_sources(status='ENABLE'):
         "#************************************************************************",
         "#******** Enable acoustic sources during solver initialization **********",
         "#************************************************************************",
-        "",
+        "#",
         f"ACOUSTIC_SOURCES {status}"
     ]
 
@@ -36,7 +36,7 @@ def create_new_acoustic_observer(name, x=0.0, y=0.0, z=0.0):
     :param z: Z-coordinate of the observer.
     
     Example usage:
-    create_new_acoustic_observer('path_to_script.txt', 'Observer-1', 0.0, -0.5, 2.0)
+    create_new_acoustic_observer(, 'Observer-1', 0.0, -0.5, 2.0)
     """
     
     # Type and value checking
@@ -50,7 +50,7 @@ def create_new_acoustic_observer(name, x=0.0, y=0.0, z=0.0):
         "#************************************************************************",
         "#******************* Create new acoustic observer ***********************",
         "#************************************************************************",
-        "",
+        "#",
         f"CREATE_NEW_ACOUSTIC_OBSERVER {name} {x} {y} {z}"
     ]
 
@@ -65,7 +65,7 @@ def acoustic_observers_import(file_path):
     :param file_path: Path to the observer file.
     
     Example usage:
-        acoustic_observers_import('path_to_script.txt', 'C:/.../Observers.txt')
+        acoustic_observers_import(, 'C:/.../Observers.txt')
     """
     
     # Type and value checking
@@ -76,7 +76,7 @@ def acoustic_observers_import(file_path):
         "#************************************************************************",
         "#****************** Import acoustic observers from file *****************",
         "#************************************************************************",
-        "",
+        "#",
         "ACOUSTIC_OBSERVERS_IMPORT",
         file_path
     ]
@@ -93,7 +93,7 @@ def delete_acoustic_observer(observer_index):
     :param observer_index: Index of the observer in the acoustic toolbox UI tree.
     
     Example usage:
-        delete_acoustic_observer('path_to_script.txt', 2)
+        delete_acoustic_observer(, 2)
     """
     
     # Type and value checking
@@ -104,7 +104,7 @@ def delete_acoustic_observer(observer_index):
         "#************************************************************************",
         "#******************* Delete acoustic observer ***************************",
         "#************************************************************************",
-        "",
+        "#",
         "DELETE_ACOUSTIC_OBSERVER",
         str(observer_index)
     ]
@@ -119,14 +119,14 @@ def delete_all_acoustic_observers():
 
 
     Example usage:
-    >>> delete_all_acoustic_observers('path_to_script.txt')
+    >>> delete_all_acoustic_observers()
     """
     
     lines = [
         "#************************************************************************",
         "#******************* Delete all acoustic observers **********************",
         "#************************************************************************",
-        "",
+        "#",
         "DELETE_ALL_ACOUSTIC_OBSERVERS"
     ]
 
@@ -143,7 +143,7 @@ def set_acoustic_observer_time(initial_time=0.0, final_time=0.2, time_steps=300)
     :param time_steps: Total number of time steps between initial and final times.
 
     Example usage:
-    >>> set_acoustic_observer_time('path_to_script.txt')
+    >>> set_acoustic_observer_time()
     """
     
     # Type and value checking
@@ -160,7 +160,7 @@ def set_acoustic_observer_time(initial_time=0.0, final_time=0.2, time_steps=300)
         "#************************************************************************",
         "#******************* Set acoustic observer time parameters **************",
         "#************************************************************************",
-        "",
+        "#",
         f"SET_ACOUSTIC_OBSERVER_TIME {initial_time} {final_time} {time_steps}"
     ]
 
@@ -174,14 +174,14 @@ def compute_acoustic_signals():
 
 
     Example usage:
-    compute_acoustic_signals('path_to_script.txt')
+    compute_acoustic_signals()
     """
     
     lines = [
         "#************************************************************************",
         "#******************* Compute acoustic signals at all observers **********",
         "#************************************************************************",
-        "",
+        "#",
         "COMPUTE_ACOUSTIC_SIGNALS"
     ]
     
@@ -196,7 +196,7 @@ def export_acoustic_signals(filename):
     :param filename: Path to the output file.
 
     Example usage:
-    export_acoustic_signals('path_to_script.txt', 'C:\\path\\to\\output.txt')
+    export_acoustic_signals(, 'C:\\path\\to\\output.txt')
     """
     
     # Type checking
@@ -207,7 +207,7 @@ def export_acoustic_signals(filename):
         "#************************************************************************",
         "#******* Export acoustic signals at all observers to external file ******",
         "#************************************************************************",
-        "",
+        "#",
         "EXPORT_ACOUSTIC_SIGNALS",
         f"{filename}"
     ]
@@ -232,7 +232,7 @@ def create_acoustic_section(frame=1, plane='XZ', offset=-2.0,
     :param storage_path: Path to folder for exporting the individual files.
     
     Example usage:
-    create_acoustic_section('path_to_script.txt')
+    create_acoustic_section()
     """
 
     # Type and value checking
@@ -253,7 +253,7 @@ def create_acoustic_section(frame=1, plane='XZ', offset=-2.0,
         "#************************************************************************",
         "#******************* Create & export acoustic section signals ***********",
         "#************************************************************************",
-        "",
+        "#",
         "CREATE_ACOUSTIC_SECTION",
         f"FRAME {frame}",
         f"PLANE {plane}",

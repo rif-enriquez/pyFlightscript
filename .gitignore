@@ -1,5 +1,6 @@
 # Compiled files
 __pycache__/
+pyFlightscript/__pycache__/
 *.pyc
 *.pyo
 *.egg-info/
@@ -8,9 +9,9 @@ __pycache__/
 *.swp
 
 # Sphinx generated files
-_build/
+docs/_build/
 .sphinx-build/
-
+build/
 # Miscellaneous
 *.log
 *.bak

@@ -27,7 +27,7 @@ def create_new_rectangle_volume_section(frame=1, plane='XZ', offset=0., size=-0.
         "#************************************************************************",
         "#****************** Create new volume section (rectangle) ***************",
         "#************************************************************************",
-        "",
+        "#",
         f"CREATE_NEW_RECTANGLE_VOLUME_SECTION {frame} {plane} {offset} {size} {x1} {y1} {x2} {y2} {prisms_type} {thickness} {layers} {growth_rate}"
     ]
 
@@ -61,7 +61,7 @@ def create_new_circle_volume_section(frame=1, plane='XZ', offset=0.1, ipts=20,
         "#************************************************************************",
         "#****************** Create new volume section (circle) ******************",
         "#************************************************************************",
-        "",
+        "#",
         f"CREATE_NEW_CIRCLE_VOLUME_SECTION {frame} {plane} {offset} {ipts} {jpts} {r1} {r2} {prisms_type} {thickness} {layers} {growth_rate}"
     ]
 
@@ -77,7 +77,7 @@ def volume_section_boundary_layer(index, setting='DISABLE'):
     :param setting: Setting value (ENABLE/DISABLE).
     
     Example usage:
-        volume_section_boundary_layer('path_to_script.txt', 2)
+        volume_section_boundary_layer(, 2)
     """
     
     # Type and value checking
@@ -92,7 +92,7 @@ def volume_section_boundary_layer(index, setting='DISABLE'):
         "#************************************************************************",
         "#*************** Toggle volume section boundary layer induction *********",
         "#************************************************************************",
-        "",
+        "#",
         f"VOLUME_SECTION_BOUNDARY_LAYER {index} {setting}"
     ]
 
@@ -108,7 +108,7 @@ def volume_section_wireframe(index, setting='ENABLE'):
     :param setting: Setting value (ENABLE/DISABLE).
     
     Example usage:
-        volume_section_wireframe('path_to_script.txt', 2, 'DISABLE')
+        volume_section_wireframe(, 2, 'DISABLE')
     """
     
     # Type and value checking
@@ -123,7 +123,7 @@ def volume_section_wireframe(index, setting='ENABLE'):
         "#************************************************************************",
         "#****************** Toggle volume section wire-frame setting ************",
         "#************************************************************************",
-        "",
+        "#",
         f"VOLUME_SECTION_WIREFRAME {index} {setting}"
     ]
 
@@ -137,14 +137,14 @@ def update_all_volume_sections():
 
     
     Example usage:
-    update_all_volume_sections('path_to_script.txt')
+    update_all_volume_sections()
     """
     
     lines = [
         "#************************************************************************",
         "#****************** Update the volume sections **************************",
         "#************************************************************************",
-        "",
+        "#",
         "UPDATE_ALL_VOLUME_SECTIONS"
     ]
 
@@ -160,7 +160,7 @@ def export_volume_section_vtk(index, filename):
     :param filename: Full path to the desired output VTK file.
     
     Example usage:
-    export_volume_section_vtk('path_to_script.txt', 2, 'C:/.../Test_volume_sections.vtk')
+    export_volume_section_vtk(, 2, 'C:/.../Test_volume_sections.vtk')
     """
     
     # Type and value checking
@@ -171,7 +171,7 @@ def export_volume_section_vtk(index, filename):
         "#************************************************************************",
         "#****************** Export volume section as ParaView (VTK) file ********",
         "#************************************************************************",
-        "",
+        "#",
         f"EXPORT_VOLUME_SECTION_VTK {index}",
         filename
     ]
@@ -188,7 +188,7 @@ def export_volume_section_2d_vtk(index, filename):
     :param filename: Filename with path for export.
     
     Example usage:
-    export_volume_section_2d_vtk('path_to_script.txt', 2, 'C:/.../Test_volume_sections_2D.vtk')
+    export_volume_section_2d_vtk(, 2, 'C:/.../Test_volume_sections_2D.vtk')
     """
 
     # Type and value checking
@@ -199,7 +199,7 @@ def export_volume_section_2d_vtk(index, filename):
         "#************************************************************************",
         "#************* Export volume section as 2D ParaView (VTK) file **********",
         "#************************************************************************",
-        "",
+        "#",
         f"EXPORT_VOLUME_SECTION_2D_VTK {index}",
         filename
     ]
@@ -217,7 +217,7 @@ def export_volume_section_tecplot(index, filename):
     :param filename: Filename with path for export.
     
     Example usage:
-    export_volume_section_tecplot('path_to_script.txt', 2, 'C:/.../Test_volume_sections.dat')
+    export_volume_section_tecplot(, 2, 'C:/.../Test_volume_sections.dat')
     """
 
     # Type and value checking
@@ -228,7 +228,7 @@ def export_volume_section_tecplot(index, filename):
         "#************************************************************************",
         "#****************** Export volume section as Tecplot (DAT) file *********",
         "#************************************************************************",
-        "",
+        "#",
         f"EXPORT_VOLUME_SECTION_TECPLOT {index}",
         filename
     ]
@@ -244,7 +244,7 @@ def delete_volume_section(index):
     :param index: Index of the volume section to be deleted (> 0).
     
     Example usage:
-        delete_volume_section('path_to_script.txt', 2)
+        delete_volume_section(, 2)
     """
     
     # Type and value checking
@@ -255,7 +255,7 @@ def delete_volume_section(index):
         "#************************************************************************",
         "#****************** Delete a volume section *****************************",
         "#************************************************************************",
-        "",
+        "#",
         f"DELETE_VOLUME_SECTION {index}"
     ]
 
@@ -269,14 +269,14 @@ def delete_all_volume_sections():
 
     
     Example usage:
-        delete_all_volume_sections('path_to_script.txt')
+        delete_all_volume_sections()
     """
     
     lines = [
         "#************************************************************************",
         "#****************** Delete all volume sections **************************",
         "#************************************************************************",
-        "",
+        "#",
         "DELETE_ALL_VOLUME_SECTIONS"
     ]
 

@@ -6,7 +6,7 @@ def set_scene_contour(variable=4):
     Appends lines to script state to set the scene contour parameter.
     
     Example usage:
-        set_scene_contour('path_to_script.txt', variable=5)
+        set_scene_contour(, variable=5)
     
 
     :param variable: Value of the contour parameter.
@@ -50,7 +50,7 @@ def set_scene_contour(variable=4):
         "#************************************************************************",
         "#****************** Change scene contour parameter **********************",
         "#************************************************************************",
-        "",
+        "#",
         "SET_SCENE_CONTOUR",
         f"VARIABLE {variable}"
     ]
@@ -64,7 +64,7 @@ def solver_analysis_options(load_frame=1, drag_model='VORTICITY',
     Appends lines to script state to set the solver analysis options.
     
     Example usage:
-        solver_analysis_options('path_to_script.txt', load_frame=2, drag_model='PRESSURE')
+        solver_analysis_options(, load_frame=2, drag_model='PRESSURE')
     
 
     :param load_frame: Index of the coordinate system.
@@ -91,7 +91,7 @@ def solver_analysis_options(load_frame=1, drag_model='VORTICITY',
         "#************************************************************************",
         "#****************** Set the solver analysis options **********************",
         "#************************************************************************",
-        "",
+        "#",
         "SOLVER_ANALYSIS_OPTIONS",
         f"LOAD_FRAME {load_frame}",
         f"DRAG_MODEL {drag_model}",
@@ -102,7 +102,7 @@ def solver_analysis_options(load_frame=1, drag_model='VORTICITY',
     script.append_lines(lines)
     return
 
-def set_solver_analysis_loads_frame(load_frame=1):
+def analysis_loads_frame(load_frame=1):
     """
     Appends lines to script state to set the loads frame in the analysis tab.
     
@@ -110,7 +110,7 @@ def set_solver_analysis_loads_frame(load_frame=1):
     :param load_frame: Index of the coordinate system used for evaluating aerodynamic loads and moments.
     
     Example usage:
-    set_solver_analysis_loads_frame('path_to_script.txt')
+    analysis_loads_frame()
     """
     
     # Type and value checking
@@ -121,7 +121,7 @@ def set_solver_analysis_loads_frame(load_frame=1):
         "#************************************************************************",
         "#****************** Set the loads frame in the analysis tab *************",
         "#************************************************************************",
-        "",
+        "#",
         f"SET_SOLVER_ANALYSIS_LOADS_FRAME {load_frame}"
     ]
 
@@ -136,7 +136,7 @@ def set_vorticity_lift_model(enable=True):
     :param enable: Boolean to indicate if the model should be enabled or disabled.
     
     Example usage:
-    set_vorticity_lift_model('path_to_script.txt', enable=True)
+    set_vorticity_lift_model(, enable=True)
     """
     
     # Type and value checking
@@ -149,7 +149,7 @@ def set_vorticity_lift_model(enable=True):
         "#************************************************************************",
         "#****************** Set the lift model to vorticity mode ****************",
         "#************************************************************************",
-        "",
+        "#",
         f"SET_VORTICITY_LIFT_MODEL {status}"
     ]
 
@@ -164,7 +164,7 @@ def set_loads_and_moments_units(unit_type='NEWTONS'):
     :param unit_type: Unit type for loads and moments.
 
     Example usage:
-    set_loads_and_moments_units('path_to_script.txt')
+    set_loads_and_moments_units()
     """
     
     check_valid_force_units(unit_type)
@@ -173,13 +173,13 @@ def set_loads_and_moments_units(unit_type='NEWTONS'):
         "#************************************************************************",
         "#****************** Set the solver analysis units selection *************",
         "#************************************************************************",
-        "",
+        "#",
         f"SET_LOADS_AND_MOMENTS_UNITS {unit_type}"
     ]
     script.append_lines(lines)
     return
 
-def set_solver_analysis_boundaries(num_boundaries, boundaries_list=[]):
+def analysis_boundaries(num_boundaries, boundaries_list=[]):
     """
     Appends lines to script state to set the solver analysis boundaries.
 
@@ -188,7 +188,7 @@ def set_solver_analysis_boundaries(num_boundaries, boundaries_list=[]):
     :param boundaries_list: List of solver boundaries to be enabled.
 
     Example usage:
-    set_solver_analysis_boundaries('path_to_script.txt', 5, [1, 2, 4, 5, 7])
+    analysis_boundaries(, 5, [1, 2, 4, 5, 7])
     """
     
     if not isinstance(num_boundaries, int) or num_boundaries <= 0:
@@ -202,7 +202,7 @@ def set_solver_analysis_boundaries(num_boundaries, boundaries_list=[]):
         "#************************************************************************",
         "#****************** Set the solver analysis boundaries ******************",
         "#************************************************************************",
-        "",
+        "#",
         f"SET_SOLVER_ANALYSIS_BOUNDARIES {num_boundaries}",
         boundaries_str
     ]

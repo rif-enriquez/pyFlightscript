@@ -1,7 +1,7 @@
 from .utils import *    
 from .script_state import script
 
-def execute_solver_sweeper(sweep_results_path, results_filename,
+def execute_solver_sweeper(results_filename, sweep_results_path='', 
                            angle_of_attack='ENABLE', side_slip_angle='DISABLE', 
                            velocity='DISABLE', angle_of_attack_start=0.0, 
                            angle_of_attack_stop=0., angle_of_attack_delta=1.,
@@ -14,9 +14,11 @@ def execute_solver_sweeper(sweep_results_path, results_filename,
                            append_to_existing_sweep='DISABLE'):
     """
     Appends lines to script state to execute the solver sweeper.
-    
+    :param results_filename (str): The full file path name of the sweep results file.
+    :param sweep_results_path (str): The path to export surface data per step if 'ENABLE'.
+
     Example usage:
-    execute_solver_sweeper('path_to_script.txt', angle_of_attack='ENABLE', 
+    execute_solver_sweeper(, angle_of_attack='ENABLE', 
                            side_slip_angle='DISABLE', velocity='DISABLE', 
                            angle_of_attack_start=0.0, angle_of_attack_stop=10.0,
                            angle_of_attack_delta=1.0, export_surface_data_per_step='ENABLE',
@@ -24,7 +26,6 @@ def execute_solver_sweeper(sweep_results_path, results_filename,
                            clear_solution_after_each_run='ENABLE')
     
 
-    :... other parameters ...
     """
     
     # Type and value checking
@@ -41,7 +42,7 @@ def execute_solver_sweeper(sweep_results_path, results_filename,
         "#************************************************************************",
         "#****************** Initialize and execute the solver sweeper ***********",
         "#************************************************************************",
-        "",
+        "#",
         "EXECUTE_SOLVER_SWEEPER",
         f"ANGLE_OF_ATTACK {angle_of_attack}",
         f"SIDE_SLIP_ANGLE {side_slip_angle}",
@@ -82,7 +83,7 @@ def set_stability_toolbox(longitudinal='ENABLE', lateral='ENABLE',
     :param clear_solver_per_run: ENABLE or DISABLE clearing of the solution prior to each solver run.
 
     Example usage:
-    >>> set_stability_toolbox('path_to_script.txt')
+    >>> set_stability_toolbox()
     """
     
     valid_options = ['ENABLE', 'DISABLE']
@@ -110,7 +111,7 @@ def set_stability_toolbox(longitudinal='ENABLE', lateral='ENABLE',
         "#************************************************************************",
         "#****************** Set the S&C toolbox parameters here *****************",
         "#************************************************************************",
-        "",
+        "#",
         "SET_STABILITY_TOOLBOX",
         f"LONGITUDINAL {longitudinal}",
         f"LATERAL {lateral}",
@@ -130,14 +131,14 @@ def compute_static_stability():
 
 
     Example usage:
-    >>> compute_static_stability('path_to_script.txt')
+    >>> compute_static_stability()
     """
     
     lines = [
         "#************************************************************************",
         "#****************** Compute the static stability coefficients ***********",
         "#************************************************************************",
-        "",
+        "#",
         "COMPUTE_STATIC_STABILITY"
     ]
 
@@ -151,14 +152,14 @@ def compute_dynamic_stability():
 
     
     Example usage:
-        compute_dynamic_stability('path_to_script.txt')
+        compute_dynamic_stability()
     """
     
     lines = [
         "#************************************************************************",
         "#****************** Compute the dynamic stability coefficients **********",
         "#************************************************************************",
-        "",
+        "#",
         "COMPUTE_DYNAMIC_STABILITY"
     ]
 
@@ -173,7 +174,7 @@ def export_stability_results(filename):
     :param filename: Filename with its path for the exported results.
     
     Example usage:
-        export_stability_results('path_to_script.txt', 'C:\\...\\Testing cases\\another_test.txt')
+        export_stability_results(, 'C:\\...\\Testing cases\\another_test.txt')
     """
     
     # Type and value checking
@@ -184,7 +185,7 @@ def export_stability_results(filename):
         "#************************************************************************",
         "#*********** Export the S&C toolbox results to external file ************",
         "#************************************************************************",
-        "",
+        "#",
         "EXPORT_STABILITY_RESULTS",
         f"{filename}"
     ]

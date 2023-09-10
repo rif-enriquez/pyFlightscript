@@ -23,5 +23,5 @@ def check_valid_force_units(units):
 def check_file_existence(file):
     # Validate file existence
     if not os.path.exists(file):
-        raise FileNotFoundError(f"The specified file '{file}' does not exist.")
+        raise FileNotFoundError(f"The specified file '{file}' does not exist on path.")
     return

@@ -6,13 +6,12 @@ def physics(auto_trail_edges=False, auto_wake_nodes=False, end=True):
     """
     Appends lines to script state to set the physics conditions.
 
-
     :param auto_trail_edges: If True, launches trailing-edge auto-detection tool.
     :param auto_wake_nodes: If True, launches wake termination node auto-detection tool.
     :param end: If True, adds an "END" line.
 
     Example usage:
-    physics('path_to_script.txt', auto_trail_edges=True, auto_wake_nodes=True)
+    physics(, auto_trail_edges=True, auto_wake_nodes=True)
     """
     
     # List to store the lines
@@ -39,10 +38,9 @@ def physics(auto_trail_edges=False, auto_wake_nodes=False, end=True):
 def detect_trailing_edges_by_surface(surfaces=[1]):
     """
     Example usage:
-    detect_trailing_edges_by_surface('path_to_script.txt', [2, 4])
+    detect_trailing_edges_by_surface(, [2, 4])
 
     Appends lines to script state to detect trailing edges by surface.
-
 
     :param surfaces: List of surface indices to be checked for trailing edge detection.
     """
@@ -69,9 +67,8 @@ def trailing_edges_import(file_path):
     Appends lines to script state to import trailing edges from a given file.
     
     :Example usage:
-        trailing_edges_import('path_to_script.txt', 'C:/.../Custom_TE.txt')
+        trailing_edges_import(, 'C:/.../Custom_TE.txt')
         
-
     :param file_path: Path to the CSV text file containing the vertices on which the trailing edges are to be marked.
 
 
@@ -114,9 +111,8 @@ def detect_wake_termination_nodes_by_surface(surface_id=1):
     Appends lines to script state to detect wake termination nodes by surface.
 
     Example usage:
-    detect_wake_termination_nodes_by_surface('path_to_script.txt')
+    detect_wake_termination_nodes_by_surface()
     
-
     :param surface_id: Index of the surface on which the wake termination nodes should be detected.
     """
     

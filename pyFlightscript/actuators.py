@@ -7,7 +7,7 @@ def create_new_actuator(actuator_type='PROPELLER'):
     Appends lines to script state to create a new actuator.
     
     Example usage:
-    create_new_actuator('path_to_script.txt')
+    create_new_actuator()
     
 
     :param actuator_type: Type of the actuator, either 'PROPELLER' or 'JET_EXHAUST'.
@@ -22,7 +22,7 @@ def create_new_actuator(actuator_type='PROPELLER'):
         "#************************************************************************",
         "#****************** Create a new propeller actuator ********************",
         "#************************************************************************",
-        "",
+        "#",
         "CREATE_NEW_ACTUATOR",
         f"TYPE {actuator_type}"
     ]
@@ -35,7 +35,7 @@ def edit_actuator(actuator, name, actuator_type, frame, axis,
                   velocity=None, density=None, cm=None):
     """
     Example usage:
-        edit_actuator('path_to_script.txt', 1, "Prop-1", "PROPELLER", 2, 1, 0.5, 
+        edit_actuator(, 1, "Prop-1", "PROPELLER", 2, 1, 0.5, 
                       1.2, ct=0.013, rpm=7000, swirl_velocity="ENABLE")
     
     Appends lines to script state to edit an actuator.
@@ -73,7 +73,7 @@ def edit_actuator(actuator, name, actuator_type, frame, axis,
         "#************************************************************************",
         "#****************** Edit a propeller actuator here *********************",
         "#************************************************************************",
-        "",
+        "#",
         "EDIT_ACTUATOR",
         f"ACTUATOR {actuator}",
         f"NAME {name}",
@@ -110,7 +110,7 @@ def set_prop_actuator_rpm(actuator_index=1, rpm=2000):
     Appends lines to script state to set the RPM of an actuator.
     
     Example usage:
-    set_prop_actuator_rpm('path_to_script.txt', 2, -3400)
+    set_prop_actuator_rpm(, 2, -3400)
 
 
     :param actuator_index: Index of the actuator whose properties are being set.
@@ -128,7 +128,7 @@ def set_prop_actuator_rpm(actuator_index=1, rpm=2000):
         "#************************************************************************",
         "#****************** Set the RPM of an existing actuator *****************",
         "#************************************************************************",
-        "",
+        "#",
         f"SET_PROP_ACTUATOR_RPM {actuator_index} {rpm}"
     ]
 
@@ -145,7 +145,7 @@ def set_prop_actuator_thrust(actuator_index, ct, thrust_type='COEFFICIENT'):
     :param thrust_type: Units for the thrust force.
 
     Example usage:
-    set_prop_actuator_thrust('path_to_script.txt', 2, 0.034)
+    set_prop_actuator_thrust(, 2, 0.034)
     """
     
     # Type and value checking
@@ -163,7 +163,7 @@ def set_prop_actuator_thrust(actuator_index, ct, thrust_type='COEFFICIENT'):
         "#************************************************************************",
         "#********* Set the thrust coefficient of an existing actuator ***********",
         "#************************************************************************",
-        "",
+        "#",
         f"SET_PROP_ACTUATOR_THRUST {actuator_index} {ct} {thrust_type}"
     ]
 
@@ -179,7 +179,7 @@ def set_prop_actuator_swirl(actuator_index, status='DISABLE'):
     :param status: Either 'ENABLE' or 'DISABLE'.
     
     Example usage:
-    set_prop_actuator_swirl('path_to_script.txt', 3)
+    set_prop_actuator_swirl(, 3)
     """
 
     # Type and value checking
@@ -194,7 +194,7 @@ def set_prop_actuator_swirl(actuator_index, status='DISABLE'):
         "#************************************************************************",
         "#****************** Toggle the swirl velocity selection *****************",
         "#************************************************************************",
-        "",
+        "#",
         f"SET_PROP_ACTUATOR_SWIRL {actuator_index} {status}"
     ]
 
@@ -206,7 +206,7 @@ def enable_actuator(actuator_id):
     Appends lines to script state to enable an existing actuator.
     
     Example usage:
-    >>> enable_actuator('path_to_script.txt', 2)
+    >>> enable_actuator(, 2)
     
 
     :param actuator_id: ID of the actuator to be enabled.
@@ -220,7 +220,7 @@ def enable_actuator(actuator_id):
         "#************************************************************************",
         "#****************** Enable an existing actuator *************************",
         "#************************************************************************",
-        "",
+        "#",
         f"ENABLE_ACTUATOR {actuator_id}"
     ]
 
@@ -232,7 +232,7 @@ def disable_actuator(actuator_id):
     Appends lines to script state to disable an existing actuator.
     
     Example usage:
-    disable_actuator('path_to_script.txt', 2)
+    disable_actuator(, 2)
     
 
     :param actuator_id: ID of the actuator to disable.
@@ -246,7 +246,7 @@ def disable_actuator(actuator_id):
         "#************************************************************************",
         "#****************** Disable an existing actuator ************************",
         "#************************************************************************",
-        "",
+        "#",
         f"DISABLE_ACTUATOR {actuator_id}"
     ]
 
@@ -258,7 +258,7 @@ def delete_actuator(actuator_index):
     Appends lines to script state to delete an actuator.
     
     Example usage:
-    delete_actuator('path_to_script.txt', 1)
+    delete_actuator(, 1)
 
 
     :param actuator_index: Index of the actuator to be deleted.
@@ -272,7 +272,7 @@ def delete_actuator(actuator_index):
         "#************************************************************************",
         "#****************** Delete an actuator **********************************",
         "#************************************************************************",
-        "",
+        "#",
         "DELETE_ACTUATOR",
         f"ACTUATOR {actuator_index}"
     ]

@@ -1,33 +1,69 @@
 from .utils import *    
 from .script_state import script
 
-def initialize_solver(surfaces, load_frame, symmetry_periodicity=0,
+def initialize_solver(surfaces, load_frame, symmetry_periodicity=1,
                       proximity_avoidance='DISABLE', stabilization='ENABLE', stabilization_strength=1.0,
                       fast_multipole='ENABLE', wake_termination_x='DEFAULT', symmetry_type='NONE'):
     """
     Appends lines to script state to initialize the solver.
 
+    :param surfaces: (number or list) Number of surfaces being initialized in the solver (> 0 and < total surfaces). 
+                    Value can be -1 to specify all boundaries. This call also starts a block of parameter 
+                    lines that specify the initialization settings of each surface to be initialized, in 
+                    this order:
+                    Index # of the Surface, Motion object index # (0 if no motion),  ENABLE / DISABLE Quad mesher
+    :param load_frame: (int) Index of coordinate system to be used for evaluating aerodynamic loads and moments.
+                        Use index of 1 for reference coordinate system.
+    :param symmetry_periodicity: (int) Integer value for number of periodic symmetry transforms about the Reference frame X axis.
+    :param proximity_avoidance: (str) 'ENABLE' or 'DISABLE' proximity avoidance for the wake strands
+    :param stabilization: (str) 'ENABLE' or 'DISABLE' solver stabilization.
+    :param stabilization_strength: (int or float) 0.0 < Value < 5.0
+    :param fast_multipole: (str) 'ENABLE' or 'DISABLE' Fast Multipole solver mode.
+    :param wake_termination_x: (str or number) Wake termination plane location downstream of the geometry. X axis value measured 
+                                relative to the Reference coordinate system. Use value of DEFAULT if you require 
+                                this value to be auto-computed.
+    :param symmetry_type: Symmetry type. One of: 'NONE', 'PLANE' or 'PERIODIC'
 
-    ... [other parameters]
-    
     Example usage:
-    initialize_solver('path_to_script.txt', [(1, 0, 'ENABLE'), (2, 0, 'ENABLE')], 3.5, 'PLANE', 1, 1, 
-                      'DISABLE', 'ENABLE', 1.0, 'ENABLE')
+    initialize_solver(surfaces=[(1, 0, 'ENABLE'), (2, 0, 'DISABLE')],  load_frame=1, symmetry_periodicity=2,
+                      proximity_avoidance='ENABLE', stabilization='DISABLE', stabilization_strength=2.5,
+                      fast_multipole='ENABLE', wake_termination_x=5.0, symmetry_type='PLANE')
     """
     
-    # Type and value checking
-    valid_symmetry_types = ['NONE', 'PLANE', 'PERIODIC']
-    if symmetry_type not in valid_symmetry_types:
-        raise ValueError(f"`symmetry_type` should be one of {valid_symmetry_types}")
+    if surfaces != -1:
+        if not isinstance(surfaces, list):
+            raise ValueError("`surfaces` should be a list of tuples or -1.")
+        for surface in surfaces:
+            if not isinstance(surface, tuple) or len(surface) != 3:
+                raise ValueError("Each entry in `surfaces` should be a tuple of length 3.")
+            if not isinstance(surface[2], str) or surface[2] not in ['ENABLE', 'DISABLE']:
+                raise ValueError("Third element in each tuple should be 'ENABLE' or 'DISABLE'.")
 
-    if not (0.0 < stabilization_strength < 5.0):
-        raise ValueError("`stabilization_strength` should be a value between 0.0 and 5.0 exclusive.")
+    # Check load_frame is integer and >= 1
+    if not isinstance(load_frame, int) or load_frame < 1:
+        raise ValueError("`load_frame` should be an integer and >= 1.")
+    
+    # Check symmetry_periodicity is an integer
+    if not isinstance(symmetry_periodicity, int):
+        raise ValueError("`symmetry_periodicity` should be an integer.")
+    
+    # Check proximity_avoidance, stabilization, and fast_multipole
+    for param, value in {'proximity_avoidance': proximity_avoidance,
+                         'stabilization': stabilization,
+                         'fast_multipole': fast_multipole}.items():
+        if value not in ['ENABLE', 'DISABLE']:
+            raise ValueError(f"`{param}` should be either 'ENABLE' or 'DISABLE'.")
+    
+    # Check wake_termination_x
+    if wake_termination_x != 'DEFAULT' and not isinstance(wake_termination_x, (int, float)):
+        raise ValueError("`wake_termination_x` should be either 'DEFAULT' or a number.")
+    
     
     lines = [
         "#************************************************************************",
         "#****************** Initialize the solver *******************************",
         "#************************************************************************",
-        "",
+        "#",
         "INITIALIZE_SOLVER"
     ]
     
@@ -62,7 +98,7 @@ def solver_proximal_boundaries(*boundaries):
     :param boundaries: Indices of the geometry boundaries for which solver proximity checking is being enabled.
     
     Example usage:
-    solver_proximal_boundaries('path_to_script.txt', 1, 4, 5)
+    solver_proximal_boundaries(, 1, 4, 5)
     """
     
     # Type and value checking
@@ -74,7 +110,7 @@ def solver_proximal_boundaries(*boundaries):
         "#************************************************************************",
         "#********* Enable solver proximity checking for specified boundaries ****",
         "#************************************************************************",
-        "",
+        "#",
         f"SOLVER_PROXIMAL_BOUNDARIES {len(boundaries)}"
     ]
 
@@ -91,14 +127,14 @@ def solver_uninitialize():
 
     
     Example usage:
-    >>> solver_uninitialize('path_to_script.txt')
+    >>> solver_uninitialize()
     """
     
     lines = [
         "#************************************************************************",
         "#********* Remove the solver initialization *****************************",
         "#************************************************************************",
-        "",
+        "#",
         "SOLVER_UNINITIALIZE"
     ]
     
