@@ -12,6 +12,9 @@ if exist pyFlightscript.rst rename pyFlightscript.rst index.rst
 REM Run make.bat with html parameter
 call make.bat html
 
+REM Copy and replace index.html two folder levels up
+if exist .\_build\html\index.html copy /Y .\_build\html\index.html ..\..
+
 REM Inform user of the location of docs
 echo docs are in .\_build\html\index.html
 
