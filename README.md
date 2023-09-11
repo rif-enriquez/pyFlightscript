@@ -6,6 +6,8 @@ A python API for generating native FlightStream scripts.
 
 No dependencies required at this time.
 
+`python setup.py install`
+
 #### Features
 
 - Generates FlightStream scripts with a user-friendly Pythonic interface
@@ -23,18 +25,16 @@ pyfs.script_state.write_to_file()
 
 ## To generate new docs
 
-within \docs directory
+within \sphinx directory
+
+# on Windows
+
+simply run `generate_docs.bat`
+
+# on other
+
 remove \_build directory
 run 'sphinx-apidoc -o . ../pyFlightscript/'
 rename pyFlighscript.rst to index.rst
 run 'make.bat html'
-
-## To Contribute
-
-Fork the repository
-Locally clone and set upstream project
-Create a new branch
-make changes and commit
-Push changes to your fork
-Open a Pull Request - Ensure the base repository is the original project and the head repository is your fork
-Once your PR is approved, the maintainers will merge it.
+docs are in '.\_build\html\index.html'

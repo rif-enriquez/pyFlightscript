@@ -1,5 +1,5 @@
 from .utils import *    
-from .script_state import script
+from .script import script
 
 def new_off_body_streamline(position_x, position_y, position_z, upstream='DISABLE'):
     """

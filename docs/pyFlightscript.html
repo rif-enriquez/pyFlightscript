@@ -1517,9 +1517,6 @@ To invert all surfaces, specify -1.</p>
 </dd></dl>
 
 </section>
-<section id="pyflightscript-init-module">
-<h2>pyFlightscript.init module<a class="headerlink" href="#pyflightscript-init-module" title="Link to this heading">¶</a></h2>
-</section>
 <section id="pyflightscript-inlets-module">
 <h2>pyFlightscript.inlets module<a class="headerlink" href="#pyflightscript-inlets-module" title="Link to this heading">¶</a></h2>
 <dl class="py function" id="module-pyFlightscript.inlets">
@@ -2788,8 +2785,97 @@ view_resize()</p>
 </dd></dl>
 
 </section>
-<section id="pyflightscript-script-state-module">
-<h2>pyFlightscript.script_state module<a class="headerlink" href="#pyflightscript-script-state-module" title="Link to this heading">¶</a></h2>
+<section id="pyflightscript-script-module">
+<h2>pyFlightscript.script module<a class="headerlink" href="#pyflightscript-script-module" title="Link to this heading">¶</a></h2>
+<dl class="py class" id="module-pyFlightscript.script">
+<dt class="sig sig-object py" id="pyFlightscript.script.State">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pyFlightscript.script.</span></span><span class="sig-name descname"><span class="pre">State</span></span><a class="headerlink" href="#pyFlightscript.script.State" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="pyFlightscript.script.State.append_lines">
+<span class="sig-name descname"><span class="pre">append_lines</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lines</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyFlightscript.script.State.append_lines" title="Link to this definition">¶</a></dt>
+<dd><p>Append lines to the existing lines array in the object.</p>
+<dl class="simple">
+<dt>Parameters:</dt><dd><p>lines (str or list): The lines to be appended. It can be either a string or a list of strings.</p>
+</dd>
+<dt>Returns:</dt><dd><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyFlightscript.script.State.clear_lines">
+<span class="sig-name descname"><span class="pre">clear_lines</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyFlightscript.script.State.clear_lines" title="Link to this definition">¶</a></dt>
+<dd><p>Clear the lines arrray of the object.</p>
+<dl class="simple">
+<dt>Parameters:</dt><dd><p>None</p>
+</dd>
+<dt>Returns:</dt><dd><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyFlightscript.script.State.display_lines">
+<span class="sig-name descname"><span class="pre">display_lines</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyFlightscript.script.State.display_lines" title="Link to this definition">¶</a></dt>
+<dd><p>Print each line stored in lines array.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pyFlightscript.script.State.write_to_file">
+<span class="sig-name descname"><span class="pre">write_to_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'script_out.txt'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyFlightscript.script.State.write_to_file" title="Link to this definition">¶</a></dt>
+<dd><p>Writes the contents of the ‘lines’ attribute to a script file for use in FlightStream.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>filename (str, optional): The name of the file to write to. Defaults to “script_out.txt”.</p>
+</dd>
+<dt>Returns:</dt><dd><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pyFlightscript.script.clear_lines">
+<span class="sig-prename descclassname"><span class="pre">pyFlightscript.script.</span></span><span class="sig-name descname"><span class="pre">clear_lines</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyFlightscript.script.clear_lines" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pyFlightscript.script.display_lines">
+<span class="sig-prename descclassname"><span class="pre">pyFlightscript.script.</span></span><span class="sig-name descname"><span class="pre">display_lines</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pyFlightscript.script.display_lines" title="Link to this definition">¶</a></dt>
+<dd><p>Print each line stored in lines array.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pyFlightscript.script.hard_reset">
+<span class="sig-prename descclassname"><span class="pre">pyFlightscript.script.</span></span><span class="sig-name descname"><span class="pre">hard_reset</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'script_out.txt'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyFlightscript.script.hard_reset" title="Link to this definition">¶</a></dt>
+<dd><p>Resets the script lines and deletes the specified output file.</p>
+<dl class="simple">
+<dt>Parameters:</dt><dd><p>filename (str): The name of the output file. Defaults to “script_out.txt”.</p>
+</dd>
+<dt>Returns:</dt><dd><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pyFlightscript.script.run_script">
+<span class="sig-prename descclassname"><span class="pre">pyFlightscript.script.</span></span><span class="sig-name descname"><span class="pre">run_script</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fsexe_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">script_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'.\\script_out.txt'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyFlightscript.script.run_script" title="Link to this definition">¶</a></dt>
+<dd><p>Runs a script using FlightStream executable path and runs script path.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>fsexe_path (str): The path to the external executable.
+script_path (str, optional): The path to the script file. Defaults to ‘.script_out.txt’.</p>
+</dd>
+<dt>Returns:</dt><dd><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pyFlightscript.script.write_to_file">
+<span class="sig-prename descclassname"><span class="pre">pyFlightscript.script.</span></span><span class="sig-name descname"><span class="pre">write_to_file</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'script_out.txt'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyFlightscript.script.write_to_file" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
 </section>
 <section id="pyflightscript-set-solver-module">
 <h2>pyFlightscript.set_solver module<a class="headerlink" href="#pyflightscript-set-solver-module" title="Link to this heading">¶</a></h2>
@@ -3635,7 +3721,7 @@ FileNotFoundError: If the specified FSM executable file is not found.</p>
       </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
-<h1 class="logo"><a href="#">pyFlightscript</a></h1>
+<h1 class="logo"><a href="index.html">pyFlightscript</a></h1>
 
 
 
@@ -3649,7 +3735,7 @@ FileNotFoundError: If the specified FSM executable file is not found.</p>
 <div class="relations">
 <h3>Related Topics</h3>
 <ul>
-  <li><a href="#">Documentation overview</a><ul>
+  <li><a href="index.html">Documentation overview</a><ul>
   </ul></li>
 </ul>
 </div>
@@ -3683,7 +3769,7 @@ FileNotFoundError: If the specified FSM executable file is not found.</p>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.13</a>
       
       |
-      <a href="_sources/index.rst.txt"
+      <a href="_sources/pyFlightscript.rst.txt"
           rel="nofollow">Page source</a>
     </div>
 

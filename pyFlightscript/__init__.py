@@ -22,6 +22,7 @@ from . import tools
 from . import unite
 from . import wake
 from . import wrapper
+from . import script
 
 import os
 import subprocess

@@ -1,5 +1,5 @@
 from .utils import *    
-from .script_state import script
+from .script import script
 
 def import_geometry( geometry_filepath, units='METER', file_type='STL', clear=True):
     """

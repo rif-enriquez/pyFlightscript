@@ -1,5 +1,5 @@
 from .utils import *    
-from .script_state import script
+from .script import script
 
 def new_probe_point(type_value='VOLUME', x1=1.3, y1=3.3, z1=-0.5):
     """

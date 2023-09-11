@@ -1,6 +1,6 @@
 import os
 from .utils import *    
-from .script_state import script
+from .script import script
 
 def create_new_actuator(actuator_type='PROPELLER'):
     """

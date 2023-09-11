@@ -1,5 +1,5 @@
 from .utils import *    
-from .script_state import script
+from .script import script
 
 def open_fsm(fsm_filepath):
     """

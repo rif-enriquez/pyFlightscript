@@ -1,5 +1,5 @@
 from .utils import *    
-from .script_state import script
+from .script import script
 
 def create_new_surface_section(frame=1, plane='XZ', offset=1.0, 
                                plot_direction=1, surfaces=[]):

@@ -12,6 +12,7 @@ pyFlightscript/__pycache__/
 .sphinx-build/
 sphinx/_build/
 build/
+dist/
 # Miscellaneous
 *.log
 *.bak

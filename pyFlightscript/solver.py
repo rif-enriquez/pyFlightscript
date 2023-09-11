@@ -1,5 +1,5 @@
 from .utils import *    
-from .script_state import script
+from .script import script
 
 def initialize_solver(surfaces, load_frame, symmetry_periodicity=1,
                       proximity_avoidance='DISABLE', stabilization='ENABLE', stabilization_strength=1.0,

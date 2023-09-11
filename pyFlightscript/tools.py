@@ -1,5 +1,5 @@
 from .utils import *    
-from .script_state import script
+from .script import script
 
 def execute_solver_sweeper(results_filename, sweep_results_path='', 
                            angle_of_attack='ENABLE', side_slip_angle='DISABLE', 
@@ -211,7 +211,7 @@ def stability_toolbox_export(filename):
     """
     
     if not isinstance(filename, str):
-        raise ValueError("`filename` should be a string representing the path."
+        raise ValueError("`filename` should be a string representing the path.")
     lines = [
         "#************************************************************************",
         "#*********** Export the S&C toolbox results to external file ************",
