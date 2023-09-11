@@ -67,127 +67,157 @@ def execute_solver_sweeper(results_filename, sweep_results_path='',
     script.append_lines(lines)
     return
 
-
-def set_stability_toolbox(longitudinal='ENABLE', lateral='ENABLE', 
-                          longitudinal_ref_length=1.5, lateral_ref_length=0.5, 
-                          units='PER_DEGREE', clear_solver_per_run='DISABLE'):
+def stability_toolbox_settings(ROTATION_FRAME=1, UNITS='PER_RADIAN', 
+                               CLEAR_SOLVER_PER_RUN='DISABLE', ANGULAR_RATE_INCREMENT=0.1):
     """
     Appends lines to script state to set the S&C toolbox parameters.
 
-
-    :param longitudinal: ENABLE or DISABLE computation of longitudinal stability coefficients.
-    :param lateral: ENABLE or DISABLE computation of lateral stability coefficients.
-    :param longitudinal_ref_length: Value of the reference length used in computing the longitudinal stability coefficients.
-    :param lateral_ref_length: Value of the reference length used in computing the lateral stability coefficients.
-    :param units: PER_RADIAN or PER_DEGREE (only for dynamic stability coefficients).
-    :param clear_solver_per_run: ENABLE or DISABLE clearing of the solution prior to each solver run.
+    :param ROTATION_FRAME: Index of the coordinate system used for applying rotation rates.
+                           Default is 1 for reference coordinate system.
+    :param UNITS: PER_RADIAN or PER_DEGREE (only for dynamic stability coefficients).
+    :param CLEAR_SOLVER_PER_RUN: ENABLE or DISABLE clearing of the solution prior to each solver run.
+    :param ANGULAR_RATE_INCREMENT: Incremental angular rate (rad/sec) to be applied about the three axes 
+                                   of the specified rotation coordinate system for dynamic coefficients.
 
     Example usage:
-    >>> set_stability_toolbox()
+    stability_toolbox_settings(3, 'PER_RADIAN', 'DISABLE', 0.2)
     """
     
+    valid_units = ['PER_RADIAN', 'PER_DEGREE']
     valid_options = ['ENABLE', 'DISABLE']
     
-    if longitudinal not in valid_options:
-        raise ValueError(f"`longitudinal` should be one of {valid_options}")
+    if not isinstance(ROTATION_FRAME, int):
+        raise ValueError("`ROTATION_FRAME` should be an integer value.")
 
-    if lateral not in valid_options:
-        raise ValueError(f"`lateral` should be one of {valid_options}")
+    if UNITS not in valid_units:
+        raise ValueError(f"`UNITS` should be one of {valid_units}")
 
-    if not isinstance(longitudinal_ref_length, (int, float)):
-        raise ValueError("`longitudinal_ref_length` should be an integer or float value.")
+    if CLEAR_SOLVER_PER_RUN not in valid_options:
+        raise ValueError(f"`CLEAR_SOLVER_PER_RUN` should be one of {valid_options}")
+
+    if not isinstance(ANGULAR_RATE_INCREMENT, (int, float)):
+        raise ValueError("`ANGULAR_RATE_INCREMENT` should be an integer or float value.")
         
-    if not isinstance(lateral_ref_length, (int, float)):
-        raise ValueError("`lateral_ref_length` should be an integer or float value.")
-
-    valid_units = ['PER_RADIAN', 'PER_DEGREE']
-    if units not in valid_units:
-        raise ValueError(f"`units` should be one of {valid_units}")
-
-    if clear_solver_per_run not in valid_options:
-        raise ValueError(f"`clear_solver_per_run` should be one of {valid_options}")
-
     lines = [
         "#************************************************************************",
         "#****************** Set the S&C toolbox parameters here *****************",
         "#************************************************************************",
         "#",
-        "SET_STABILITY_TOOLBOX",
-        f"LONGITUDINAL {longitudinal}",
-        f"LATERAL {lateral}",
-        f"LONGITUDINAL_REF_LENGTH {longitudinal_ref_length}",
-        f"LATERAL_REF_LENGTH {lateral_ref_length}",
-        f"UNITS {units}",
-        f"CLEAR_SOLVER_PER_RUN {clear_solver_per_run}"
+        "STABILITY_TOOLBOX_SETTINGS",
+        f"{ROTATION_FRAME}",
+        f"{UNITS}",
+        f"{CLEAR_SOLVER_PER_RUN}",
+        f"{ANGULAR_RATE_INCREMENT}"
     ]
 
     script.append_lines(lines)
     return
 
-def compute_static_stability():
+def stability_toolbox_new_coefficient(FRAME, UNITS, NUMERATOR, DENOMINATOR, CONSTANT, NAME, BOUNDARIES):
     """
-    Appends lines to script state to compute the static stability coefficients.
+    Appends lines to script state to define a new Stability & Control (S&C) coefficient.
 
+    :param FRAME: Index of the coordinate system for computing the coefficient's numerator variable.
+    :param UNITS: One of: COEFFICIENTS, NEWTONS, KILO-NEWTONS, POUND-FORCE, KILOGRAM-FORCE
+    :param NUMERATOR: One of: CL,CDI,CDO,CD,FORCE_X,FORCE_Y,FORCE_Z,MOMENT_X,MOMENT_Y,MOMENT_Z
+    :param DENOMINATOR: One of: AOA,BETA,ROTX,ROTY,ROTZ
+    :param CONSTANT: Value of the constant to multiply to the basic derivative term.
+    :param NAME: Name of the user-defined coefficient.
+    :param BOUNDARIES: Geometry boundaries linked to this coefficient's numerator variable.
+    
+    Example usage:
+    stability_toolbox_new_coefficient(NAME='CLq', NUMERATOR='CL', DENOMINATOR='ROTY', FRAME=2, CONSTANT=208.7, BOUNDARIES=-1)
+    """
 
+    valid_units = ['COEFFICIENTS', 'NEWTONS', 'KILO-NEWTONS', 'POUND-FORCE', 'KILOGRAM-FORCE']
+    if UNITS not in valid_units:
+        raise ValueError(f"`UNITS` should be one of {valid_units}")
+
+    valid_numerators = ['CL', 'CDI', 'CDO', 'CD', 'FORCE_X', 'FORCE_Y', 'FORCE_Z', 'MOMENT_X', 'MOMENT_Y', 'MOMENT_Z']
+    if NUMERATOR not in valid_numerators:
+        raise ValueError(f"`NUMERATOR` should be one of {valid_numerators}")
+
+    valid_denominators = ['AOA', 'BETA', 'ROTX', 'ROTY', 'ROTZ']
+    if DENOMINATOR not in valid_denominators:
+        raise ValueError(f"`DENOMINATOR` should be one of {valid_denominators}")
+
+    if not isinstance(CONSTANT, (int, float)):
+        raise ValueError("`CONSTANT` should be an integer or float value.")
+
+    lines = [
+        "#************************************************************************",
+        "#********* Create a new S&C Coefficient *********************************",
+        "#************************************************************************",
+        "STABILITY_TOOLBOX_NEW_COEFFICIENT",
+        f"NAME {NAME}",
+        f"NUMERATOR {NUMERATOR}",
+        f"DENOMINATOR {DENOMINATOR}",
+        f"FRAME {FRAME}",
+        f"CONSTANT {CONSTANT}",
+        f"BOUNDARIES {BOUNDARIES}"
+    ]
+
+    if BOUNDARIES != -1:
+        boundaries_list = ",".join(map(str, BOUNDARIES))
+        lines.append(boundaries_list)
+
+    script.append_lines(lines)
+    return
+
+def stability_toolbox_delete_all():
+    """
+    Appends lines to script state to delete all S&C toolbox coefficients.
 
     Example usage:
-    >>> compute_static_stability()
+    stability_toolbox_delete_all()
     """
     
     lines = [
         "#************************************************************************",
-        "#****************** Compute the static stability coefficients ***********",
+        "#****************** Delete all S&C Toolbox coefficients *****************",
         "#************************************************************************",
-        "#",
-        "COMPUTE_STATIC_STABILITY"
+        "STABILITY_TOOLBOX_DELETE_ALL"
     ]
 
     script.append_lines(lines)
     return
 
-def compute_dynamic_stability():
+def compute_stability_coefficients():
     """
-    Appends lines to script state to compute the dynamic stability coefficients.
-    
-
+    Appends lines to script state to compute the stability coefficients.
     
     Example usage:
-        compute_dynamic_stability()
+    compute_stability_coefficients()
     """
     
     lines = [
         "#************************************************************************",
-        "#****************** Compute the dynamic stability coefficients **********",
+        "#****************** Compute the stability coefficients ******************",
         "#************************************************************************",
-        "#",
-        "COMPUTE_DYNAMIC_STABILITY"
+        "COMPUTE_STABILITY_COEFFICIENTS"
     ]
 
     script.append_lines(lines)
     return
 
-def export_stability_results(filename):
+def stability_toolbox_export(filename):
     """
     Appends lines to script state to export the S&C toolbox results to an external file.
-    
 
-    :param filename: Filename with its path for the exported results.
-    
+    :param filename: Path of the file where S&C toolbox results should be exported.
+
     Example usage:
-        export_stability_results(, 'C:\\...\\Testing cases\\another_test.txt')
+    stability_toolbox_export(r'C:\...\Testing cases\test_stability.txt')
     """
     
-    # Type and value checking
     if not isinstance(filename, str):
-        raise ValueError("`filename` should be a string.")
-    
+        raise ValueError("`filename` should be a string representing the path."
     lines = [
         "#************************************************************************",
         "#*********** Export the S&C toolbox results to external file ************",
         "#************************************************************************",
-        "#",
-        "EXPORT_STABILITY_RESULTS",
-        f"{filename}"
+        "STABILITY_TOOLBOX_EXPORT",
+        filename
     ]
 
     script.append_lines(lines)
