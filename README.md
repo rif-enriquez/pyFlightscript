@@ -1,19 +1,19 @@
-### pyFlightscript
+## pyFlightscript
 
 A python API for generating native FlightStream scripts.
 
-#### Installation
+## Installation
 
 No dependencies required at this time.
 
 `python setup.py install`
 
-#### Features
+## Features
 
 - Generates FlightStream scripts with a user-friendly Pythonic interface
 - Modules broken into categories for ease of search.
 
-# Example code
+## Example code
 
 ```
 import pyFlightscript as pyfs
@@ -27,11 +27,11 @@ pyfs.script_state.write_to_file()
 
 within \sphinx directory
 
-# on Windows
+### on Windows
 
 simply run `generate_docs.bat`
 
-# on other
+### on other systems
 
 remove \_build directory
 run 'sphinx-apidoc -o . ../pyFlightscript/'
