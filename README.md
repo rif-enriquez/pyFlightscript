@@ -1,6 +1,7 @@
 ## pyFlightscript
 
 A python API for generating native FlightStream scripts.
+This is an open source project, but is sponsored in part by Research In Flight. Development is on-going.
 
 ## Installation
 
@@ -38,3 +39,18 @@ run 'sphinx-apidoc -o . ../pyFlightscript/'
 rename pyFlighscript.rst to index.rst
 run 'make.bat html'
 docs are in '.\_build\html\index.html'
+
+## Contribution
+
+Contributions are welcome!
+
+1. Fork the repository.
+2. Create a new branch.
+3. Make your changes.
+4. Submit a pull request.
+
+Please post bugs to the 'issues' section. Feel free to create a branch and submit a pull request. An admin will be notified.
+
+## License
+
+GNU AFFERO GENERAL PUBLIC LICENSE
