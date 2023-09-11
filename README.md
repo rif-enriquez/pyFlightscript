@@ -24,16 +24,18 @@ pyfs.script_state.display_lines()
 pyfs.script_state.write_to_file()
 ```
 
-## To generate new docs
+## To read/generate new docs
 
-within \sphinx directory
+run the index.html file in your browser.
 
 ### on Windows
 
+within \sphinx directory
 simply run `generate_docs.bat`
 
 ### on other systems
 
+within \sphinx directory
 remove \_build directory
 run 'sphinx-apidoc -o . ../pyFlightscript/'
 rename pyFlighscript.rst to index.rst
