@@ -8,6 +8,7 @@ fsexe_path = r'C:\Users\Danie\AppData\Roaming\Research in Flight\FlightStream\Fl
 # GENERATE MACRO COMMANDS
 pyfs.fsinit.open_fsm(r'.\test.fsm')
 pyfs.script.display_lines()
+pyfs.exec_solver.close_flightstream()
 pyfs.script.write_to_file() # write out the script txt file that will be run
 
 ## ALL COMMANDS GENERATED, NOW EXECUTE

@@ -105,8 +105,8 @@ def export_surface_mesh(file_path, file_type, surface=-1):
     return
 
 def surface_rotate(frame=1, axis='X', angle=0, surfaces=[-1], 
-                   split_vertices='DISABLE', adaptive_mesh='ENABLE', 
-                   detach_normal_to_axis='ENABLE'):
+                   split_vertices='DISABLE', adaptive_mesh='DISABLE', 
+                   detach_normal_to_axis='DISABLE'):
     """
     Appends lines to script state to rotate an existing surface.
     
