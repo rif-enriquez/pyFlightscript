@@ -359,33 +359,35 @@ set_loads_and_moments_units()</p>
 <dd class="field-odd"><p><strong>variable</strong> – Value of the contour parameter.</p>
 </dd>
 </dl>
-<p>value, variable
-0 No contour
-1 X
-2 Y
-3 Z
-4 Vorticity
-5 Skin friction coefficient
-6 Area
-7 Boundary Mach Number
-8 Coefficient of pressure (Free-stream velocity)
-9 Mach Number
-10 Solver partition ID
-11 Separation marker
-12 Velocity X component
-13 Velocity Y component
-14 Velocity Z component
-15 Velocity magnitude
-16 Boundary layer displacement thickness
-17 Boundary layer streamline length
-18 Coefficient of pressure (reference velocity)
-19 Solver mesh quality
-20 Boundary layer transition marker
-21 Solver mesh stabilization
-22 Boundary layer momentum thickness
-23 Boundary layer momentum gradient
-24 Boundary layer shape factor
-25 Boundary layer stagnation marker</p>
+<div class="line-block">
+<div class="line">value, variable</div>
+<div class="line">0 No contour</div>
+<div class="line">1 X</div>
+<div class="line">2 Y</div>
+<div class="line">3 Z</div>
+<div class="line">4 Vorticity</div>
+<div class="line">5 Skin friction coefficient</div>
+<div class="line">6 Area</div>
+<div class="line">7 Boundary Mach Number</div>
+<div class="line">8 Coefficient of pressure (Free-stream velocity)</div>
+<div class="line">9 Mach Number</div>
+<div class="line">10 Solver partition ID</div>
+<div class="line">11 Separation marker</div>
+<div class="line">12 Velocity X component</div>
+<div class="line">13 Velocity Y component</div>
+<div class="line">14 Velocity Z component</div>
+<div class="line">15 Velocity magnitude</div>
+<div class="line">16 Boundary layer displacement thickness</div>
+<div class="line">17 Boundary layer streamline length</div>
+<div class="line">18 Coefficient of pressure (reference velocity)</div>
+<div class="line">19 Solver mesh quality</div>
+<div class="line">20 Boundary layer transition marker</div>
+<div class="line">21 Solver mesh stabilization</div>
+<div class="line">22 Boundary layer momentum thickness</div>
+<div class="line">23 Boundary layer momentum gradient</div>
+<div class="line">24 Boundary layer shape factor</div>
+<div class="line">25 Boundary layer stagnation marker</div>
+</div>
 </dd></dl>
 
 <dl class="py function">
@@ -1432,7 +1434,7 @@ To invert all surfaces, specify -1.</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="pyFlightscript.geometry.surface_rotate">
-<span class="sig-prename descclassname"><span class="pre">pyFlightscript.geometry.</span></span><span class="sig-name descname"><span class="pre">surface_rotate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">frame</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axis</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'X'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">angle</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">surfaces</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[-1]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">split_vertices</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'DISABLE'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">adaptive_mesh</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'ENABLE'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">detach_normal_to_axis</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'ENABLE'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyFlightscript.geometry.surface_rotate" title="Link to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">pyFlightscript.geometry.</span></span><span class="sig-name descname"><span class="pre">surface_rotate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">frame</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axis</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'X'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">angle</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">surfaces</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[-1]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">split_vertices</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'DISABLE'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">adaptive_mesh</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'DISABLE'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">detach_normal_to_axis</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'DISABLE'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyFlightscript.geometry.surface_rotate" title="Link to this definition">¶</a></dt>
 <dd><p>Appends lines to script state to rotate an existing surface.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -3372,17 +3374,18 @@ compute_stability_coefficients()</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="pyFlightscript.tools.execute_solver_sweeper">
-<span class="sig-prename descclassname"><span class="pre">pyFlightscript.tools.</span></span><span class="sig-name descname"><span class="pre">execute_solver_sweeper</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">results_filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sweep_results_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">angle_of_attack</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'ENABLE'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">side_slip_angle</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'DISABLE'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">velocity</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'DISABLE'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">angle_of_attack_start</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">angle_of_attack_stop</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">angle_of_attack_delta</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">side_slip_angle_start</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">side_slip_angle_stop</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">side_slip_angle_delta</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">velocity_start</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">velocity_stop</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">velocity_delta</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">export_surface_data_per_step</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'ENABLE'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">clear_solution_after_each_run</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'ENABLE'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reference_velocity_equals_freestream</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'ENABLE'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">append_to_existing_sweep</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'DISABLE'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyFlightscript.tools.execute_solver_sweeper" title="Link to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">pyFlightscript.tools.</span></span><span class="sig-name descname"><span class="pre">execute_solver_sweeper</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">results_filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">surface_results_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">angle_of_attack</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'ENABLE'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">side_slip_angle</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'DISABLE'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">velocity</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'DISABLE'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">angle_of_attack_start</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">angle_of_attack_stop</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">angle_of_attack_delta</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">side_slip_angle_start</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">side_slip_angle_stop</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">side_slip_angle_delta</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">velocity_start</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">velocity_stop</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">velocity_delta</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">export_surface_data_per_step</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'ENABLE'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">clear_solution_after_each_run</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'ENABLE'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reference_velocity_equals_freestream</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'ENABLE'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">append_to_existing_sweep</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'DISABLE'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pyFlightscript.tools.execute_solver_sweeper" title="Link to this definition">¶</a></dt>
 <dd><p>Appends lines to script state to execute the solver sweeper.
 :param results_filename (str): The full file path name of the sweep results file.
-:param sweep_results_path (str): The path to export surface data per step if ‘ENABLE’.</p>
+:param surface_results_path (str): The path to export surface data per step if ‘ENABLE’.</p>
 <p>Example usage:
-execute_solver_sweeper(, angle_of_attack=’ENABLE’,</p>
+execute_solver_sweeper(results_filename=’C:...sweep_resultssweep.txt’,</p>
 <blockquote>
-<div><p>side_slip_angle=’DISABLE’, velocity=’DISABLE’, 
+<div><p>surface_results_path=’C:...surface_data’, angle_of_attack=’ENABLE’, 
+side_slip_angle=’DISABLE’, velocity=’DISABLE’, 
 angle_of_attack_start=0.0, angle_of_attack_stop=10.0,
 angle_of_attack_delta=1.0, export_surface_data_per_step=’ENABLE’,
-sweep_results_path=’C:...sweep_results', 
+surface_results_path=’C:...sweep_results', 
 clear_solution_after_each_run=’ENABLE’)</p>
 </div></blockquote>
 </dd></dl>
