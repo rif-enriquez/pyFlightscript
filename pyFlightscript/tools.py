@@ -1,7 +1,7 @@
 from .utils import *    
 from .script import script
 
-def execute_solver_sweeper(results_filename, sweep_results_path='', 
+def execute_solver_sweeper(results_filename, surface_results_path='', 
                            angle_of_attack='ENABLE', side_slip_angle='DISABLE', 
                            velocity='DISABLE', angle_of_attack_start=0.0, 
                            angle_of_attack_stop=0., angle_of_attack_delta=1.,
@@ -15,14 +15,15 @@ def execute_solver_sweeper(results_filename, sweep_results_path='',
     """
     Appends lines to script state to execute the solver sweeper.
     :param results_filename (str): The full file path name of the sweep results file.
-    :param sweep_results_path (str): The path to export surface data per step if 'ENABLE'.
+    :param surface_results_path (str): The path to export surface data per step if 'ENABLE'.
 
     Example usage:
-    execute_solver_sweeper(, angle_of_attack='ENABLE', 
+    execute_solver_sweeper(results_filename='C:\...\sweep_results\sweep.txt', 
+                           surface_results_path='C:\...\surface_data\', angle_of_attack='ENABLE', 
                            side_slip_angle='DISABLE', velocity='DISABLE', 
                            angle_of_attack_start=0.0, angle_of_attack_stop=10.0,
                            angle_of_attack_delta=1.0, export_surface_data_per_step='ENABLE',
-                           sweep_results_path='C:\\...\\sweep_results\\', 
+                           surface_results_path='C:\\...\\sweep_results\\', 
                            clear_solution_after_each_run='ENABLE')
     
 
@@ -57,7 +58,7 @@ def execute_solver_sweeper(results_filename, sweep_results_path='',
         f"VELOCITY_STOP {velocity_stop}",
         f"VELOCITY_DELTA {velocity_delta}",
         f"EXPORT_SURFACE_DATA_PER_STEP {export_surface_data_per_step}",
-        f"{sweep_results_path}",
+        f"{surface_results_path}",
         f"CLEAR_SOLUTION_AFTER_EACH_RUN {clear_solution_after_each_run}",
         f"REFERENCE_VELOCITY_EQUALS_FREESTREAM {reference_velocity_equals_freestream}",
         f"APPEND_TO_EXISTING_SWEEP {append_to_existing_sweep}",

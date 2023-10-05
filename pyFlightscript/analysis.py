@@ -11,33 +11,33 @@ def set_scene_contour(variable=4):
 
     :param variable: Value of the contour parameter.
 
-    value, variable
-    0 No contour
-    1 X
-    2 Y
-    3 Z
-    4 Vorticity
-    5 Skin friction coefficient
-    6 Area
-    7 Boundary Mach Number
-    8 Coefficient of pressure (Free-stream velocity)
-    9 Mach Number
-    10 Solver partition ID
-    11 Separation marker
-    12 Velocity X component
-    13 Velocity Y component
-    14 Velocity Z component
-    15 Velocity magnitude
-    16 Boundary layer displacement thickness
-    17 Boundary layer streamline length
-    18 Coefficient of pressure (reference velocity)
-    19 Solver mesh quality
-    20 Boundary layer transition marker
-    21 Solver mesh stabilization
-    22 Boundary layer momentum thickness
-    23 Boundary layer momentum gradient
-    24 Boundary layer shape factor
-    25 Boundary layer stagnation marker
+    | value, variable
+    | 0 No contour
+    | 1 X
+    | 2 Y
+    | 3 Z
+    | 4 Vorticity
+    | 5 Skin friction coefficient
+    | 6 Area
+    | 7 Boundary Mach Number
+    | 8 Coefficient of pressure (Free-stream velocity)
+    | 9 Mach Number
+    | 10 Solver partition ID
+    | 11 Separation marker
+    | 12 Velocity X component
+    | 13 Velocity Y component
+    | 14 Velocity Z component
+    | 15 Velocity magnitude
+    | 16 Boundary layer displacement thickness
+    | 17 Boundary layer streamline length
+    | 18 Coefficient of pressure (reference velocity)
+    | 19 Solver mesh quality
+    | 20 Boundary layer transition marker
+    | 21 Solver mesh stabilization
+    | 22 Boundary layer momentum thickness
+    | 23 Boundary layer momentum gradient
+    | 24 Boundary layer shape factor
+    | 25 Boundary layer stagnation marker
 
     """
     
