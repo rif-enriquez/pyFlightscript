@@ -11,7 +11,7 @@ def physics(auto_trail_edges=False, auto_wake_nodes=False, end=True):
     :param end: If True, adds an "END" line.
 
     Example usage:
-    physics(, auto_trail_edges=True, auto_wake_nodes=True)
+    physics(auto_trail_edges=True, auto_wake_nodes=True)
     """
     
     # List to store the lines

@@ -21,7 +21,6 @@ def steady():
     script.append_lines(lines)
     return
 
-
 def unsteady(time_iterations=100, delta_time=0.1):
     """
     Appends lines to script state to set the unsteady solver.
@@ -161,7 +160,6 @@ def unsteady_solver_export_plots(export_filepath):
     script.append_lines(lines)
     return
 
-
 def unsteady_solver_delete_all_plots():
     """
     Appends lines to script state to delete all unsteady solver plots.
@@ -298,6 +296,22 @@ def set_viscous_excluded_boundaries(num_boundaries, boundaries):
     script.append_lines(lines)
     return
 
+def delete_viscous_excluded_boundaries():
+    """
+    Appends lines to script state to delete the viscous exclusion boundary list.
+    """
+
+    lines = [
+        "#************************************************************************",
+        "#************** Delete the viscous exclusion boundary list **************",
+        "#************************************************************************",
+        "#",
+        "DELETE_VISCOUS_EXCLUDED_BOUNDARIES"
+    ]
+
+    script.append_lines(lines)
+    return
+
 def enable_flow_separation():
     """
     Appends lines to script state to enable the flow separation model.
@@ -382,7 +396,6 @@ def disable_flow_separation():
     script.append_lines(lines)
     return
 
-
 def solver_settings(angle_of_attack=0., sideslip_angle=0., 
                     freestream_velocity=100., iterations=500, 
                     convergence_limit=1e-5, forced_run='DISABLE', 
@@ -450,7 +463,7 @@ def solver_settings(angle_of_attack=0., sideslip_angle=0.,
     script.append_lines(lines)
     return
 
-def solver_set_aoa(angle):
+def set_aoa(angle):
     """
     Appends lines to script state to set the solver AOA.
     
@@ -458,7 +471,7 @@ def solver_set_aoa(angle):
     :param angle: Angle of attack in degrees. |angle| must be < 90.
     
     Example usage:
-    solver_set_aoa(, -5.0)
+    set_aoa(, -5.0)
     """
     
     # Type and value checking
@@ -478,8 +491,7 @@ def solver_set_aoa(angle):
     script.append_lines(lines)
     return
 
-
-def solver_set_sideslip(angle):
+def set_sideslip(angle):
     """
     Appends lines to script state to set the solver Side-slip angle.
     
@@ -487,7 +499,7 @@ def solver_set_sideslip(angle):
     :param angle: Side-slip angle in degrees. |angle| must be < 90.
     
     Example usage:
-    solver_set_sideslip(, 5.0)
+    set_sideslip(, 5.0)
     """
     
     # Type and value checking
@@ -507,7 +519,7 @@ def solver_set_sideslip(angle):
     script.append_lines(lines)
     return
 
-def solver_set_velocity(velocity=30.0):
+def set_velocity(velocity=30.0):
     """
     Appends lines to script state to set the solver free-stream velocity.
     
@@ -515,7 +527,7 @@ def solver_set_velocity(velocity=30.0):
     :param velocity: The free-stream velocity value.
     
     Example usage:
-    solver_set_velocity()
+    set_velocity()
     """
     
     # Type and value checking
@@ -533,7 +545,7 @@ def solver_set_velocity(velocity=30.0):
     script.append_lines(lines)
     return
 
-def solver_set_iterations(num_iterations=500):
+def set_iterations(num_iterations=500):
     """
     Appends lines to script state to set the solver iterations.
     
@@ -541,7 +553,7 @@ def solver_set_iterations(num_iterations=500):
     :param num_iterations: The number of solver iterations.
     
     Example usage:
-    solver_set_iterations()
+    set_iterations()
     """
     
     # Type and value checking
@@ -559,7 +571,7 @@ def solver_set_iterations(num_iterations=500):
     script.append_lines(lines)
     return
 
-def solver_set_convergence(threshold=1E-5):
+def set_convergence(threshold=1E-5):
     """
     Appends lines to script state to set the solver convergence threshold.
     
@@ -567,7 +579,7 @@ def solver_set_convergence(threshold=1E-5):
     :param threshold: Convergence threshold value.
     
     Example usage:
-    solver_set_convergence()
+    set_convergence()
     """
     
     # Type and value checking
@@ -585,8 +597,140 @@ def solver_set_convergence(threshold=1E-5):
     script.append_lines(lines)
     return
 
+def set_unsteady_viscous_coupling_iterations(NUM_ITERATION):
+    """
+    Appends lines to script state to set the unsteady solver viscous-coupling iteration.
+    
+    :param NUM_ITERATION: Unsteady solver time-stepping iteration where the viscous-coupling is to be set.
 
-def solver_set_forced_iterations(mode='ENABLE'):
+    Example usage:
+    set_unsteady_viscous_coupling_iterations(3)
+    """
+
+    lines = [
+        "#************************************************************************",
+        "#************** Set the unsteady-solver viscous-coupling iteration ******",
+        "#************************************************************************",
+        "#",
+        f"SET_UNSTEADY_VISCOUS_COUPLING_ITERATION {NUM_ITERATION}"
+    ]
+
+    script.append_lines(lines)
+    return
+
+def set_axial_separation_boundaries(num_boundaries, boundaries=[]):
+    """
+    Appends lines to script state to set the axial flow separation boundary list.
+
+    :param num_boundaries: Number of boundaries being added to the axial separation boundaries list.
+    :param boundaries: List of boundary indices. Default is an empty list.
+
+    Example usage:
+    set_axial_separation_boundaries(3, [1,2,4])
+    """
+    
+    if len(boundaries) != num_boundaries:
+        raise ValueError(f"Length of 'boundaries' list should match 'num_boundaries'. Received: {len(boundaries)} expected: {num_boundaries}")
+
+    lines = [
+        "#************************************************************************",
+        "#************** Set the axial flow separation boundary list *************",
+        "#************************************************************************",
+        "#",
+        f"SET_AXIAL_SEPARATION_BOUNDARIES {num_boundaries}",
+        ",".join(str(b) for b in boundaries)
+    ]
+
+    script.append_lines(lines)
+    return
+
+def delete_axial_separation_boundaries():
+    """
+    Appends lines to script state to delete the axial flow separation boundary list.
+    """
+    
+    lines = [
+        "#***********************************************************************",
+        "#************** Delete the axial flow separation boundary list **********",
+        "#************************************************************************",
+        "#",
+        "DELETE_AXIAL_SEPARATION_BOUNDARIES"
+    ]
+
+    script.append_lines(lines)
+    return
+
+def set_crossflow_separation_boundaries(num_boundaries, boundaries=[]):
+    """
+    Appends lines to script state to set the cross-flow separation boundary list.
+    
+
+    :param num_boundaries: Number of boundaries being added to the cross-flow separation boundaries.
+    :param boundaries: List of boundary indices to be added. 
+
+    Example usage:
+    set_crossflow_separation_boundaries(3, [1, 2, 4])
+    """
+    
+    # Validate boundaries list length
+    if len(boundaries) != num_boundaries:
+        raise ValueError(f"Expected {num_boundaries} boundaries but received {len(boundaries)}.")
+
+    lines = [
+        "#************************************************************************",
+        "#************** Set the cross-flow separation boundary list *************",
+        "#************************************************************************",
+        "#",
+        f"SET_CROSSFLOW_SEPARATION_BOUNDARIES {num_boundaries}",
+        ",".join(str(b) for b in boundaries)
+    ]
+
+    script.append_lines(lines)
+    return
+
+def delete_crossflow_separation_boundaries():
+    """
+    Appends lines to script state to delete the crossflow flow separation boundary list.
+    """
+    
+    lines = [
+        "#***********************************************************************",
+        "#************** Delete the crossflow flow separation boundary list **********",
+        "#************************************************************************",
+        "#",
+        "DELETE_CROSSFLOW_SEPARATION_BOUNDARIES"
+    ]
+
+    script.append_lines(lines)
+    return
+
+def set_crossflow_separation_cp(MEAN_DIAMETER):
+    """
+    Sets the cross-flow separation pressure coefficient for a geometric body.
+    
+    :param MEAN_DIAMETER: Mean diameter of the geometric body on which cross-flow separation is to be used. Must be greater than 0.
+    
+    Example usage:
+    set_crossflow_separation_cp(3.5)
+    """
+    
+    # Validate MEAN_DIAMETER
+    if MEAN_DIAMETER <= 0:
+        raise ValueError(f"'MEAN_DIAMETER' should be greater than 0. Received: {MEAN_DIAMETER}")
+    
+    lines = [
+        "#************************************************************************",
+        "#********** Set the cross-flow separation pressure coefficient **********",
+        "#************************************************************************",
+        "#",
+        f"SET_CROSSFLOW_SEPARATION_CP {MEAN_DIAMETER}"
+    ]
+
+    script.append_lines(lines)
+    return
+
+
+def set_forced_iterations(mode='ENABLE'):
     """
     Appends lines to script state to enable or disable solver forced iterations mode.
     
@@ -594,7 +738,7 @@ def solver_set_forced_iterations(mode='ENABLE'):
     :param mode: Either 'ENABLE' or 'DISABLE'.
     
     Example usage:
-    solver_set_forced_iterations()
+    set_forced_iterations()
     """
     
     # Value checking
@@ -613,7 +757,7 @@ def solver_set_forced_iterations(mode='ENABLE'):
     script.append_lines(lines)
     return
 
-def solver_set_ref_velocity(value=100.):
+def set_ref_velocity(value=100.):
     """
     Appends lines to script state to set the solver reference velocity.
     
@@ -621,7 +765,7 @@ def solver_set_ref_velocity(value=100.):
     :param value: Reference velocity.
     
     Example usage:
-    solver_set_ref_velocity()
+    set_ref_velocity()
     """
     
     # Type and value checking
@@ -639,7 +783,7 @@ def solver_set_ref_velocity(value=100.):
     script.append_lines(lines)
     return
 
-def solver_set_ref_area(value=1.):
+def set_ref_area(value=1.):
     """
     Appends lines to script state to set the solver reference area.
     
@@ -647,7 +791,7 @@ def solver_set_ref_area(value=1.):
     :param value: Reference area.
     
     Example usage:
-    solver_set_ref_area()
+    set_ref_area()
     """
     
     # Type and value checking
@@ -665,7 +809,7 @@ def solver_set_ref_area(value=1.):
     script.append_lines(lines)
     return
 
-def solver_set_ref_length(length=1.):
+def set_ref_length(length=1.):
     """
     Appends lines to script state to set the solver reference length.
     
@@ -673,7 +817,7 @@ def solver_set_ref_length(length=1.):
     :param length: Reference length.
     
     Example usage:
-    solver_set_ref_length(, length=2.5)
+    set_ref_length(, length=2.5)
     """
 
     # Type and value checking
@@ -691,7 +835,28 @@ def solver_set_ref_length(length=1.):
     script.append_lines(lines)
     return
 
-def solver_set_compressibility(compressibility='ENABLE'):
+def solver_minimum_cp(CP=-100):
+    """
+    Appends lines to script state to set the solver minimum coefficient of pressure.
+
+    :param CP: Minimum coefficient of pressure used by the solver. Default is -100.
+
+    Example usage:
+    solver_minimum_cp(-100)
+    """
+    
+    lines = [
+        "#************************************************************************",
+        "#********* Set the solver minimum coefficient of pressure ***************",
+        "#************************************************************************",
+        "#",
+        f"SOLVER_MINIMUM_CP {CP}"
+    ]
+
+    script.append_lines(lines)
+    return
+
+def set_compressibility(compressibility='ENABLE'):
     """
     Appends lines to script state to set the solver compressibility.
     
@@ -699,7 +864,7 @@ def solver_set_compressibility(compressibility='ENABLE'):
     :param compressibility: Either 'ENABLE' or 'DISABLE'.
     
     Example usage:
-    solver_set_compressibility(, compressibility='DISABLE')
+    set_compressibility(, compressibility='DISABLE')
     """
 
     # Type and value checking
@@ -744,12 +909,12 @@ def solver_parallel_cores(num_cores=16):
     script.append_lines(lines)
     return
 
-def solver_set_mesh_induced_wake_velocity(enable=True):
+def set_mesh_induced_wake_velocity(enable=True):
     """
     Appends lines to script state to set the solver mesh induced wake velocity.
     
     Example usage:
-    solver_set_mesh_induced_wake_velocity()
+    set_mesh_induced_wake_velocity()
     
 
     :param enable: Boolean to either enable or disable the feature.
@@ -772,7 +937,7 @@ def solver_set_mesh_induced_wake_velocity(enable=True):
     script.append_lines(lines)
     return
 
-def solver_set_adverse_gradient_boundary_layer(mode='ENABLE'):
+def set_adverse_gradient_boundary_layer(mode='ENABLE'):
     """
     Appends lines to script state to set the adverse pressure gradient boundary layer mode.
 
@@ -780,7 +945,7 @@ def solver_set_adverse_gradient_boundary_layer(mode='ENABLE'):
     :param mode: Mode to set the adverse pressure gradient boundary layer. ('ENABLE' or 'DISABLE')
     
     Example usage:
-    solver_set_adverse_gradient_boundary_layer(, 'DISABLE')
+    set_adverse_gradient_boundary_layer(, 'DISABLE')
     """
     
     # Type and value checking
@@ -799,7 +964,7 @@ def solver_set_adverse_gradient_boundary_layer(mode='ENABLE'):
     script.append_lines(lines)
     return
 
-def solver_set_farfield_layers(value=3):
+def set_farfield_layers(value=3):
     """
     Appends lines to script state to set the solver far-field agglomeration layers.
 
@@ -807,7 +972,7 @@ def solver_set_farfield_layers(value=3):
     :param value: Number of farfield layers. (Default is 3)
     
     Example usage:
-    solver_set_farfield_layers(, 4)
+    set_farfield_layers(, 4)
     """
     
     # Type and value checking

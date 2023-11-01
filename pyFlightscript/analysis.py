@@ -6,7 +6,7 @@ def set_scene_contour(variable=4):
     Appends lines to script state to set the scene contour parameter.
     
     Example usage:
-        set_scene_contour(, variable=5)
+        set_scene_contour(variable=5)
     
 
     :param variable: Value of the contour parameter.
