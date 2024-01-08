@@ -5,7 +5,7 @@ This is an open source project, but is sponsored in part by Research In Flight. 
 
 ## Installation
 
-No dependencies required at this time.
+No dependencies required at this time. Simply download the repo and install with:
 
 `python setup.py install`
 
@@ -16,13 +16,7 @@ No dependencies required at this time.
 
 ## Example code
 
-```
-import pyFlightscript as pyfs
-
-pyfs.fsinit.open_fsm('test.fsm')
-pyfs.script_state.display_lines()
-pyfs.script_state.write_to_file()
-```
+See example code folder
 
 ## To read/generate new docs
 
