@@ -21,6 +21,7 @@ See example code folder
 ## To read/generate new docs
 
 run the index.html file in your browser.
+HTML documentation can be found: https://danielenriquez59.github.io/pyFlightscript/
 
 ### on Windows
 
