@@ -22,7 +22,7 @@ if __name__ == '__main__':
     sref = 3.6
     cref = 0.
     
-    pyfs.script.hard_reset
+    pyfs.script.hard_reset() # clear lines from local memory, delete existing script.txt
     V0 = 10 #m/sec
     alt = 10000
     cid = "001" # string id
@@ -42,6 +42,7 @@ if __name__ == '__main__':
                                     reference_velocity=V0, 
                                     reference_area=sref, reference_length=cref, 
                                     processors=12, wake_size=1000)
+    
     outfile = f.replace('.fsm', "_cid_" + str(cid) + '.txt')
     pyfs.tools.execute_solver_sweeper(results_filename=outfile, 
                                     angle_of_attack='ENABLE', 
