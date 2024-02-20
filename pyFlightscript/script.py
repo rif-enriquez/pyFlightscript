@@ -91,7 +91,7 @@ def hard_reset(filename="script_out.txt"):
             print(f"Error: {e.filename} - {e.strerror}")
     return
 
-def run_script(fsexe_path, script_path=r'.\script_out.txt'):
+def run_script(fsexe_path, script_path=r'.\script_out.txt', hidden=False):
     """
     Runs a script using FlightStream executable path and runs script path.
 
@@ -102,6 +102,12 @@ def run_script(fsexe_path, script_path=r'.\script_out.txt'):
     Returns:
         None
     """
+
     import subprocess
-    subprocess.run(fsexe_path+' -script ' + script_path, capture_output=True)
-    return
+    command = [fsexe_path]
+    if hidden:
+        command.append('-hidden')
+    command.extend(['-script', script_path])
+    result = subprocess.run(command, capture_output=True, text=True)
+    # Now you can use result.stdout and result.stderr if needed
+    return result
