@@ -149,7 +149,6 @@ def export_surface_sectional_loads(filename):
     script.append_lines(lines)
     return
 
-
 def update_all_surface_sections():
     """
     Appends lines to script state to update the surface sections.

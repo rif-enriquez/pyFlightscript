@@ -76,7 +76,6 @@ def update_probe_points():
     script.append_lines(lines)
     return
 
-
 def probe_points_import(filepath, units='INCH', frame=1):
     """
     Appends lines to script state to import probe points from a file.
@@ -108,7 +107,6 @@ def probe_points_import(filepath, units='INCH', frame=1):
     
     script.append_lines(lines)
     return
-
 
 def export_probe_points(filepath):
     """

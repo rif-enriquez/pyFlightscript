@@ -34,7 +34,6 @@ def create_new_rectangle_volume_section(frame=1, plane='XZ', offset=0., size=-0.
     script.append_lines(lines)
     return
 
-
 def create_new_circle_volume_section(frame=1, plane='XZ', offset=0.1, ipts=20, 
                                      jpts=40, r1=0.0, r2=2.5, prisms_type='PRISMS', thickness=0.3, 
                                      layers=20, growth_rate=1.2):
@@ -206,7 +205,6 @@ def export_volume_section_2d_vtk(index, filename):
     
     script.append_lines(lines)
     return
-
 
 def export_volume_section_tecplot(index, filename):
     """

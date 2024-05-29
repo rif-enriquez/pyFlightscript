@@ -84,7 +84,6 @@ def acoustic_observers_import(file_path):
     script.append_lines(lines)
     return
 
-
 def delete_acoustic_observer(observer_index):
     """
     Appends lines to script state to delete an acoustic observer by index.

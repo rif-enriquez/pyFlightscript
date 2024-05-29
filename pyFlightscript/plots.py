@@ -33,7 +33,6 @@ def set_plot_type(plot_type):
     script.append_lines(lines)
     return
 
-
 def save_plot_to_file(filename):
     """
     Appends lines to script state to save the plot to an external file.

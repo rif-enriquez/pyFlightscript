@@ -1,7 +1,7 @@
 from .utils import *    
 from .script import script
 
-def clear_log():
+def clear():
     """
     Appends lines to script state to clear the log.
     
@@ -16,7 +16,7 @@ def clear_log():
     return
 
 
-def export_log(log_filepath):
+def export(log_filepath):
     """
     Appends lines to script state to export log window messages.
     

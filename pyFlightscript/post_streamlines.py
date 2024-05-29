@@ -122,7 +122,6 @@ def new_off_body_streamtube(radius, frame, axis, radial_subdivisions, azimuth_su
     script.append_lines(lines)
     return
 
-
 def set_off_body_streamline_length(set_length=None, set_unrestricted_length=None):
     """
     Appends lines to script state to set the length of the new off-body streamlines.
@@ -266,7 +265,6 @@ def export_all_off_body_streamlines(filename):
 
     script.append_lines(lines)
     return
-
 
 #### Surface Streamlines
 def generate_all_surface_streamlines():
