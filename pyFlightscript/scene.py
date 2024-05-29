@@ -48,6 +48,32 @@ def change_scene_to(scene):
     script.append_lines(lines)
     return
 
+def save_scene_as_image(filename):
+    """
+    Appends a command to the script to save the current scene as an image file.
+
+    :param filename: The full path with the filename where the image will be saved.
+    """
+    
+    # Validate the filename
+    if not isinstance(filename, str):
+        raise ValueError("`filename` must be a string representing the file path.")
+    
+    if not filename.endswith(('.bmp', '.png', '.jpg', '.jpeg', '.tiff', '.gif')):
+        raise ValueError("The filename must end with a valid image file extension (.bmp, .png, .jpg, .jpeg, .tiff, .gif).")
+    
+    lines = [
+        "#************************************************************************",
+        "#****************** Save scene as image file ****************************",
+        "#************************************************************************",
+        "#",
+        "SAVE_SCENE_AS_IMAGE",
+        filename
+    ]
+
+    script.append_lines(lines)
+    return
+
 def set_scene_view(view_option='DEFAULTVIEW'):
     """
     Appends lines to script state to set the scene view.
@@ -125,7 +151,6 @@ def set_scene_colormap_type(colormap='PRIMARY',
     
     script.append_lines(lines)
     return
-
 
 def set_scene_colormap_size(colormap='PRIMARY', 
                             thickness=300, height=15):
