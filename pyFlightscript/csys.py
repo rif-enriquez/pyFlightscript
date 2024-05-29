@@ -30,7 +30,7 @@ def edit_coordinate_system(frame, name, origin_x, origin_y, origin_z,
     Appends lines to script state to edit a local coordinate system.
 
     Example usage:
-    edit_coordinate_system(, 2, "Prop-1", 0, 1, 0.5,
+    edit_coordinate_system(2, "Prop-1", 0, 1, 0.5,
                            1, 0, 0, 0, -1, 0, 0, 0, -1.2)
 
 
@@ -301,7 +301,6 @@ def translate_coordinate_system(frame, x, y, z, units='METER'):
     script.append_lines(lines)
     return
 
-
 def duplicate_coordinate_system(frame):
     """
     Appends lines to script state to duplicate a local coordinate system.
@@ -361,7 +360,6 @@ def mirror_coordinate_system(frame, plane='XZ'):
 
     script.append_lines(lines)
     return
-
 
 def delete_coordinate_system(frame):
     """
