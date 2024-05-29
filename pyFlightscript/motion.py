@@ -41,7 +41,6 @@ def create_new_motion_custom():
     script.append_lines(lines)
     return
 
-
 def create_new_motion_6dof():
     """
     Appends lines to script state to create a new 6DOF motion definition.
@@ -157,7 +156,6 @@ def set_motion_moving_frames(motion_id, num_frames, frames_list=None):
 
     script.append_lines(lines)
     return
-
 
 def set_motion_coordinate_system(motion_id, coordinate_system_id):
     """
@@ -281,7 +279,6 @@ def set_motion_acceleration(motion_id, ax, ay, az):
 
     script.append_lines(lines)
     return
-
 
 def set_motion_angular_velocity(motion_id, wx, wy, wz):
     """
@@ -485,7 +482,6 @@ def set_motion_gravity(motion_id, gx=0, gy=0, gz=-9.81):
     script.append_lines(lines)
     return
 
-
 def set_motion_6dof_initial_velocity(motion_id, vx=10.0, vy=0, vz=-25.0):
     """
     Appends lines to script state to set the initial velocity conditions for a 6DOF motion.
@@ -549,7 +545,6 @@ def set_motion_6dof_initial_angular_velocity(motion_id, wx=0.0, wy=0.0, wz=0.0):
 
     script.append_lines(lines)
     return
-
 
 def set_motion_6dof_active_variables(motion_id, u='DISABLE', v='DISABLE', 
                                      w='DISABLE', p='DISABLE', q='DISABLE', r='DISABLE'):
@@ -830,7 +825,6 @@ def set_motion_fsi_executable(motion_id, executable_path, show_console='DISABLE'
 
     script.append_lines(lines)
     return
-
 
 def set_motion_fsi_structural_nodes(motion_id, nodes_file_path):
     """

@@ -89,7 +89,6 @@ def initialize_solver(surfaces, load_frame, symmetry_periodicity=1,
     script.append_lines(lines)
     return
 
-
 def solver_proximal_boundaries(*boundaries):
     """
     Appends lines to script state to enable solver proximity checking for specified boundaries.
