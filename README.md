@@ -50,7 +50,7 @@ HTML documentation can be found: https://danielenriquez59.github.io/pyFlightscri
 ### on Windows
 
 within \sphinx directory
-simply run `generate_docs.bat`
+simply run `generate_docs.bat` in a cmd terminal
 
 ### on other systems
 
