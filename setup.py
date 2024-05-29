@@ -2,13 +2,13 @@ from setuptools import setup, find_packages
 
 setup(
     name="pyFlightscript",
-    version="0.1.0",
+    version="2024.1.0",
     description="Python package to write FlightStream scripts using python.",
     long_description=open("README.md", "r").read(),
     long_description_content_type="text/markdown",
     author="Daniel Enriquez",
     author_email="daniel.enriquez@researchinflight.com",
-    url="https://github.com/xxxx",
+    url="https://github.com/rif-enriquez/pyFlightscript",
     packages=find_packages(),  # automatically discover and include all packages in the package directory
     classifiers=[
         "Programming Language :: Python :: 3",
