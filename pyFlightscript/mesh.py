@@ -1,7 +1,7 @@
 from .utils import *    
 from .script import script
 
-def import_geometry( geometry_filepath, units='METER', file_type='STL', clear=True):
+def import_mesh( geometry_filepath, units='METER', file_type='STL', clear=True):
     """
     Appends lines to script state to import a geometry into the simulation.
     
@@ -361,8 +361,6 @@ def create_new_surface_from_selection():
     """
     Appends lines to script state to create a new geometry surface 
     from the currently selected faces.
-    
-
     """
     
     lines = [
@@ -375,6 +373,7 @@ def create_new_surface_from_selection():
 
     script.append_lines(lines)
     return
+
 def surface_cut_by_plane(frame=1, plane='XZ', offset=0.0, 
                          surface=-1):
     """
@@ -480,6 +479,38 @@ def surface_copy_paste(surface=1):
     script.append_lines(lines)
     return
 
+def surface_circular_pattern(surface, coordinate_system, axis, num_copies):
+    """
+    Appends lines to script state to create a circular pattern of a selected surface.
+
+    :param surface: Index of the surface that must be copied (integer).
+    :param coordinate_system: Index of the coordinate system to be used (integer).
+    :param axis: Axis of the specified coordinate system to be used as the circular pattern axis (string).
+    :param num_copies: Number of copies in the circular pattern, including the original (integer).
+    """
+    
+    # Type and value checking
+    if not isinstance(surface, int):
+        raise ValueError("`surface` should be an integer representing the surface index.")
+    if not isinstance(coordinate_system, int):
+        raise ValueError("`coordinate_system` should be an integer representing the coordinate system index.")
+    if not isinstance(axis, str):
+        raise ValueError("`axis` should be a string representing the axis (e.g., 'X', 'Y', 'Z').")
+    if not isinstance(num_copies, int):
+        raise ValueError("`num_copies` should be an integer representing the number of copies.")
+    
+    # Creating command strings
+    lines = [
+        "#************************************************************************",
+        "#****************** Create Circular Pattern of Surfaces *****************",
+        "#************************************************************************",
+        "#",
+        f"SURFACE_CIRCULAR_PATTERN {surface} {coordinate_system} {axis} {num_copies}"
+    ]
+
+    script.append_lines(lines)
+    return
+
 def surface_auto_hole_fill(surface=1):
     """
     Appends lines to script state to automatically fill holes on a surface.
@@ -510,7 +541,6 @@ def surface_auto_hole_fill(surface=1):
 def surface_combine(surface_indices):
     """
     Appends lines to script state to combine selected surfaces.
-    
 
     :param surface_indices: List of surface indices to be combined.
     """

@@ -7,7 +7,7 @@ from . import csys
 from . import exec_solver
 from . import export_data
 from . import freestream
-from . import geometry
+from . import mesh
 from . import fsinit
 from . import inlets
 from . import motion
