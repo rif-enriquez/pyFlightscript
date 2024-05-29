@@ -1,7 +1,7 @@
 from .utils import *    
 from .script import script    
 
-def set_scene_contour(variable=4):
+def scene_contour(variable=4):
     """
     Appends lines to script state to set the scene contour parameter.
     
@@ -58,45 +58,102 @@ def set_scene_contour(variable=4):
     script.append_lines(lines)
     return
 
-def solver_analysis_options(load_frame=1, drag_model='VORTICITY', 
-                            moment_model='PRESSURE', compute_symmetry_loads='ENABLE'):
+def set_vorticity_drag_boundaries(num_boundaries, boundary_indices=None):
     """
-    Appends lines to script state to set the solver analysis options.
-    
-    Example usage:
-        solver_analysis_options(, load_frame=2, drag_model='PRESSURE')
-    
+    Appends lines to script state to set vorticity-based induced drag boundaries.
 
-    :param load_frame: Index of the coordinate system.
-    :param drag_model: Drag model type.
-    :param moment_model: Moment model type.
-    :param compute_symmetry_loads: ENABLE or DISABLE computation of mirrored boundaries.
+    :param num_boundaries: Number of boundaries to be added to the list, or -1 to set all.
+    :param boundary_indices: List of boundary indices, ignored if num_boundaries is -1.
+    """
+    
+    # Type and value checking for num_boundaries
+    if not isinstance(num_boundaries, int):
+        raise ValueError("`num_boundaries` should be an integer value.")
+    
+    # Prepare script lines
+    lines = [
+        "#************************************************************************",
+        "#****** Set a custom vorticity induced-drag boundary list ***************",
+        "#************************************************************************",
+        "#"
+    ]
+    
+    if num_boundaries == -1:
+        # Setting all mesh boundaries
+        lines.append("SET_VORTICITY_DRAG_BOUNDARIES -1")
+        lines.append("# All mesh boundaries set as vorticity induced-drag boundaries.")
+    else:
+        # Validate boundary_indices if num_boundaries is not -1
+        if not isinstance(boundary_indices, list) or not all(isinstance(idx, int) for idx in boundary_indices):
+            raise ValueError("When `num_boundaries` is not -1, `boundary_indices` should be a list of integers.")
+        
+        if len(boundary_indices) != num_boundaries:
+            raise ValueError("`boundary_indices` length must match `num_boundaries`.")
+        
+        # Setting specified boundaries
+        lines.append(f"SET_VORTICITY_DRAG_BOUNDARIES {num_boundaries}")
+        lines.append(",".join(map(str, boundary_indices)))
+
+    # Assuming script.append_lines is a function to append lines to a global script context
+    script.append_lines(lines)
+    return
+
+def delete_vorticity_drag_boundaries():
+    """
+    Clears the vorticity induced-drag boundaries from the script state.
+    """
+    lines = [
+        "#************************************************************************",
+        "#************** Clear the vorticity induced-drag boundaries *************",
+        "#************************************************************************",
+        "#",
+        "DELETE_VORTICITY_DRAG_BOUNDARIES"
+    ]
+
+    script.append_lines(lines)
+    return
+
+def set_analysis_moments_model(model="PRESSURE"):
+    """
+    Sets the moments model used in the analysis to either 'PRESSURE' or 'VORTICITY'.
+
+    :param model: A string that indicates the model type, either 'PRESSURE' (default) or 'VORTICITY'.
     """
     
     # Type and value checking
-    if not isinstance(load_frame, int):
-        raise ValueError("`load_frame` should be an integer value.")
-    
-    valid_models = ['VORTICITY', 'PRESSURE']
-    if drag_model not in valid_models:
-        raise ValueError(f"`drag_model` should be one of {valid_models}")
-    if moment_model not in valid_models:
-        raise ValueError(f"`moment_model` should be one of {valid_models}")
-    
-    valid_symmetry_loads = ['ENABLE', 'DISABLE']
-    if compute_symmetry_loads not in valid_symmetry_loads:
-        raise ValueError(f"`compute_symmetry_loads` should be one of {valid_symmetry_loads}")
+    if model not in ['PRESSURE', 'VORTICITY']:
+        raise ValueError("`model` must be either 'PRESSURE' or 'VORTICITY'.")
     
     lines = [
         "#************************************************************************",
-        "#****************** Set the solver analysis options **********************",
+        "#****************** Set the moments model used in the analysis **********",
         "#************************************************************************",
         "#",
-        "SOLVER_ANALYSIS_OPTIONS",
-        f"LOAD_FRAME {load_frame}",
-        f"DRAG_MODEL {drag_model}",
-        f"MOMENT_MODEL {moment_model}",
-        f"COMPUTE_SYMMETRY_LOADS {compute_symmetry_loads}"
+        f"SET_ANALYSIS_MOMENTS_MODEL {model}"
+    ]
+
+    script.append_lines(lines)
+    return
+
+def set_analysis_symmetry_loads(enable):
+    """
+    Enables or disables the analysis to include loads from symmetry boundaries.
+
+    :param enable: Boolean to enable (True) or disable (False) symmetry loads.
+    """
+    
+    # Type checking
+    if not isinstance(enable, bool):
+        raise ValueError("`enable` should be a boolean value.")
+    
+    action = "ENABLE" if enable else "DISABLE"
+    
+    lines = [
+        "#************************************************************************",
+        "#**** Enable the analysis to include loads from symmetry boundaries *****" if enable else "#**** Disable the analysis to include loads from symmetry boundaries ****",
+        "#************************************************************************",
+        "#",
+        f"SET_ANALYSIS_SYMMETRY_LOADS {action}"
     ]
 
     script.append_lines(lines)
@@ -128,7 +185,7 @@ def analysis_loads_frame(load_frame=1):
     script.append_lines(lines)
     return
 
-def set_vorticity_lift_model(enable=True):
+def vorticity_lift_model(enable=True):
     """
     Appends lines to script state to set the lift model to vorticity mode.
     
@@ -156,7 +213,7 @@ def set_vorticity_lift_model(enable=True):
     script.append_lines(lines)
     return
 
-def set_loads_and_moments_units(unit_type='NEWTONS'):
+def loads_and_moments_units(unit_type='NEWTONS'):
     """
     Appends lines to script state to set the loads and moments units.
 
@@ -205,6 +262,30 @@ def analysis_boundaries(num_boundaries, boundaries_list=[]):
         "#",
         f"SET_SOLVER_ANALYSIS_BOUNDARIES {num_boundaries}",
         boundaries_str
+    ]
+
+    script.append_lines(lines)
+    return
+
+def set_inviscid_loads(enable):
+    """
+    Enables or disables the computation of inviscid loads and moments only.
+
+    :param enable: Boolean to enable (True) or disable (False) the feature.
+    """
+    
+    # Type checking
+    if not isinstance(enable, bool):
+        raise ValueError("`enable` should be a boolean value.")
+
+    status = "ENABLE" if enable else "DISABLE"
+    
+    lines = [
+        "#************************************************************************",
+        "#********* Set the Analysis to be inviscid loads & moments only *********",
+        "#************************************************************************",
+        "#",
+        f"SET_INVISCID_LOADS {status}"
     ]
 
     script.append_lines(lines)
