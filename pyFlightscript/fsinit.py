@@ -21,7 +21,7 @@ def open_fsm(fsm_filepath):
 
 def stop_script():
     """
-    Writes specific lines indicating a script stop to ''.
+    Writes specific lines indicating a script stop.
     """
     lines = [
         "#************************************************************************",
@@ -29,6 +29,21 @@ def stop_script():
         "#************************************************************************",
         "#",
         "STOP"
+    ]
+
+    script.append_lines(lines)
+    return
+
+def print(message="Hello from FlightStream!"):
+    """
+    Print a user-defined message to the log.
+    """
+    lines = [
+        "#************************************************************************",
+        "#**************** Print a user-defined message to the log ***************",
+        "#************************************************************************",
+        "#",
+        f"PRINT {message}"
     ]
 
     script.append_lines(lines)
