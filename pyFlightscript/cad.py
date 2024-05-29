@@ -1,7 +1,7 @@
 from .utils import *    
 from .script import script
 
-def cad_create_new_model(model_name):
+def create_new_model(model_name):
     """
     Appends lines to script state to create a new CAD-->Model.
     
@@ -19,7 +19,7 @@ def cad_create_new_model(model_name):
     script.append_lines(lines)
     return
 
-def cad_create_initialize(model_index=1):
+def create_initialize(model_index=1):
     """
     Appends lines to script state to initialize the CAD-->Create pane window.
     
@@ -37,7 +37,7 @@ def cad_create_initialize(model_index=1):
     script.append_lines(lines)
     return
 
-def cad_create_import_curve_txt(txt_filepath, units='METER', dimension='2D', frame=1, plane='YZ'):
+def create_import_curve_txt(txt_filepath, units='METER', dimension='2D', frame=1, plane='YZ'):
     """
     Appends lines to script state to import a CAD-->Create drawing curve from a txt file.
     
@@ -74,7 +74,7 @@ def cad_create_import_curve_txt(txt_filepath, units='METER', dimension='2D', fra
     script.append_lines(lines)
     return
 
-def cad_create_import_ccs(ccs_filepath):
+def create_import_ccs(ccs_filepath):
     """
     Appends lines to script state to import a CAD-->Create drawing curve from a csv file.
     
@@ -95,7 +95,7 @@ def cad_create_import_ccs(ccs_filepath):
     script.append_lines(lines)
     return
 
-def cad_create_auto_cross_sections(frame=1, axis='Y', sections=20, body_index=1, 
+def create_auto_cross_sections(frame=1, axis='Y', sections=20, body_index=1, 
                                growth_scheme=3, growth_rate=1.2, symmetry='NONE'):
     """
     Appends lines to script state to create a series of automatic cross-sections from mesh body.
@@ -121,7 +121,7 @@ def cad_create_auto_cross_sections(frame=1, axis='Y', sections=20, body_index=1,
     script.append_lines(lines)
     return
 
-def cad_create_cross_section(frame=1, plane='XZ', offset=0.0, body_index=1, quadrant=3):
+def create_cross_section(frame=1, plane='XZ', offset=0.0, body_index=1, quadrant=3):
     """
     Appends lines to script state to create a cross-section from an existing mesh body.
     
@@ -166,7 +166,7 @@ def cad_create_cross_section(frame=1, plane='XZ', offset=0.0, body_index=1, quad
     script.append_lines(lines)
     return
 
-def cad_create_point_curve(x=0.0, y=1.0, z=0.0):
+def create_point_curve(x=0.0, y=1.0, z=0.0):
     """
     Appends lines to script state to create a singular point curve in 3D.
     
@@ -197,7 +197,7 @@ def cad_create_point_curve(x=0.0, y=1.0, z=0.0):
     script.append_lines(lines)
     return
 
-def cad_create_curve_arc(x0=0.0, y0=0.0, z0=0.0, x1=-1.0, y1=0.0, z1=0.0, x2=0.0, y2=1.0, z2=0.0):
+def create_curve_arc(x0=0.0, y0=0.0, z0=0.0, x1=-1.0, y1=0.0, z1=0.0, x2=0.0, y2=1.0, z2=0.0):
     """
     Appends lines to script state to create a circular arc curve in 3D.
     
@@ -223,7 +223,7 @@ def cad_create_curve_arc(x0=0.0, y0=0.0, z0=0.0, x1=-1.0, y1=0.0, z1=0.0, x2=0.0
     script.append_lines(lines)
     return
 
-def cad_create_curve_select(curve_index=1):
+def create_curve_select(curve_index=1):
     """
     Appends lines to script state to select one of the CAD-->Create drawing curves.
     
@@ -250,7 +250,7 @@ def cad_create_curve_select(curve_index=1):
     script.append_lines(lines)
     return
 
-def cad_create_curve_unselect(curve_index=1):
+def create_curve_unselect(curve_index=1):
     """
     Appends lines to script state to unselect one of the CAD-->Create drawing curves.
     
@@ -277,7 +277,7 @@ def cad_create_curve_unselect(curve_index=1):
     script.append_lines(lines)
     return
 
-def cad_create_curve_reverse(curve_index=1):
+def create_curve_reverse(curve_index=1):
     """
     Appends lines to script state to reverse CAD->Create drawing curves by index.
 
@@ -312,8 +312,7 @@ def cad_create_curve_reverse(curve_index=1):
     script.append_lines(lines)
     return
 
-
-def cad_create_curve_delete_all():
+def create_curve_delete_all():
     """
     Appends lines to script state to delete all CAD->Create drawing curves.
 
@@ -334,7 +333,7 @@ def cad_create_curve_delete_all():
     script.append_lines(lines)
     return
 
-def cad_create_curve_delete_selected():
+def create_curve_delete_selected():
     """
     Appends lines to script state to delete only selected CAD-->Create drawing curves.
 
@@ -355,7 +354,7 @@ def cad_create_curve_delete_selected():
     script.append_lines(lines)
     return
 
-def cad_create_curve_delete_unselected():
+def create_curve_delete_unselected():
     """
     Appends lines to script state to delete only unselected CAD-->Create drawing curves.
 
@@ -376,7 +375,7 @@ def cad_create_curve_delete_unselected():
     script.append_lines(lines)
     return
 
-def cad_create_curve_export_ccs(file_path):
+def create_curve_export_ccs(file_path):
     """
     Appends lines to script state to export selected CAD-->Create drawing curves to CSV file.
 
