@@ -135,6 +135,39 @@ def set_prop_actuator_rpm(actuator_index=1, rpm=2000):
     script.append_lines(lines)
     return
 
+def set_prop_actuator_profile(actuator_index, units_type, file_name):
+    """
+    Appends lines to script state to set the thrust profile of an actuator.
+
+    :param actuator_index: Index of the actuator.
+    :param units_type: Type of force units (e.g., 'NEWTONS', 'KILO-NEWTONS', 'POUND-FORCE', 'KILOGRAM-FORCE').
+    :param file_name: Path and name of the TXT file containing the thrust profile.
+    """
+
+    # Validate parameters
+    valid_units = ['NEWTONS', 'KILO-NEWTONS', 'POUND-FORCE', 'KILOGRAM-FORCE']
+    if units_type not in valid_units:
+        raise ValueError(f"`units_type` must be one of {valid_units}")
+
+    if not isinstance(actuator_index, int) or actuator_index < 0:
+        raise ValueError("`actuator_index` should be a non-negative integer.")
+
+    if not isinstance(file_name, str):
+        raise ValueError("`file_name` must be a string indicating the path to the thrust profile file.")
+
+    # Script command formation
+    lines = [
+        "#************************************************************************",
+        "#********* Set the thrust profile of an existing actuator ****************",
+        "#************************************************************************",
+        "#",
+        f"SET_PROP_ACTUATOR_PROFILE {actuator_index} {units_type}",
+        file_name
+    ]
+
+    script.append_lines(lines)
+    return
+
 def set_prop_actuator_thrust(actuator_index, ct, thrust_type='COEFFICIENT'):
     """
     Appends lines to script state to set the thrust coefficient of an existing actuator.
@@ -198,6 +231,39 @@ def set_prop_actuator_swirl(actuator_index, status='DISABLE'):
         f"SET_PROP_ACTUATOR_SWIRL {actuator_index} {status}"
     ]
 
+    script.append_lines(lines)
+    return
+
+def set_actuator_exhaust(actuator_index, del_vel, jet_density, jet_spreading_rate):
+    """
+    Appends lines to script state to set exhaust properties for a specified actuator.
+
+    :param actuator_index: Index of the actuator (>0) of the propeller type.
+    :param del_vel: Exhaust velocity increment (above freestream) of the jet.
+    :param jet_density: Density of the jet flow.
+    :param jet_spreading_rate: Jet spreading coefficient.
+    """
+
+    # Validate parameters
+    if not isinstance(actuator_index, int) or actuator_index <= 0:
+        raise ValueError("`actuator_index` should be a positive integer.")
+    if not isinstance(del_vel, (int, float)):
+        raise ValueError("`del_vel` should be a number (integer or float).")
+    if not isinstance(jet_density, (int, float)):
+        raise ValueError("`jet_density` should be a number (integer or float).")
+    if not isinstance(jet_spreading_rate, (int, float)):
+        raise ValueError("`jet_spreading_rate` should be a number (integer or float).")
+
+    # Prepare command
+    lines = [
+        "#************************************************************************",
+        "#********************** Set the exhaust actuator properties *************",
+        "#************************************************************************",
+        "#",
+        f"SET_ACTUATOR_EXHAUST {actuator_index} {del_vel} {jet_density} {jet_spreading_rate}"
+    ]
+
+    # Assuming script.append_lines is a function that adds these lines to the script
     script.append_lines(lines)
     return
 
