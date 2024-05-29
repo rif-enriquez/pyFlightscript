@@ -51,7 +51,7 @@ def save_as_fsm(fsm_filepath):
     script.append_lines(lines)
     return
 
-def create_new_simulation():
+def new_simulation():
     """
     Appends lines to script state to create a new simulation.
     """
