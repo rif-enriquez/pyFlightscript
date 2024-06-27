@@ -11,6 +11,7 @@ from . import mesh
 from . import fsinit
 from . import inlets
 from . import motion
+from . import plots
 from . import post_points
 from . import post_surf
 from . import post_volume
