@@ -1,4 +1,5 @@
-# This is a real world script used. Shown here for illustration purposes
+# This is a real world script used. Shown here for illustration purposes. 
+# DOES NOT WORK AS IS!!!!!
 import os, pdb
 import pyFlightscript as pyfs
 import pandas as pd
@@ -15,7 +16,7 @@ def find_fsm_files(root_dir):
     return fsm_files
 
 if __name__ == '__main__':
-    fsexe_path = r'C:\Users\daniel\AppData\Roaming\Research in Flight\FlightStream\FlightStream.exe' #I9
+    fsexe_path = r'C:\Users\username\AppData\Roaming\Research in Flight\FlightStream\FlightStream.exe' #I9
     
     f = "" # fsm filename
 
