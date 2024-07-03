@@ -28,10 +28,9 @@ from . import script
 import os
 import subprocess
 
-def execute_fsm_script(script_path=".\script_out.txt", fsexe_path=None):
+def execute_fsm_script(script_path=".\script_out.txt", fsexe_path=None, hidden=False):
     """
-    Execute a Finite State Machine (FSM) script using the specified script path and FSM executable path.
-    
+    Execute a fligthscript script using the specified script path and FSM executable path.
     
     :param script_path (str): The path to the FSM script file.
     :param fsexe_path (str, optional): The path to the FSM executable. If not provided, the function will
@@ -53,7 +52,11 @@ def execute_fsm_script(script_path=".\script_out.txt", fsexe_path=None):
         raise FileNotFoundError(f"The specified file '{script_path}' does not exist on path.")
     
     try:
-        result = subprocess.run(f"{fsexe_path} -script {script_path}", capture_output=True)
+        command = [fsexe_path]
+        if hidden:
+            command.append('-hidden')
+        command.extend(['-script', script_path])
+        result = subprocess.run(command, capture_output=True, text=True)
         return result
     except FileNotFoundError:
         raise FileNotFoundError(f"The file {fsexe_path} was not found.")
