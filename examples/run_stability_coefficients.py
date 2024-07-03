@@ -1,3 +1,5 @@
+# this script is an example of setting stability coefficients and then
+# running an AOA sweep. Update the file paths accordingly.
 import pyFlightscript as pyfs
 import numpy as np
 
@@ -67,4 +69,4 @@ pyfs.exec_solver.close_flightstream()
 
 # Script commands done
 pyfs.script.write_to_file() # write out the script 
-# pyfs.script.run_script(fsexe_path=fsexe_path, hidden=False)
+# pyfs.script.run_script(fsexe_path=fsexe_path, hidden=False) # uncomment to run
