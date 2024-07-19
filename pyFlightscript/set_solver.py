@@ -412,13 +412,14 @@ def set_axial_separation_boundaries(boundary_indices):
     """
     
     # Type and value checking
-    if not isinstance(boundary_indices, list):
-        raise ValueError("`boundary_indices` should be a list of integer values.")
-    
-    if not all(isinstance(idx, int) for idx in boundary_indices):
-        raise ValueError("All elements in `boundary_indices` should be integers.")
-    
-    num_boundaries = len(boundary_indices)
+    if  isinstance(boundary_indices, list):
+        num_boundaries = len(boundary_indices)
+        indices_str = ",".join(map(str, boundary_indices))
+    elif isinstance(boundary_indices, int):
+        num_boundaries = 1
+        indices_str = str(boundary_indices)
+    else:
+        raise ValueError("`boundary_indices` should be a list or integer.")
     
     lines = [
         "#************************************************************************",
@@ -426,7 +427,7 @@ def set_axial_separation_boundaries(boundary_indices):
         "#************************************************************************",
         "#",
         f"SET_AXIAL_SEPARATION_BOUNDARIES {num_boundaries}",
-        ",".join(map(str, boundary_indices))
+        indices_str
     ]
 
     script.append_lines(lines)
