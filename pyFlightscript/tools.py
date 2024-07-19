@@ -58,12 +58,18 @@ def execute_solver_sweeper(results_filename, surface_results_path='',
         f"VELOCITY_STOP {velocity_stop}",
         f"VELOCITY_DELTA {velocity_delta}",
         f"EXPORT_SURFACE_DATA_PER_STEP {export_surface_data_per_step}",
-        f"{surface_results_path}",
+        ]
+
+    # Only add surface_results_path if EXPORT_SURFACE_DATA_PER_STEP is ENABLE
+    if export_surface_data_per_step == 'ENABLE' and surface_results_path:
+        lines.append(f"{surface_results_path}")
+
+    lines.extend([
         f"CLEAR_SOLUTION_AFTER_EACH_RUN {clear_solution_after_each_run}",
         f"REFERENCE_VELOCITY_EQUALS_FREESTREAM {reference_velocity_equals_freestream}",
         f"APPEND_TO_EXISTING_SWEEP {append_to_existing_sweep}",
         f"{results_filename}"
-    ]
+    ])
 
     script.append_lines(lines)
     return
