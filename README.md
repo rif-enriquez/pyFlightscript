@@ -11,9 +11,9 @@ submodules categorized by function. for example `pyFlighscript.solver.initialize
 Install dependencies. 
 `pip install -r requirements.txt`
 
-Simply download the repo and install with:
+Simply download the repo and install with within the directory:
 
-`python setup.py install`
+`pip install .`
 
 ## Features
 
