@@ -8,7 +8,10 @@ submodules categorized by function. for example `pyFlighscript.solver.initialize
 
 ## Installation
 
-No dependencies required at this time. Simply download the repo and install with:
+Install dependencies. 
+`pip install -r requirements.txt`
+
+Simply download the repo and install with:
 
 `python setup.py install`
 
