@@ -520,7 +520,7 @@ def set_crossflow_separation_cp(mean_diameter):
 def solver_settings(angle_of_attack=0., sideslip_angle=0., 
                     freestream_velocity=100., iterations=500, 
                     convergence_limit=1e-5, forced_run='DISABLE', 
-                    compressibility='DISABLE', reference_velocity=100., 
+                     reference_velocity=100., 
                     reference_area=1., reference_length=1., processors=2, 
                     wake_size=1000):
     """
@@ -543,8 +543,8 @@ def solver_settings(angle_of_attack=0., sideslip_angle=0.,
         raise ValueError("`iterations` should be an integer value.")
     
     valid_run = ['ENABLE', 'DISABLE']
-    if forced_run not in valid_run or compressibility not in valid_run:
-        raise ValueError(f"`forced_run` and `compressibility` should be one of {valid_run}")
+    if forced_run not in valid_run not in valid_run:
+        raise ValueError(f"`forced_run` should be one of {valid_run}")
     
     if not isinstance(reference_velocity, (int, float)):
         raise ValueError("`reference_velocity` should be a number.")
@@ -573,7 +573,6 @@ def solver_settings(angle_of_attack=0., sideslip_angle=0.,
         f"ITERATIONS {iterations}",
         f"CONVERGENCE_LIMIT {convergence_limit}",
         f"FORCED_RUN {forced_run}",
-        f"COMPRESSIBILITY {compressibility}",
         f"REFERENCE_VELOCITY {reference_velocity}",
         f"REFERENCE_AREA {reference_area}",
         f"REFERENCE_LENGTH {reference_length}",

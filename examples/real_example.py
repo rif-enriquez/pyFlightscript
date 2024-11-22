@@ -33,13 +33,12 @@ if __name__ == '__main__':
     pyfs.solver.initialize_solver(surfaces=-1, load_frame=2, symmetry_type='PLANE',
                       proximity_avoidance='DISABLE', stabilization='ENABLE', stabilization_strength=1.0,
                       fast_multipole='ENABLE', wake_termination_x=7)
-    pyfs.set_solver.set_boundary_layer_type(type_value='TRANSITIONAL')
+    pyfs.set_solver.boundary_layer_type(type_value='TRANSITIONAL')
     pyfs.set_solver.viscous_coupling(mode='ENABLE') 
     pyfs.set_solver.set_axial_separation_boundaries(3, boundaries=[5,6,7])
     pyfs.set_solver.solver_settings(angle_of_attack=0.0, sideslip_angle=0.0, 
                                     freestream_velocity=V0, iterations=450, 
                                     convergence_limit=4e-05, forced_run='DISABLE', 
-                                    compressibility='DISABLE', 
                                     reference_velocity=V0, 
                                     reference_area=sref, reference_length=cref, 
                                     processors=12, wake_size=1000)

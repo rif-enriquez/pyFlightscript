@@ -2,16 +2,16 @@ import os
 from .utils import *    
 from .script import script
 
-def create_new_base_region(surface, base_pressure_coefficient):
+def create_new_base_region(surface, base_type='EMPIRICAL', base_pressure_coefficient=-0.2):
     """
     Appends lines to script state to create a new base region.
 
-
     :param surface: Index of the boundary surface to be marked as base region boundary.
-    :param base_pressure_coefficient: Pressure coefficient to be applied in base regions.
+    :param base_type: Type of base region calculation. Options are 'EMPIRICAL' or 'CONSTANT'. Defaults to 'EMPIRICAL'.
+    :param base_pressure_coefficient: Pressure coefficient to be applied in base regions. Defaults to -0.2.
 
     Example usage:
-    create_new_base_region(, 3, -0.2)
+    create_new_base_region(3, base_type='EMPIRICAL', base_pressure_coefficient=-0.2)
     """
     
     # Type and value checking
@@ -21,14 +21,15 @@ def create_new_base_region(surface, base_pressure_coefficient):
     if not isinstance(base_pressure_coefficient, (int, float)):
         raise ValueError("`base_pressure_coefficient` should be an integer or float value.")
     
+    if base_type not in ['EMPIRICAL', 'CONSTANT']:
+        raise ValueError("`base_type` should be either 'EMPIRICAL' or 'CONSTANT'.")
+    
     lines = [
         "#************************************************************************",
         "#****************** Create a new base region ****************************",
         "#************************************************************************",
         "#",
-        "CREATE_NEW_BASE_REGION",
-        f"SURFACE {surface}",
-        f"BASE_PRESSURE_COEFFICIENT {base_pressure_coefficient}"
+        f"CREATE_NEW_BASE_REGION {surface} {base_type} {base_pressure_coefficient}",
     ]
 
     script.append_lines(lines)

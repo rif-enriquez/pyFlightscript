@@ -248,7 +248,7 @@ def set_motion_velocity(motion_id, vx=0.0, vy=0.0, vz=0.0):
     script.append_lines(lines)
     return 
 
-def set_motion_acceleration(motion_id, ax, ay, az):
+def set_motion_acceleration(motion_id, ax=0.0, ay=0.0, az=0.0):
     """
     Appends lines to script state to set the acceleration vector for a motion definition.
     
@@ -280,7 +280,7 @@ def set_motion_acceleration(motion_id, ax, ay, az):
     script.append_lines(lines)
     return
 
-def set_motion_angular_velocity(motion_id, wx, wy, wz):
+def set_motion_angular_velocity(motion_id, wx=0.0, wy=0.0, wz=0.0):
     """
     Appends lines to script state to set the angular velocity vector for a motion definition.
     
