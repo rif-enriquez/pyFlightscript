@@ -3,16 +3,16 @@ import pyFlightscript as pyfs
 import pdb
 
 # FLIGHTSTREAM EXE FILE PATH
-fsexe_path = r'C:\Users\Danie\AppData\Roaming\Research in Flight\FlightStream\FlightStream.exe'
+fsexe_path = r'C:\Program Files\FlightStream\FlightStream.exe'
 
 # GENERATE MACRO COMMANDS
-pyfs.fsinit.open_fsm(r'.\test.fsm')
-pyfs.script.display_lines()
-pyfs.exec_solver.close_flightstream()
-pyfs.script.write_to_file() # write out the script txt file that will be run
+pyfs.open_fsm(r'.\test.fsm')
+pyfs.display_lines()
+pyfs.close_flightstream()
+pyfs.write_to_file() # write out the script txt file that will be run
 
 ## ALL COMMANDS GENERATED, NOW EXECUTE
-pyfs.script.run_script(fsexe_path=fsexe_path) # run the macro in fs
-pyfs.script.hard_reset() # delete script file and clear memory
+pyfs.run_script(fsexe_path=fsexe_path) # run the macro in fs
+pyfs.hard_reset() # delete script file and clear memory
 
 print('~~~ Test Complete ~~~')

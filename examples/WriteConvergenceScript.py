@@ -42,14 +42,14 @@ def write_ccs_files(uVal, input, UV="U"):
 
 def import_run_export(path, xval, UV):
     ccsPath = path + "Analysis" + UV + str(xval) + ".csv"
-    pyfs.mesh.ccs_import(ccsPath)
-    pyfs.solver.solver_uninitialize()
-    pyfs.analysis.set_vorticity_drag_boundaries(-1)
-    pyfs.solver.initialize_solver(-1, 1, symmetry_periodicity=1,
+    pyfs.ccs_import(ccsPath)
+    pyfs.solver_uninitialize()
+    pyfs.set_vorticity_drag_boundaries(-1)
+    pyfs.initialize_solver(-1, 1, symmetry_periodicity=1,
               proximity_avoidance='DISABLE', stabilization='DISABLE', stabilization_strength=1.0,
               fast_multipole='ENABLE', wake_termination_x='DEFAULT', symmetry_type='PLANE')
-    pyfs.scene.change_scene_to("PLOTS")
-    pyfs.tools.execute_solver_sweeper(path + "results\\"+ "Analysis" + UV + str(xval) + ".txt", 
+    pyfs.change_scene_to("PLOTS")
+    pyfs.execute_solver_sweeper(path + "results\\"+ "Analysis" + UV + str(xval) + ".txt", 
                    angle_of_attack='ENABLE',  angle_of_attack_start=0.0, 
                    angle_of_attack_stop=aoaVal, angle_of_attack_delta=aoaVal,
                    export_surface_data_per_step='DISABLE', 
@@ -61,9 +61,9 @@ def import_run_export(path, xval, UV):
 #Write & Run the FS script
 def writerun_fs_script(path):
     fsexe_path = r'C:\Users\Danie\AppData\Roaming\Research in Flight\FlightStream\FlightStream.exe' #specify file path to FS exe
-    pyfs.script.hard_reset() # (optional) clear lines from local memory, delete existing script.txt
-    pyfs.fsinit.open_fsm(fsm_filepath=os.path.join(path, "base.fsm"))
-    pyfs.mesh.surface_clearall()
+    pyfs.hard_reset() # (optional) clear lines from local memory, delete existing script.txt
+    pyfs.open_fsm(fsm_filepath=os.path.join(path, "base.fsm"))
+    pyfs.surface_clearall()
 
     # import, run, and export each ccs file
     for x in uTable:
@@ -72,8 +72,8 @@ def writerun_fs_script(path):
     for x in vTable:
         import_run_export(path, x, UV="V")
             
-    pyfs.exec_solver.close_flightstream()
-    pyfs.script.write_to_file() # now write script_out.txt
+    pyfs.close_flightstream()
+    pyfs.write_to_file() # now write script_out.txt
     pyfs.execute_fsm_script(fsexe_path=fsexe_path) # execute the script in headless FS
     
 #main function  

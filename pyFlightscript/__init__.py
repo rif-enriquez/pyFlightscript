@@ -25,6 +25,34 @@ from . import wake
 from . import wrapper
 from . import script
 
+from .actuators import *
+from .analysis import *
+from .base import *
+from .boundary_layer import *
+from .cad import *
+from .csys import *
+from .exec_solver import *
+from .export_data import *
+from .freestream import *
+from .mesh import *
+from .fsinit import *
+from .inlets import *
+from .motion import *
+from .plots import *
+from .post_points import *
+from .post_surf import *
+from .post_volume import *
+from .post_streamlines import *
+from .scene import *
+from .set_solver import *
+from .solver import *
+from .tools import *
+from .unite import *
+from .wake import *
+from .wrapper import *
+from .script import *
+
+
 import os
 import subprocess
 
