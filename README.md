@@ -8,6 +8,9 @@ pyFlightscript contains all of the traditional scripting functions found in Flig
 submodules categorized by function. for example `pyFlighscript.solver.initialize_solver() `
 
 ## Installation
+Download the repo
+`git clone https://github.com/danielenriquez59/pyFlightscript.git`
+NOTE: you may have to install git first.
 
 Install dependencies. 
 `pip install -r requirements.txt`
