@@ -922,14 +922,13 @@ def compressibility(compressibility='ENABLE'):
     script.append_lines(lines)
     return
 
-def solver_parallel_cores(num_cores=16):
+def set_max_parallel_threads(num_cores=16):
     """
     Appends lines to script state to set the number of solver parallel cores.
     
     Example usage:
-    solver_parallel_cores()
+    set_max_parallel_threads()
     
-
     :param num_cores: Number of parallel cores.
     """
     
@@ -939,10 +938,10 @@ def solver_parallel_cores(num_cores=16):
     
     lines = [
         "#************************************************************************",
-        "#********* Set the solver parallel cores ********************************",
+        "#*********** Set maximum solver parallel cores ***************************",
         "#************************************************************************",
         "#",
-        f"SOLVER_PARALLEL_CORES {num_cores}"
+        f"SET_MAX_PARALLEL_THREADS {num_cores}"
     ]
 
     script.append_lines(lines)

@@ -5,8 +5,6 @@ def clear():
     """
     Appends lines to script state to clear the log.
     
-
-    
     Example usage:
     clear_log()
     """

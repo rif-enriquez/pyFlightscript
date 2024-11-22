@@ -312,7 +312,7 @@ def set_motion_angular_velocity(motion_id, wx=0.0, wy=0.0, wz=0.0):
     script.append_lines(lines)
     return
 
-def set_motion_angular_acceleration(motion_id, wax, way, waz):
+def set_motion_angular_acceleration(motion_id, wax=0.0, way=0.0, waz=0.0):
     """
     Appends lines to script state to set the angular acceleration vector 
     for a motion definition.
@@ -417,7 +417,7 @@ def set_motion_custom_table(motion_type='VELOCITY-TIME', motion_id=1, filename=N
     script.append_lines(lines)
     return
 
-def set_motion_mass_properties(motion_id, mass, ixx, iyy, izz, ixy, iyz, izx):
+def set_motion_mass_properties(motion_id, mass=0.0, ixx=0.0, iyy=0.0, izz=0.0, ixy=0.0, iyz=0.0, izx=0.0):
     """
     Appends lines to script state to specify motion mass properties.
     
@@ -482,7 +482,7 @@ def set_motion_gravity(motion_id, gx=0, gy=0, gz=-9.81):
     script.append_lines(lines)
     return
 
-def set_motion_6dof_initial_velocity(motion_id, vx=10.0, vy=0, vz=-25.0):
+def set_motion_6dof_initial_velocity(motion_id, vx=0.0, vy=0.0, vz=0.0):
     """
     Appends lines to script state to set the initial velocity conditions for a 6DOF motion.
     

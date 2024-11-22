@@ -2,55 +2,32 @@ import os
 from .utils import *    
 from .script import script
 
-def create_new_inlet(surface_id, type_value, vx_or_velocity, vy=0.0, vz=0.0):
+def create_new_inlet(surface_id, velocity):
     """
-    Appends lines to script state to create a new inlet boundary.
+    Creates a new inlet boundary with specified velocity along the surface normal.
     
-
-    :param surface_id: Index of the boundary surface to be marked as inlet.
-    :param type_value: Type of inlet specification.
-    :param vx_or_velocity: If TYPE=1, then VX. If TYPE=2, then VELOCITY.
-    :param vy: VY value (only used if TYPE=1).
-    :param vz: VZ value (only used if TYPE=1).
+    Args:
+        surface_id (int): Index of the boundary surface to be marked as inlet (must be > 0)
+        velocity (float): Velocity magnitude along the surface normal vector of the inlet faces.
+                         Positive or negative values control the direction of flow.
     
     Example usage:
-    create_new_inlet(, 3, 1, 100.0, 0.0, -10.0)
-    create_new_inlet(, 3, 2, 100.498)
+        create_new_inlet(3, 101.0)
     """
     
     # Type and value checking
     if not isinstance(surface_id, int) or surface_id <= 0:
         raise ValueError("`surface_id` should be an integer value greater than 0.")
     
-    if type_value not in [1, 2]:
-        raise ValueError("`type_value` should be either 1 or 2.")
+    if not isinstance(velocity, (int, float)):
+        raise ValueError("`velocity` should be a numeric value.")
     
-    if not isinstance(vx_or_velocity, (int, float)):
-        raise ValueError("`vx_or_velocity` should be an integer or float value.")
-    
-    if type_value == 1:
-        if not isinstance(vy, (int, float)):
-            raise ValueError("`vy` should be an integer or float value.")
-        
-        if not isinstance(vz, (int, float)):
-            raise ValueError("`vz` should be an integer or float value.")
-    
-    if type_value == 1:
-        lines = [
-            "#************************************************************************",
-            "#****************** Create a new inlet boundary (TYPE=1) ****************",
-            "#************************************************************************",
-            "#",
-            f"CREATE_NEW_INLET {surface_id} {type_value} {vx_or_velocity} {vy} {vz}"
-        ]
-    else:  # type_value == 2
-        lines = [
-            "#************************************************************************",
-            "#****************** Create a new inlet boundary (TYPE=2) ****************",
-            "#************************************************************************",
-            "#",
-            f"CREATE_NEW_INLET {surface_id} {type_value} {vx_or_velocity}"
-        ]
+    lines = [
+        "#************************************************************************",
+        "#*********************** Create a new inlet boundary ********************",
+        "#************************************************************************",
+        f"CREATE_NEW_INLET {surface_id} {velocity}"
+    ]
     
     script.append_lines(lines)
     return

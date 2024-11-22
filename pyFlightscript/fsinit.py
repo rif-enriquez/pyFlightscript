@@ -1,19 +1,32 @@
 from .utils import *    
 from .script import script
 
-def open_fsm(fsm_filepath):
+def open_fsm(fsm_filepath, reset_parallel_cores='DISABLE', load_solver_initialization='ENABLE'):
     """
-    FS: Opens a flightstream file. 
-    python:  Writes a script with specific lines to '', 
-      inserting the path from 'fsm_filepath' where necessary.
+    Opens a FlightStream file with specified settings.
+    
+    Args:
+        fsm_filepath (str): Path to the FlightStream file to open
+        reset_parallel_cores (str): 'ENABLE' to reset parallel core count, 'DISABLE' to use existing
+        load_solver_initialization (str): 'ENABLE' to load solver initialization from file, 'DISABLE' to skip
     """
+    valid_options = ['ENABLE', 'DISABLE']
+
+    if reset_parallel_cores not in valid_options:
+        raise ValueError(f"`reset_parallel_cores` should be one of {valid_options}")
+
+    if load_solver_initialization not in valid_options:
+        raise ValueError(f"`load_solver_initialization` should be one of {valid_options}")
+
     lines = [
         "#************************************************************************",
         "#****************** Open an existing simulation file ********************",
         "#************************************************************************",
         "#",
         "OPEN",
-        fsm_filepath  # Replace the path with the provided input_filename
+        fsm_filepath,  # File path and name
+        f"RESET_PARALLEL_CORES {reset_parallel_cores}",
+        f"LOAD_SOLVER_INITIALIZATION {load_solver_initialization}"
     ]
 
     script.append_lines(lines)
