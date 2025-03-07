@@ -2,7 +2,7 @@ from .utils import *
 from .script import script
 
 def create_new_surface_section(frame=1, plane='XZ', offset=1.0, 
-                               plot_direction=1, surfaces=[]):
+                               plot_direction=1, symmetry='DISABLE', surfaces=-1):
     """
     Appends lines to script state to create a new surface section.
     
@@ -11,11 +11,15 @@ def create_new_surface_section(frame=1, plane='XZ', offset=1.0,
     :param plane: Section plane. One of the following: XY, XZ or YZ.
     :param offset: Offset distance of the plane in the coordinate system.
     :param plot_direction: Value to describe the plotting direction of the surface section.
-    :param surfaces: List of geometry surfaces assigned to the surface section.
+    :param symmetry: Symmetry option. One of the following: ENABLE or DISABLE.
+    :param surfaces: List of geometry surfaces assigned to the surface section, or -1 for all boundaries.
     
     Example usage:
-        create_new_surface_section(, frame=1, plane='XZ', offset=1.0, 
-                                   plot_direction=1, surfaces=[1,4,5])
+        create_new_surface_section(frame=1, plane='XZ', offset=1.0, 
+                                 plot_direction=1, symmetry='DISABLE', surfaces=[1,4,5])
+        # Or for all boundaries:
+        create_new_surface_section(frame=1, plane='XZ', offset=1.0, 
+                                 plot_direction=1, symmetry='DISABLE', surfaces=-1)
     """
     
     # Type and value checking
@@ -32,22 +36,30 @@ def create_new_surface_section(frame=1, plane='XZ', offset=1.0,
     if plot_direction not in [1, 2]:
         raise ValueError("`plot_direction` should be 1 or 2.")
     
-    if not all(isinstance(surface, int) for surface in surfaces):
-        raise ValueError("`surfaces` should be a list of integer values.")
+    # Modified validation for surfaces parameter
+    if surfaces == -1:
+        surface_count = -1
+        surface_list = []
+    else:
+        if not all(isinstance(surface, int) for surface in surfaces):
+            raise ValueError("`surfaces` should be a list of integer values or -1.")
+        surface_count = len(surfaces)
+        surface_list = surfaces
+
+    # Modified header text based on surfaces input
+    header_text = "all boundaries" if surfaces == -1 else "selected boundaries"
     
     lines = [
         "#************************************************************************",
-        "#****************** Create new surface section **************************",
+        f"#****************** Create new surface section (selected boundaries) ****",
         "#************************************************************************",
         "#",
-        "CREATE_NEW_SURFACE_SECTION",
-        f"FRAME {frame}",
-        f"PLANE {plane}",
-        f"OFFSET {offset}",
-        f"PLOT_DIRECTION {plot_direction}",
-        f"SURFACES {len(surfaces)}",
-        " ".join(map(str, surfaces))
+        f"CREATE_NEW_SURFACE_SECTION {frame} {plane} {offset} {plot_direction} {symmetry} {surface_count}"
     ]
+
+    # Add surface list only if not using -1
+    if surfaces != -1:
+        lines.append(" ".join(map(str, surface_list)))
 
     script.append_lines(lines)
     return
