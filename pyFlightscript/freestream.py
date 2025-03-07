@@ -64,8 +64,8 @@ def set_freestream(freestream_type, profile_path=None, frame=None, axis=None, an
     script.append_lines(lines)
     return
 
-def fluid_properties(density=0.5, pressure=65234.35, sonic_velocity=230,
-                     temperature=295.0, viscosity=0.0005):
+def fluid_properties(density=1.225, pressure=101325.0, sonic_velocity=340.0,
+                     temperature=288.15, viscosity=1.789e-5):
     """
     Appends lines to script state to set the fluid properties.
     
